@@ -1,0 +1,123 @@
+---
+const links = [
+  { label: 'Services', href: '#services' },
+  { label: 'Leads', href: '#leads' },
+  { label: 'AI Callers', href: '#callers' },
+  { label: 'Pricing', href: '#pricing' },
+  { label: 'Customers', href: '#customers' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'Contact Us', href: '#contact' },
+];
+---
+
+<nav class="site-nav">
+  <a href="/" class="nav-logo">BuildRightPros</a>
+
+  <div class="nav-links">
+    {links.map(l => (
+      <a href={l.href}>{l.label}</a>
+    ))}
+  </div>
+
+  <div class="nav-right">
+    <button class="icon-btn" aria-label="Account">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M20 21a8 8 0 10-16 0"/>
+      </svg>
+    </button>
+    <button class="icon-btn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #E8E4DF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  }
+
+  .nav-logo {
+    font-family: 'Titan One', cursive;
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    text-decoration: none;
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: #444;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: transform 0.25s ease, font-weight 0.25s ease, color 0.2s ease;
+    display: inline-block;
+    transform-origin: center;
+  }
+
+  .nav-links a:hover {
+    transform: scale(1.5);
+    font-weight: 700;
+    color: #FF6B35;
+  }
+
+  .nav-right {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: #444;
+  }
+
+  .icon-btn:hover {
+    background: #F9F7F4;
+    color: #FF6B35;
+  }
+
+  .icon-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .site-nav { padding: 0 1rem; }
+  }
+</style>

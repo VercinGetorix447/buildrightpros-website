@@ -1,0 +1,730 @@
+---
+import Base from '../layouts/Base.astro';
+import HeroGallery from '../components/core/HeroGallery.astro';
+import TestimonialCarousel from '../components/core/TestimonialCarousel.astro';
+---
+<Base title="Home | BuildRightPros">
+  <HeroGallery />
+
+  <!-- ============================================
+       SECTION: SERVICES (Text LEFT, Image RIGHT)
+       ============================================ -->
+  <section id="services" class="section-block bg-cream">
+    <div class="section-inner">
+      <div class="grid-two">
+        <!-- Text LEFT (white box, black border) -->
+        <div class="text-box">
+          <span class="label">Services</span>
+          <h2>PROFESSIONAL SITES THAT CONVERT</h2>
+          <p>Custom-built websites designed specifically for contractors. Mobile-optimized, SEO-ready, and built to turn visitors into paying customers.</p>
+          <ul class="check-list">
+            <li><span class="check">&#10003;</span> Trade-specific templates (plumber, HVAC, roofer, etc.)</li>
+            <li><span class="check">&#10003;</span> Mobile-first responsive design</li>
+            <li><span class="check">&#10003;</span> Built-in contact forms &amp; booking</li>
+            <li><span class="check">&#10003;</span> Lightning-fast load times</li>
+          </ul>
+        </div>
+        <!-- Image RIGHT (no border) -->
+        <div class="image-box">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="Website on laptop" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION: LEADS (Image LEFT, Text RIGHT) — FLIPPED
+       ============================================ -->
+  <section id="leads" class="section-block bg-warm">
+    <div class="section-inner">
+      <div class="grid-two flipped">
+        <!-- Image LEFT (no border) -->
+        <div class="image-box">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Lead generation dashboard" loading="lazy" />
+        </div>
+        <!-- Text RIGHT (white box, black border) -->
+        <div class="text-box">
+          <span class="label accent-secondary">Lead Generation</span>
+          <h2>QUALIFIED LEADS DELIVERED DAILY</h2>
+          <p>Stop chasing cold calls. We find and qualify prospects in your service area who are actively looking for contractors like you.</p>
+          <div class="stats-grid">
+            <div class="stat"><p class="stat-num">500+</p><p class="stat-label">Leads Delivered</p></div>
+            <div class="stat"><p class="stat-num">89%</p><p class="stat-label">Contact Rate</p></div>
+            <div class="stat"><p class="stat-num">24hr</p><p class="stat-label">Delivery Time</p></div>
+            <div class="stat"><p class="stat-num">5x</p><p class="stat-label">Avg ROI</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION: AI CALLERS (Text LEFT, Image RIGHT)
+       ============================================ -->
+  <section id="callers" class="section-block bg-cream">
+    <div class="section-inner">
+      <div class="grid-two">
+        <!-- Text LEFT (white box, black border) -->
+        <div class="text-box">
+          <span class="label">AI Callers</span>
+          <h2>NEVER MISS A LEAD AGAIN</h2>
+          <p>Our AI-powered callers work 24/7 to follow up on leads, book appointments, and answer questions — so you can focus on the job.</p>
+          <ul class="check-list">
+            <li><span class="check">&#10003;</span> Instant follow-up within minutes</li>
+            <li><span class="check">&#10003;</span> Books appointments on your calendar</li>
+            <li><span class="check">&#10003;</span> Natural-sounding conversations</li>
+            <li><span class="check">&#10003;</span> Full call recordings &amp; transcripts</li>
+          </ul>
+        </div>
+        <!-- Image RIGHT (no border) -->
+        <div class="image-box">
+          <img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=800&h=500&fit=crop" alt="AI phone assistant" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION: PRICING (4 Vertical Boxes)
+       ============================================ -->
+  <section id="pricing" class="section-block bg-warm">
+    <div class="section-inner">
+      <h2 class="section-heading">SIMPLE, TRANSPARENT PRICING</h2>
+      <p class="section-sub">No hidden fees. Cancel anytime.</p>
+      <div class="pricing-grid">
+        <!-- STARTER -->
+        <div class="pricing-card">
+          <div class="pricing-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=200&fit=crop" alt="Starter" loading="lazy" /></div>
+          <h3>IN THE GAME</h3>
+          <p class="pricing-tagline">Digital Starter</p>
+          <p class="pricing-price">$396</p>
+          <ul>
+            <li>&#10003; 3 Page Website</li>
+            <li>&#10003; Mobile Responsive</li>
+            <li>&#10003; Contact Form</li>
+            <li>&#10003; Basic SEO</li>
+            <li>- AI Receptionist (optional)</li>
+            <li>- Lead Generation (optional)</li>
+            <li>- Email Marketing (optional)</li>
+          </ul>
+          <a href="#contact" class="pricing-btn">Get Started</a>
+        </div>
+        <!-- CONTRACTOR -->
+        <div class="pricing-card">
+          <div class="pricing-img"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=400&h=200&fit=crop" alt="Contractor" loading="lazy" /></div>
+          <h3>EFFICIENT CONTRACTOR</h3>
+          <p class="pricing-tagline">Contractor Pro</p>
+          <p class="pricing-price">$693</p>
+          <ul>
+            <li>&#10003; All in Digital Starter+</li>
+            <li>&#10003; 3 Added Service Pages</li>
+            <li>&#10003; CRM Integration</li>
+            <li>&#10003; SEO Content</li>
+            <li>&#10003; Analytics</li>
+            <li>- AI Receptionist (optional)</li>
+            <li>- Lead Generation (optional)</li>
+            <li>- Email Marketing (optional)</li>
+          </ul>
+          <a href="#contact" class="pricing-btn">Get Started</a>
+        </div>
+        <!-- BRANDING (Featured) -->
+        <div class="pricing-card featured">
+          <span class="popular-badge">Most Popular</span>
+          <div class="pricing-img"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=200&fit=crop" alt="Branding" loading="lazy" /></div>
+          <h3>GROWING FUNNELS</h3>
+          <p class="pricing-tagline">Branding Suite</p>
+          <p class="pricing-price accent">$963</p>
+          <ul>
+            <li>&#10003; 10 Page Website</li>
+            <li>&#10003; AI Receptionist</li>
+            <li>&#10003; CRM Lead Funnels</li>
+            <li>&#10003; Email Marketing</li>
+            <li>&#10003; Results Dashboard</li>
+            <li>&#10003; Social Media Kit</li>
+            <li>- Landing Pages (optional)</li>
+            <li>- Dedicated AI Caller (optional)</li>
+          </ul>
+          <a href="#contact" class="pricing-btn primary">Get Started</a>
+        </div>
+        <!-- SCALE -->
+        <div class="pricing-card">
+          <div class="pricing-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop" alt="Scale" loading="lazy" /></div>
+          <h3>REGION DOMINATION</h3>
+          <p class="pricing-tagline">Scale Package</p>
+          <p class="pricing-price">$3,699</p>
+          <ul>
+            <li>&#10003; Up to 50 Page Website</li>
+            <li>&#10003; Up to 20 Landing Pages</li>
+            <li>&#10003; Keyword Research</li>
+            <li>&#10003; Full Business Audit</li>
+            <li>&#10003; Full-time AI Receptionist</li>
+            <li>&#10003; Dedicated AI Callers</li>
+            <li>&#10003; CRM Full Integration</li>
+            <li>&#10003; Integrated Lead Gen</li>
+            <li>&#10003; Multiple Users</li>
+            <li>&#10003; Email &amp; SMS Marketing</li>
+            <li>&#10003; Workflow Automations</li>
+            <li>&#10003; White-label Options</li>
+            <li>&#10003; Priority Support</li>
+          </ul>
+          <a href="#contact" class="pricing-btn">Contact Us</a>
+        </div>
+      </div>
+      <p class="pricing-note">Add-on pages: +$69 each | Custom integrations available</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION: CUSTOMERS (Testimonial Carousel)
+       ============================================ -->
+  <div id="customers">
+    <TestimonialCarousel />
+  </div>
+
+  <!-- ============================================
+       SECTION: BLOG (Image LEFT, Text RIGHT) — FLIPPED
+       ============================================ -->
+  <section id="blog" class="section-block bg-warm">
+    <div class="section-inner">
+      <h2 class="section-heading">CONTRACTOR TRAINING AND EDUCATION</h2>
+      <p class="section-sub">Tips, case studies, and expert advice to grow your business.</p>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=250&fit=crop" alt="Blog post" loading="lazy" />
+          <div class="blog-body">
+            <span class="blog-tag">Guide</span>
+            <h3>5 Ways to Get More Leads as a Contractor</h3>
+            <p>Learn proven strategies to attract more qualified leads without spending a fortune on ads.</p>
+            <a href="/blog">Read More &rarr;</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=250&fit=crop" alt="Blog post" loading="lazy" />
+          <div class="blog-body">
+            <span class="blog-tag secondary">Case Study</span>
+            <h3>How CoolAir HVAC 3x'd Their Bookings</h3>
+            <p>See how one HVAC company used AI callers to transform their lead follow-up process.</p>
+            <a href="/blog">Read More &rarr;</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="Blog post" loading="lazy" />
+          <div class="blog-body">
+            <span class="blog-tag">Tutorial</span>
+            <h3>Building Your Contractor Website: Complete Guide</h3>
+            <p>Everything you need to know about creating a high-converting contractor website.</p>
+            <a href="/blog">Read More &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="blog-cta"><a href="/blog" class="view-all-btn">View All Articles &rarr;</a></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SECTION: CONTACT (Text LEFT, Form RIGHT)
+       ============================================ -->
+  <section id="contact" class="section-block bg-dark">
+    <div class="section-inner">
+      <div class="grid-two contact-grid">
+        <!-- Info LEFT -->
+        <div class="contact-info">
+          <h2>READY TO GROW?</h2>
+          <p>Book a free consultation or send us a message. We'll show you exactly how we can help your contracting business scale.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <div><strong>Call Us</strong><span>(555) 123-4567</span></div>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div><strong>Email</strong><span>admin@buildrightpros.com</span></div>
+            </div>
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div><strong>Hours</strong><span>Mon-Sat 7am-6pm</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- Form RIGHT -->
+        <form class="contact-form">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Email Address" required />
+          <input type="tel" placeholder="Phone Number" />
+          <select>
+            <option value="" disabled selected>Select Your Trade</option>
+            <option>Plumber</option>
+            <option>Electrician</option>
+            <option>HVAC</option>
+            <option>Roofer</option>
+            <option>General Contractor</option>
+            <option>Other</option>
+          </select>
+          <textarea placeholder="Tell us about your business..." rows="3"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ===== GLOBAL SECTION STYLES ===== */
+  .section-block { padding: 5rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .bg-cream { background: #F9F7F4; }
+  .bg-warm { background: #EDE9E3; }
+  .bg-dark { background: linear-gradient(135deg, #1a1a1a 0%, #2D3748 100%); }
+
+  /* ===== TWO-COLUMN GRID (Alternating) ===== */
+  .grid-two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .grid-two.flipped .image-box { order: -1; }
+
+  /* Text box: white bg, black border */
+  .text-box {
+    background: #FFFFFF;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 2.5rem;
+  }
+
+  .text-box .label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #FF6B35;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .text-box .label.accent-secondary {
+    color: #2D3748;
+  }
+
+  .text-box h2 {
+    font-family: 'Titan One', cursive;
+    font-size: 1.75rem;
+    color: #1a1a1a;
+    margin: 0.5rem 0 1rem;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .text-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Image box: no border, no bg */
+  .image-box {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Check list */
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: #444;
+    font-size: 0.95rem;
+  }
+
+  .check {
+    color: #FF6B35;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Stats grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat {
+    text-align: center;
+    padding: 0.75rem;
+    background: #F9F7F4;
+    border-radius: 8px;
+  }
+
+  .stat-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #FF6B35;
+    margin: 0;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+  }
+
+  /* ===== SECTION HEADINGS (Centered) ===== */
+  .section-heading {
+    font-family: 'Titan One', cursive;
+    font-size: 2.25rem;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .pricing-card {
+    background: #FFFFFF;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .pricing-card.featured {
+    border: 2px solid #FF6B35;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.15);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2D3748;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .pricing-img {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-img img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+  }
+
+  .pricing-tagline {
+    font-size: 0.8rem;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
+
+  .pricing-price {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-price.accent { color: #FF6B35; }
+
+  .pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #444;
+    flex-grow: 1;
+  }
+
+  .pricing-btn {
+    display: block;
+    text-align: center;
+    margin-top: auto;
+    padding: 0.65rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    background: #1a1a1a;
+    color: #fff;
+  }
+
+  .pricing-btn:hover { background: #333; }
+
+  .pricing-btn.primary {
+    background: #FF6B35;
+  }
+
+  .pricing-btn.primary:hover { background: #e55a2b; }
+
+  .pricing-note {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  /* ===== BLOG ===== */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .blog-card {
+    background: #FFFFFF;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .blog-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .blog-body {
+    padding: 1.5rem;
+  }
+
+  .blog-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #FF6B35;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .blog-tag.secondary { color: #2D3748; }
+
+  .blog-body h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0.5rem 0;
+    line-height: 1.4;
+  }
+
+  .blog-body p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .blog-body a {
+    color: #FF6B35;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+
+  .blog-body a:hover { color: #e55a2b; }
+
+  .blog-cta {
+    text-align: center;
+    margin-top: 2.5rem;
+  }
+
+  .view-all-btn {
+    display: inline-block;
+    color: #FF6B35;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border: 2px solid #FF6B35;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .view-all-btn:hover {
+    background: #FF6B35;
+    color: #fff;
+  }
+
+  /* ===== CONTACT (Dark Section) ===== */
+  .contact-grid { align-items: start; }
+
+  .contact-info h2 {
+    font-family: 'Titan One', cursive;
+    font-size: 2.25rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .contact-info p {
+    color: #aaa;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-item svg {
+    width: 22px;
+    height: 22px;
+    color: #FF6B35;
+    flex-shrink: 0;
+  }
+
+  .contact-item strong {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+
+  .contact-item span {
+    color: #aaa;
+    font-size: 0.85rem;
+  }
+
+  .contact-form {
+    background: #FFFFFF;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: #F9F7F4;
+    border: 1px solid #E8E4DF;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #1a1a1a;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+    border-color: #FF6B35;
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder { color: #999; }
+
+  .contact-form textarea { resize: none; }
+
+  .contact-form button {
+    background: #FF6B35;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .contact-form button:hover { background: #e55a2b; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .grid-two {
+      grid-template-columns: 1fr;
+    }
+    .grid-two.flipped .image-box { order: 0; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .section-heading { font-size: 1.75rem; }
+    .text-box h2 { font-size: 1.4rem; }
+    .contact-info h2 { font-size: 1.75rem; }
+  }
+</style>

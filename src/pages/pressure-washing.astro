@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/core/Hero.astro';
+import ServiceCards from '../components/basic/ServiceCards.astro';
+import TrustBadges from '../components/basic/TrustBadges.astro';
+import CTASection from '../components/basic/CTASection.astro';
+import ContactForm from '../components/core/ContactForm.astro';
+
+const services = [
+  'Driveway Cleaning',
+  'House Washing',
+  'Deck & Patio',
+  'Roof Cleaning',
+  'Fence Washing',
+  'Concrete Cleaning',
+  'Gutter Brightening',
+  'Commercial Properties'
+];
+---
+<Base title="Pressure Washing Services | BuildRightPros">
+  <Hero
+    headline="Professional Pressure Washing"
+    subheadline="Restore your property's curb appeal with our expert cleaning services"
+    cta="Get Free Estimate"
+    bgImage="/images/pressure-washing-hero.jpg"
+  />
+
+  <TrustBadges badges={['Licensed & Insured', 'Eco-Friendly Products', 'Same-Day Service', '100% Satisfaction']} />
+
+  <section class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="font-header text-3xl text-center mb-12 animate-fade-in">Our Pressure Washing Services</h2>
+    <ServiceCards services={services} />
+  </section>
+
+  <section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-header text-3xl text-center mb-8 animate-fade-in">Why Choose Us?</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center opacity-0 animate-slide-up" style="animation-delay: 0.1s">
+          <div class="text-5xl mb-4">💧</div>
+          <h3 class="font-header text-xl mb-2">Expert Equipment</h3>
+          <p class="text-gray-600">Commercial-grade pressure washers for any job size</p>
+        </div>
+        <div class="text-center opacity-0 animate-slide-up" style="animation-delay: 0.2s">
+          <div class="text-5xl mb-4">🌿</div>
+          <h3 class="font-header text-xl mb-2">Eco-Friendly</h3>
+          <p class="text-gray-600">Safe cleaning solutions that protect your landscaping</p>
+        </div>
+        <div class="text-center opacity-0 animate-slide-up" style="animation-delay: 0.3s">
+          <div class="text-5xl mb-4">⚡</div>
+          <h3 class="font-header text-xl mb-2">Fast Service</h3>
+          <p class="text-gray-600">Most jobs completed in just a few hours</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready for a Cleaner Property?"
+    subtext="Free estimates - no obligation"
+    buttonText="Call Now"
+    phone="(555) 123-4567"
+  />
+
+  <section class="py-16 px-4 max-w-2xl mx-auto">
+    <h2 class="font-header text-3xl text-center mb-8">Request a Quote</h2>
+    <ContactForm />
+  </section>
+</Base>

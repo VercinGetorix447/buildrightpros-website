@@ -1,0 +1,50 @@
+---
+import Nav from '../components/core/Nav.astro';
+import Footer from '../components/core/Footer.astro';
+const { title = 'BuildRightPros', navLinks } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{title}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body class="bg-brand-light font-body text-brand-dark">
+  <Nav links={navLinks} />
+  <main class="pt-16"><slot /></main>
+  <Footer />
+</body>
+</html>
+
+<style is:global>
+  html { scroll-behavior: smooth; }
+  /* Offset anchors so fixed nav doesn't cover them */
+  [id] { scroll-margin-top: 72px; }
+  :root {
+    /* ===== 5-BAR COLOR SYSTEM ===== */
+    /* Bar 1: Background */
+    --bg-main: #F9F7F4;
+    /* Bar 2: Header/Footer (dark) */
+    --dark: #1a1a1a;
+    /* Bar 3: Section Headings */
+    --section-head: #1a1a1a;
+    /* Bar 4: Font Color */
+    --text: #444444;
+    /* Bar 5: Accent */
+    --accent: #FF6B35;
+
+    /* ===== AUTO-DERIVED ===== */
+    --bg-alt: #EDE9E3;
+    --accent-hover: #e55a2b;
+    --text-light: #666666;
+    --border: #E8E4DF;
+
+    /* RGB triplet for rgba() usage */
+    --accent-rgb: 255, 107, 53;
+
+    /* Nav auto-contrast (dark brand = white text, light brand = dark text) */
+    --nav-text: #ffffff;
+  }
+</style>

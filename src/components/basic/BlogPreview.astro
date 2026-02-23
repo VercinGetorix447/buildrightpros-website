@@ -1,0 +1,197 @@
+---
+const articles = [
+  {
+    slug: 'kitchen-remodel-dallas',
+    title: 'Complete Kitchen Transformation in Dallas',
+    excerpt: 'How we turned a dated 1990s kitchen into a modern culinary space.',
+    image: '/images/blog/kitchen-1.jpg',
+    category: 'Kitchen',
+    date: '2026-02-01',
+    readTime: '5 min'
+  },
+  {
+    slug: 'bathroom-renovation-guide',
+    title: 'Bathroom Renovation: What to Expect',
+    excerpt: 'Your complete guide to planning a stress-free bathroom remodel.',
+    image: '/images/blog/bathroom-1.jpg',
+    category: 'Bathroom',
+    date: '2026-01-28',
+    readTime: '7 min'
+  },
+  {
+    slug: 'deck-building-tips',
+    title: 'Building the Perfect Outdoor Deck',
+    excerpt: 'Material choices, design tips, and maintenance advice for lasting decks.',
+    image: '/images/blog/deck-1.jpg',
+    category: 'Outdoor',
+    date: '2026-01-25',
+    readTime: '6 min'
+  }
+];
+---
+
+<section class="blog-section" id="blog">
+  <h2 class="section-title">From Our Blog</h2>
+  <p class="section-subtitle">Tips, project stories, and expert advice for homeowners.</p>
+
+  <div class="blog-grid">
+    {articles.map((a, i) => (
+      <a href={`/blog/${a.slug}`} class="blog-card" style={`animation-delay: ${i * 0.1}s`}>
+        <div class="blog-image">
+          <img src={a.image} alt={a.title} loading="lazy" />
+          <span class="blog-category">{a.category}</span>
+        </div>
+        <div class="blog-content">
+          <h3>{a.title}</h3>
+          <p>{a.excerpt}</p>
+          <div class="blog-meta">
+            <span>{a.readTime} read</span>
+            <span>{a.date}</span>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+
+  <div class="blog-cta">
+    <a href="/blog" class="view-all">View All Articles &rarr;</a>
+  </div>
+</section>
+
+<style>
+  .blog-section {
+    padding: 5rem 2rem;
+    background: var(--bg-main);
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 3.5rem;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .blog-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px rgba(var(--accent-rgb), 0.12);
+  }
+
+  .blog-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .blog-card:hover .blog-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-category {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .blog-content {
+    padding: 1.5rem;
+    text-align: left;
+  }
+
+  .blog-content h3 {
+    font-size: 1.2rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .blog-content p {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .blog-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #999;
+  }
+
+  .blog-cta {
+    margin-top: 3rem;
+  }
+
+  .view-all {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--accent);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+
+  .view-all:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 2rem; }
+  }
+</style>

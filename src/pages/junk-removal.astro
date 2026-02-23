@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/core/Hero.astro';
+import ServiceCards from '../components/basic/ServiceCards.astro';
+import TrustBadges from '../components/basic/TrustBadges.astro';
+import CTASection from '../components/basic/CTASection.astro';
+import ContactForm from '../components/core/ContactForm.astro';
+
+const services = [
+  'Household Junk',
+  'Furniture Removal',
+  'Appliance Hauling',
+  'Yard Debris',
+  'Construction Waste',
+  'Estate Cleanouts',
+  'Garage Cleanouts',
+  'Commercial Cleanups'
+];
+---
+<Base title="Junk Removal Services | BuildRightPros">
+  <Hero
+    headline="Fast & Affordable Junk Removal"
+    subheadline="We haul it all - so you don't have to lift a finger"
+    cta="Book Pickup"
+    bgImage="/images/junk-removal-hero.jpg"
+  />
+
+  <TrustBadges badges={['Same-Day Pickup', 'Upfront Pricing', 'Eco-Friendly Disposal', 'Fully Insured']} />
+
+  <section class="py-16 px-4 max-w-6xl mx-auto">
+    <h2 class="font-header text-3xl text-center mb-12 animate-fade-in">What We Haul</h2>
+    <ServiceCards services={services} />
+  </section>
+
+  <section class="bg-gray-50 py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-header text-3xl text-center mb-8 animate-fade-in">How It Works</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center opacity-0 animate-slide-up" style="animation-delay: 0.1s">
+          <div class="w-16 h-16 bg-brand-accent text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+          <h3 class="font-header text-xl mb-2">Schedule</h3>
+          <p class="text-gray-600">Book online or call - we offer same-day service</p>
+        </div>
+        <div class="text-center opacity-0 animate-slide-up" style="animation-delay: 0.2s">
+          <div class="w-16 h-16 bg-brand-accent text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+          <h3 class="font-header text-xl mb-2">Point & Go</h3>
+          <p class="text-gray-600">Just show us what needs to go - we do the heavy lifting</p>
+        </div>
+        <div class="text-center opacity-0 animate-slide-up" style="animation-delay: 0.3s">
+          <div class="w-16 h-16 bg-brand-accent text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+          <h3 class="font-header text-xl mb-2">Done!</h3>
+          <p class="text-gray-600">We haul, sweep up, and you enjoy your clean space</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 px-4 max-w-4xl mx-auto">
+    <h2 class="font-header text-3xl text-center mb-8 animate-fade-in">Transparent Pricing</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow-md text-center opacity-0 animate-scale-in" style="animation-delay: 0.1s">
+        <h3 class="font-header text-xl mb-2">Small Load</h3>
+        <p class="text-3xl font-bold text-brand-accent mb-2">$99+</p>
+        <p class="text-gray-600">1-2 items or 1/8 truck</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center border-2 border-brand-accent opacity-0 animate-scale-in" style="animation-delay: 0.2s">
+        <h3 class="font-header text-xl mb-2">Half Truck</h3>
+        <p class="text-3xl font-bold text-brand-accent mb-2">$249+</p>
+        <p class="text-gray-600">Most popular option</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center opacity-0 animate-scale-in" style="animation-delay: 0.3s">
+        <h3 class="font-header text-xl mb-2">Full Truck</h3>
+        <p class="text-3xl font-bold text-brand-accent mb-2">$399+</p>
+        <p class="text-gray-600">Whole room cleanouts</p>
+      </div>
+    </div>
+  </section>
+
+  <CTASection
+    headline="Ready to Clear the Clutter?"
+    subtext="Same-day pickups available - call now!"
+    buttonText="Schedule Pickup"
+    phone="(555) 123-4567"
+  />
+
+  <section class="py-16 px-4 max-w-2xl mx-auto">
+    <h2 class="font-header text-3xl text-center mb-8">Request a Quote</h2>
+    <ContactForm />
+  </section>
+</Base>

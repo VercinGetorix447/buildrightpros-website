@@ -1,0 +1,254 @@
+---
+const plans = [
+  {
+    name: 'Diagnostic',
+    price: '49',
+    period: 'per visit',
+    features: ['On-site inspection', 'Written assessment', 'Photo documentation', 'Repair estimate'],
+    highlight: false
+  },
+  {
+    name: 'Standard',
+    price: '149',
+    period: 'starting at',
+    features: ['Diagnostic included', 'Licensed technician', 'Quality materials', '30-day warranty'],
+    highlight: false
+  },
+  {
+    name: 'Premium',
+    price: '499',
+    period: 'starting at',
+    features: ['Full project scope', 'Dedicated foreman', 'Premium materials', '1-year warranty'],
+    highlight: true
+  },
+  {
+    name: 'Emergency',
+    price: '199',
+    period: '24/7 service',
+    features: ['Same-day response', 'After-hours available', 'Immediate repairs', 'No hidden fees'],
+    highlight: false
+  }
+];
+---
+
+<section class="pricing-section" id="pricing">
+  <h2 class="section-title">Simple, Transparent Pricing</h2>
+  <p class="section-subtitle">No surprises. Know what you're paying before we start.</p>
+
+  <div class="pricing-grid">
+    {plans.map((plan, i) => (
+      <div class={`pricing-card ${plan.highlight ? 'featured' : ''}`} style={`animation-delay: ${i * 0.1}s`}>
+        {plan.highlight && <span class="badge">Most Popular</span>}
+        <h3>{plan.name}</h3>
+        <div class="price">
+          <span class="dollar">$</span>
+          <span class="amount">{plan.price}</span>
+        </div>
+        <span class="period">{plan.period}</span>
+        <ul>
+          {plan.features.map(f => (
+            <li>
+              <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              {f}
+            </li>
+          ))}
+        </ul>
+        <a href="#contact" class={`pricing-cta ${plan.highlight ? 'cta-primary' : ''}`}>Get Started</a>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-alt) 100%);
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-light);
+    margin-bottom: 3.5rem;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .pricing-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.5s ease-out forwards;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .pricing-card.featured {
+    border: 2px solid var(--accent);
+    box-shadow: 0 10px 40px rgba(var(--accent-rgb), 0.15);
+    transform: scale(1.05);
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-6px);
+    box-shadow: 0 20px 50px rgba(var(--accent-rgb), 0.2);
+  }
+
+  .badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 1.25rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.2rem;
+    color: var(--dark);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .price {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+    margin-bottom: 0.25rem;
+  }
+
+  .dollar {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-top: 0.3rem;
+  }
+
+  .amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .featured .dollar,
+  .featured .amount {
+    color: var(--accent);
+  }
+
+  .period {
+    display: block;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    text-align: left;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  li svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: #22c55e;
+  }
+
+  .pricing-cta {
+    display: block;
+    padding: 0.85rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: var(--bg-main);
+    color: var(--dark);
+    border: 1px solid var(--border);
+  }
+
+  .pricing-cta:hover {
+    background: var(--dark);
+    color: #fff;
+    border-color: var(--dark);
+  }
+
+  .cta-primary {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3);
+  }
+
+  .cta-primary:hover {
+    background: var(--accent-hover);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.4);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 1024px) {
+    .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing-card.featured { transform: scale(1); }
+    .pricing-card.featured:hover { transform: translateY(-6px); }
+  }
+
+  @media (max-width: 640px) {
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .section-title { font-size: 2rem; }
+  }
+</style>

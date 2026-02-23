@@ -1,0 +1,11 @@
+.cache/
+node_modules/
+*.log
+.DS_Store
+
+# Large files
+.local/
+.vscode-server/
+*.bin
+semgrep-core
+node

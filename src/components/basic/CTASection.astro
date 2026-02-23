@@ -1,0 +1,18 @@
+---
+const {
+  headline = 'Ready to Get Started?',
+  subtext = 'Contact us today for a free estimate.',
+  buttonText = 'Call Now',
+  phone = '(555) 123-4567'
+} = Astro.props;
+---
+<section class="bg-brand-accent py-16 px-4 text-center">
+  <h2 class="font-header text-3xl md:text-4xl text-white mb-4 animate-fade-in">{headline}</h2>
+  <p class="text-xl text-blue-100 mb-8 opacity-0 animate-slide-up">{subtext}</p>
+  <a
+    href={`tel:${phone.replace(/\D/g, '')}`}
+    class="inline-block bg-white text-brand-accent px-10 py-4 rounded-lg text-xl font-bold hover:bg-gray-100 transition-all duration-300 hover:scale-105 opacity-0 animate-slide-up-delay"
+  >
+    {buttonText}: {phone}
+  </a>
+</section>

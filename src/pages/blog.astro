@@ -1,0 +1,463 @@
+---
+import Base from '../layouts/Base.astro';
+
+const blogPosts = [
+  { id: 1, title: "How to Get More Plumbing Leads in 2024: Complete Guide", category: "Lead Generation", words: 980, image: "photo-1454165804606-c3d57bc86b40" },
+  { id: 2, title: "HVAC SEO Keywords: 50 High-Volume Terms That Convert", category: "SEO", words: 800, image: "photo-1460925895917-afdab827c52f" },
+  { id: 3, title: "Emergency Plumber Marketing: Capture 'Near Me' Searches", category: "Local SEO", words: 670, image: "photo-1621905252507-b35492cc74b4" },
+  { id: 4, title: "AI Calling for Contractors: ROI Breakdown", category: "Technology", words: 500, image: "photo-1556745753-b2904692b3cd" },
+  { id: 5, title: "Best CRM Systems for HVAC Companies Compared", category: "Tools", words: 980, image: "photo-1551288049-bebda4e38f71" },
+  { id: 6, title: "Electrician Website Design: What Actually Converts", category: "Websites", words: 800, image: "photo-1504307651254-35680f356dfd" },
+  { id: 7, title: "Google Business Profile Optimization for Contractors", category: "Local SEO", words: 670, image: "photo-1553877522-43269d4ea984" },
+  { id: 8, title: "Roofing Lead Generation: 7 Proven Strategies", category: "Lead Generation", words: 500, image: "photo-1632759145354-c7cf87215e56" },
+  { id: 9, title: "How Much Should Plumbers Spend on Marketing?", category: "Strategy", words: 980, image: "photo-1554224155-6726b3ff858f" },
+  { id: 10, title: "HVAC Contractor Marketing Plan Template [Free Download]", category: "Resources", words: 800, image: "photo-1586281380349-632531db7ed4" },
+  { id: 11, title: "Local SEO for Electricians: Rank #1 in Your City", category: "Local SEO", words: 670, image: "photo-1621905251189-08b45d6a269e" },
+  { id: 12, title: "Contractor Lead Follow-Up: Why Speed Wins", category: "Sales", words: 500, image: "photo-1557804506-669a67965ba0" },
+  { id: 13, title: "Best Plumbing Keywords for Google Ads", category: "PPC", words: 980, image: "photo-1585771724684-38269d6639fd" },
+  { id: 14, title: "HVAC Business Growth: From Solo to 10 Employees", category: "Growth", words: 800, image: "photo-1486406146926-c627a92ad1ab" },
+  { id: 15, title: "Contractor Review Management: Get More 5-Star Reviews", category: "Reputation", words: 670, image: "photo-1581578731548-c64695cc6952" },
+  { id: 16, title: "Facebook Ads for Plumbers: Complete Setup Guide", category: "Social Media", words: 500, image: "photo-1611162617474-5b21e879e113" },
+  { id: 17, title: "Home Service SEO: The Complete 2024 Guide", category: "SEO", words: 980, image: "photo-1432888498266-38ffec3eaf0a" },
+  { id: 18, title: "HVAC Landing Page Examples That Convert at 15%+", category: "Websites", words: 800, image: "photo-1467232004584-a241de8bcf5d" },
+  { id: 19, title: "Plumbing Company Names: 100+ Ideas That Work", category: "Branding", words: 670, image: "photo-1504639725590-34d0984388bd" },
+  { id: 20, title: "Contractor Email Marketing: Templates That Get Replies", category: "Email", words: 500, image: "photo-1563986768494-4dee2763ff3f" },
+  { id: 21, title: "HVAC Service Agreement Marketing Strategies", category: "Sales", words: 980, image: "photo-1450101499163-c8848c66ca85" },
+  { id: 22, title: "Electrician PPC: Google Ads vs. Local Service Ads", category: "PPC", words: 800, image: "photo-1460925895917-afdab827c52f" },
+  { id: 23, title: "Seasonal Marketing Calendar for HVAC Contractors", category: "Strategy", words: 670, image: "photo-1506784983877-45594efa4cbe" },
+  { id: 24, title: "Plumber Website Speed: Why 3 Seconds Costs You Leads", category: "Websites", words: 500, image: "photo-1551288049-bebda4e38f71" },
+  { id: 25, title: "Contractor Branding: Stand Out in a Crowded Market", category: "Branding", words: 980, image: "photo-1557804506-669a67965ba0" },
+  { id: 26, title: "HVAC Lead Qualification: Stop Wasting Time on Bad Leads", category: "Sales", words: 800, image: "photo-1553877522-43269d4ea984" },
+  { id: 27, title: "Mobile-First Websites for Contractors: Why It Matters", category: "Websites", words: 670, image: "photo-1512941937669-90a1b58e7e9c" },
+  { id: 28, title: "Roofing SEO: Dominate Local Search Results", category: "SEO", words: 500, image: "photo-1632759145354-c7cf87215e56" },
+  { id: 29, title: "Contractor CRM Setup: Step-by-Step Implementation", category: "Tools", words: 980, image: "photo-1551288049-bebda4e38f71" },
+  { id: 30, title: "HVAC Social Media Content Ideas [30-Day Calendar]", category: "Social Media", words: 800, image: "photo-1611162616305-c69b3fa7fbe0" },
+  { id: 31, title: "Plumber Pricing Pages: Show Rates or Not?", category: "Strategy", words: 670, image: "photo-1554224155-6726b3ff858f" },
+  { id: 32, title: "Electrician Marketing Budget: How to Allocate Spend", category: "Strategy", words: 500, image: "photo-1450101499163-c8848c66ca85" },
+  { id: 33, title: "Contractor Content Marketing: Blog Topics That Rank", category: "Content", words: 980, image: "photo-1499750310107-5fef28a66643" },
+  { id: 34, title: "HVAC Customer Retention: Keep Clients Coming Back", category: "Retention", words: 800, image: "photo-1521791136064-7986c2920216" },
+  { id: 35, title: "The Future of AI in Home Services Marketing", category: "Technology", words: 670, image: "photo-1677442136019-21780ecad995" },
+];
+
+const categories = [...new Set(blogPosts.map(p => p.category))];
+---
+
+<Base title="Contractor Training & Education | BuildRightPros Blog">
+
+  <!-- Blog Hero -->
+  <section class="blog-hero">
+    <h1>CONTRACTOR TRAINING AND EDUCATION</h1>
+    <p>Proven strategies, case studies, and insights to grow your contracting business.</p>
+    <div class="rating-badges">
+      <div class="badge"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong>4.9</strong> <span class="source">Google</span></div>
+      <div class="badge"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <strong>4.8</strong> <span class="source">Trustpilot</span></div>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="category-bar" id="blogCategories">
+    <div class="category-inner">
+      <button class="cat-btn active" data-category="all">All Posts</button>
+      {categories.map(cat => (
+        <button class="cat-btn" data-category={cat}>{cat}</button>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Post -->
+  <section class="featured-section">
+    <div class="featured-card">
+      <img src={`https://images.unsplash.com/${blogPosts[0].image}?w=800&h=500&fit=crop`} alt={blogPosts[0].title} loading="eager" />
+      <div class="featured-body">
+        <span class="featured-label">{blogPosts[0].category} &bull; Featured</span>
+        <h2>{blogPosts[0].title.toUpperCase()}</h2>
+        <p>The complete guide to generating more plumbing leads using SEO, PPC, and AI-powered follow-up systems.</p>
+        <div class="featured-meta">
+          <span>{blogPosts[0].words} words</span>
+          <span>&bull;</span>
+          <span>{Math.ceil(blogPosts[0].words / 200)} min read</span>
+        </div>
+        <a href="#" class="featured-cta">Read Article</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="blog-grid-section">
+    <h2 class="grid-heading">ALL ARTICLES</h2>
+    <div class="blog-grid" id="blogGrid">
+      {blogPosts.slice(1).map(post => (
+        <article class="blog-card" data-category={post.category}>
+          <div class="card-img">
+            <img src={`https://images.unsplash.com/${post.image}?w=600&h=300&fit=crop`} alt={post.title} loading="lazy" />
+            <span class="card-category">{post.category}</span>
+          </div>
+          <div class="card-body">
+            <h3>{post.title}</h3>
+            <div class="card-meta">
+              <span>{post.words} words</span>
+              <span>&bull;</span>
+              <span>{Math.ceil(post.words / 200)} min read</span>
+            </div>
+            <a href="#">Read More &rarr;</a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="article-count">Showing 35 of 35 articles</p>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="stats-row">
+      <div class="stat-item"><p class="stat-big">500+</p><p class="stat-desc">Contractors Served</p></div>
+      <div class="stat-item"><p class="stat-big">10,000+</p><p class="stat-desc">Leads Generated</p></div>
+      <div class="stat-item"><p class="stat-big">89%</p><p class="stat-desc">Contact Rate</p></div>
+      <div class="stat-item"><p class="stat-big">5x</p><p class="stat-desc">Average ROI</p></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="blog-cta-section">
+    <h2>READY TO GROW YOUR BUSINESS?</h2>
+    <p>Join hundreds of contractors who've transformed their lead generation with BuildRightPros.</p>
+    <div class="cta-buttons">
+      <a href="/#pricing" class="cta-white">View Pricing</a>
+      <a href="/#contact" class="cta-outline">Book Free Call</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* Hero */
+  .blog-hero {
+    padding: 4rem 2rem;
+    background: #F9F7F4;
+    text-align: center;
+  }
+  .blog-hero h1 {
+    font-family: 'Titan One', cursive;
+    font-size: 2.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .blog-hero p {
+    font-size: 1.15rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+  .rating-badges {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    background: #fff;
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+  }
+  .stars { color: #FF6B35; }
+  .source { color: #888; font-size: 0.8rem; }
+
+  /* Category Bar */
+  .category-bar {
+    padding: 1rem 2rem;
+    background: #fff;
+    border-bottom: 1px solid #E8E4DF;
+    position: sticky;
+    top: 64px;
+    z-index: 40;
+  }
+  .category-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .cat-btn {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: #F9F7F4;
+    color: #444;
+  }
+  .cat-btn:hover { background: #EDE9E3; }
+  .cat-btn.active {
+    background: #FF6B35;
+    color: #fff;
+  }
+
+  /* Featured */
+  .featured-section {
+    padding: 3rem 2rem;
+    background: #F9F7F4;
+  }
+  .featured-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .featured-body {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #FF6B35;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .featured-body h2 {
+    font-family: 'Titan One', cursive;
+    font-size: 1.5rem;
+    color: #1a1a1a;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .featured-body p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .featured-meta {
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+  }
+  .featured-cta {
+    display: inline-block;
+    background: #FF6B35;
+    color: #fff;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    width: fit-content;
+    transition: background 0.2s;
+  }
+  .featured-cta:hover { background: #e55a2b; }
+
+  /* Blog Grid */
+  .blog-grid-section {
+    padding: 3rem 2rem;
+    background: #EDE9E3;
+  }
+  .grid-heading {
+    font-family: 'Titan One', cursive;
+    font-size: 1.75rem;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .blog-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .blog-card {
+    background: #fff;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  }
+  .blog-card.hidden { display: none; }
+  .card-img {
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .blog-card:hover .card-img img { transform: scale(1.05); }
+  .card-category {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(255,255,255,0.9);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: #1a1a1a;
+  }
+  .card-body {
+    padding: 1.25rem;
+  }
+  .card-body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-meta {
+    display: flex;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.75rem;
+  }
+  .card-body a {
+    color: #FF6B35;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+  .card-body a:hover { color: #e55a2b; }
+  .article-count {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+
+  /* Stats */
+  .stats-section {
+    padding: 3rem 2rem;
+    background: #fff;
+  }
+  .stats-row {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+  .stat-big {
+    font-family: 'Titan One', cursive;
+    font-size: 2.5rem;
+    color: #FF6B35;
+    margin: 0;
+  }
+  .stat-desc {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  /* CTA */
+  .blog-cta-section {
+    padding: 4rem 2rem;
+    background: #FF6B35;
+    text-align: center;
+  }
+  .blog-cta-section h2 {
+    font-family: 'Titan One', cursive;
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .blog-cta-section p {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .cta-white {
+    background: #fff;
+    color: #FF6B35;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cta-white:hover { background: #f0f0f0; }
+  .cta-outline {
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .cta-outline:hover {
+    background: #fff;
+    color: #FF6B35;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .featured-card { grid-template-columns: 1fr; }
+    .featured-card img { height: 250px; }
+    .blog-hero h1 { font-size: 1.75rem; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<script>
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.blog-card');
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.category;
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

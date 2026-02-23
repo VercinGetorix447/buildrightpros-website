@@ -1,0 +1,1047 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Visual Designer | BuildRightPros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="designer-layout">
+  <!-- LEFT: Wizard Panel -->
+  <aside class="wizard-panel" id="wizardPanel">
+    <h1 class="wizard-title">Site Designer</h1>
+    <p class="wizard-sub">Personalize your site in minutes.</p>
+
+    <!-- STEP 1: Business Info (top for personalization) -->
+    <div class="wizard-step">
+      <h3>1. Your Business</h3>
+      <div class="input-group">
+        <input type="text" id="bizName" placeholder="Business Name" class="wiz-input" maxlength="28" />
+        <small class="char-hint">Max 28 characters</small>
+      </div>
+      <div class="input-group">
+        <input type="text" id="bizSlogan" placeholder="Slogan / Tagline" class="wiz-input" maxlength="60" />
+        <small class="char-hint">Max 60 characters</small>
+      </div>
+      <input type="text" id="bizLocation" placeholder="City, State" class="wiz-input" />
+      <input type="text" id="bizPhone" placeholder="Phone Number" class="wiz-input" />
+    </div>
+
+    <!-- STEP 2: Industry Picker -->
+    <div class="wizard-step">
+      <h3>2. Choose Your Trade</h3>
+      <button class="trade-trigger" id="tradeTrigger">
+        <span id="tradeTriggerLabel">Select a trade...</span>
+        <svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      </button>
+    </div>
+
+    <!-- STEP 3: Layout Picker -->
+    <div class="wizard-step">
+      <h3>3. Choose Layout</h3>
+      <div class="layout-grid" id="layoutGrid">
+        <button class="layout-card active" data-layout="/">
+          <div class="layout-thumb">
+            <div class="thumb-bar"></div>
+            <div class="thumb-hero gallery"></div>
+            <div class="thumb-section"></div>
+          </div>
+          <span>Layout 1</span>
+          <small>Gallery Hero</small>
+        </button>
+        <button class="layout-card" data-layout="/layout-2">
+          <div class="layout-thumb">
+            <div class="thumb-bar"></div>
+            <div class="thumb-hero full"></div>
+            <div class="thumb-section"></div>
+          </div>
+          <span>Layout 2</span>
+          <small>Full Image</small>
+        </button>
+        <button class="layout-card disabled" disabled>
+          <div class="layout-thumb dimmed">
+            <div class="thumb-bar"></div>
+            <div class="thumb-hero"></div>
+            <div class="thumb-section"></div>
+          </div>
+          <span>Layout 3</span>
+          <small>Coming Soon</small>
+        </button>
+        <button class="layout-card disabled" disabled>
+          <div class="layout-thumb dimmed">
+            <div class="thumb-bar"></div>
+            <div class="thumb-hero"></div>
+            <div class="thumb-section"></div>
+          </div>
+          <span>Layout 4</span>
+          <small>Coming Soon</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- STEP 4: Color Picker -->
+    <div class="wizard-step">
+      <h3>4. Choose Colors</h3>
+
+      <div class="preset-grid" id="presetGrid">
+        <button class="preset-card active" data-preset="contractor">
+          <div class="preset-swatch" style="background:#FF6B35"></div>
+          <span>Contractor</span>
+        </button>
+        <button class="preset-card" data-preset="professional">
+          <div class="preset-swatch" style="background:#3B82F6"></div>
+          <span>Professional</span>
+        </button>
+        <button class="preset-card" data-preset="earth">
+          <div class="preset-swatch" style="background:#8B6914"></div>
+          <span>Earth Tone</span>
+        </button>
+        <button class="preset-card" data-preset="green">
+          <div class="preset-swatch" style="background:#22C55E"></div>
+          <span>Clean Green</span>
+        </button>
+        <button class="preset-card" data-preset="dark">
+          <div class="preset-swatch" style="background:#E11D48"></div>
+          <span>Modern Dark</span>
+        </button>
+      </div>
+
+      <div class="color-bars">
+        <label>
+          <span>Background</span>
+          <div class="color-right"><input type="color" id="colorBg" value="#F9F7F4" /></div>
+        </label>
+        <label>
+          <span>Brand Color</span>
+          <div class="color-right"><input type="color" id="colorDark" value="#1a1a1a" /></div>
+        </label>
+        <label>
+          <span>Accent</span>
+          <div class="color-right"><input type="color" id="colorAccent" value="#FF6B35" /></div>
+        </label>
+        <label>
+          <span>Font Color</span>
+          <div class="color-right"><input type="color" id="colorText" value="#444444" /></div>
+        </label>
+        <label>
+          <span>Header Color</span>
+          <div class="color-right"><input type="color" id="colorNavText" value="#ffffff" /></div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Generate Button -->
+    <button class="generate-btn" id="generateBtn">Generate Config</button>
+
+    <textarea class="config-output" id="configOutput" readonly placeholder="Config JSON will appear here..."></textarea>
+  </aside>
+
+  <!-- RIGHT: Preview iframe -->
+  <div class="preview-area">
+    <div class="preview-bar">
+      <span>Live Preview</span>
+      <button class="toggle-wizard" id="toggleWizard">Wizard</button>
+    </div>
+    <iframe id="previewFrame" src="/"></iframe>
+  </div>
+</div>
+
+<!-- Trade flyout panel (OUTSIDE the grid entirely) -->
+<div class="trade-flyout" id="tradeFlyout">
+  <div class="flyout-header">
+    <h3>Choose Your Trade</h3>
+    <button class="flyout-close" id="flyoutClose">&times;</button>
+  </div>
+  <div class="flyout-list" id="tradeGrid"></div>
+</div>
+
+<style>
+  /* Reset for this page */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #f0f0f0;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .designer-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    height: 100vh;
+  }
+
+  /* Wizard Panel */
+  .wizard-panel {
+    background: #fff;
+    border-right: 1px solid #ddd;
+    padding: 1.5rem;
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  .wizard-title {
+    font-family: 'Titan One', cursive;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    margin-bottom: 0.25rem;
+  }
+
+  .wizard-sub {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 1.5rem;
+  }
+
+  .wizard-step {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+  }
+
+  .wizard-step:last-of-type {
+    border-bottom: none;
+  }
+
+  .wizard-step h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* Layout Picker */
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .layout-card {
+    background: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.6rem;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+    font-family: inherit;
+  }
+
+  .layout-card:hover:not(.disabled) {
+    border-color: #aaa;
+    transform: translateY(-2px);
+  }
+
+  .layout-card.active {
+    border-color: #FF6B35;
+    background: #FFF5F0;
+  }
+
+  .layout-card.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .layout-card span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-top: 0.4rem;
+  }
+
+  .layout-card small {
+    font-size: 0.65rem;
+    color: #999;
+  }
+
+  .layout-thumb {
+    height: 60px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .layout-thumb.dimmed { opacity: 0.3; }
+
+  .thumb-bar {
+    height: 8px;
+    background: #333;
+  }
+
+  .thumb-hero {
+    height: 24px;
+    background: #ddd;
+    margin: 3px;
+    border-radius: 2px;
+  }
+
+  .thumb-hero.gallery {
+    background: repeating-linear-gradient(90deg, #ddd 0px, #ddd 18px, #fff 18px, #fff 20px);
+  }
+
+  .thumb-hero.full {
+    background: linear-gradient(135deg, #bbb, #ddd);
+  }
+
+  .thumb-section {
+    height: 14px;
+    background: #eee;
+    margin: 0 3px;
+    border-radius: 2px;
+  }
+
+  /* Preset Grid */
+  .preset-grid {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .preset-card {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.6rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: inherit;
+    background: #fff;
+    transition: border-color 0.2s;
+  }
+
+  .preset-card:hover { border-color: #aaa; }
+  .preset-card.active { border-color: #333; background: #f5f5f5; }
+
+  .preset-swatch {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Color Bars */
+  .color-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .color-bars label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .color-right {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .color-bars input[type="color"] {
+    width: 36px;
+    height: 28px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+    flex-shrink: 0;
+  }
+
+  .bar-hint {
+    font-size: 0.65rem;
+    color: #999;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  /* Trade trigger button */
+  .trade-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.85rem;
+    font-family: inherit;
+    color: #555;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .trade-trigger:hover { border-color: #aaa; }
+  .trade-trigger.has-selection { color: #FF6B35; font-weight: 600; border-color: #FF6B35; }
+
+  /* Trade flyout + buttons styled in global block below (JS-created elements) */
+
+  /* Business Inputs */
+  .wiz-input {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    margin-bottom: 0.5rem;
+  }
+
+  .wiz-input:focus {
+    outline: none;
+    border-color: #FF6B35;
+  }
+
+  .input-group {
+    margin-bottom: 0.5rem;
+  }
+
+  .input-group .wiz-input {
+    margin-bottom: 0.15rem;
+  }
+
+  .char-hint {
+    display: block;
+    font-size: 0.6rem;
+    color: #bbb;
+    text-align: right;
+  }
+
+  /* Generate */
+  .generate-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: #FF6B35;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+    margin-bottom: 0.75rem;
+  }
+
+  .generate-btn:hover { background: #e55a2b; }
+
+  .config-output {
+    width: 100%;
+    min-height: 100px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical;
+    background: #f9f9f9;
+    color: #333;
+  }
+
+  /* Preview Area */
+  .preview-area {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #e8e8e8;
+  }
+
+  .preview-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: #333;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .toggle-wizard {
+    display: none;
+    padding: 0.3rem 0.8rem;
+    background: #FF6B35;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  #previewFrame {
+    flex: 1;
+    width: 100%;
+    border: none;
+    background: #fff;
+  }
+
+  /* Responsive: stack on mobile */
+  @media (max-width: 800px) {
+    .designer-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    .wizard-panel {
+      height: auto;
+      max-height: 50vh;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .wizard-panel.hidden {
+      display: none;
+    }
+
+    .toggle-wizard {
+      display: block;
+    }
+
+    .preview-area {
+      height: 50vh;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Global styles for trade flyout (JS-created elements need unscoped CSS) */
+  .trade-flyout {
+    display: none !important;
+    position: fixed;
+    top: 0;
+    left: 340px;
+    width: 200px;
+    height: 100vh;
+    background: #fff;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    box-shadow: 4px 0 16px rgba(0,0,0,0.08);
+    z-index: 200;
+    flex-direction: column;
+  }
+  .trade-flyout.open { display: flex !important; }
+
+  .flyout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+  }
+  .flyout-header h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0;
+  }
+  .flyout-close {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .flyout-close:hover { color: #333; }
+
+  .flyout-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .trade-btn {
+    display: block;
+    width: 100%;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Montserrat', Arial, sans-serif;
+    text-align: left;
+    flex-shrink: 0;
+  }
+  .trade-btn:hover { background: #f5f5f5; border-color: #bbb; }
+  .trade-btn.active { border-color: #FF6B35; background: #FFF5F0; color: #FF6B35; font-weight: 600; }
+</style>
+
+<script>
+  // ===== PRESETS =====
+  const PRESETS = {
+    contractor:    { bg: '#F9F7F4', dark: '#1a1a1a', section: '#1a1a1a', text: '#444444', navText: '#ffffff', accent: '#FF6B35' },
+    professional:  { bg: '#F9F7F4', dark: '#1a1a1a', section: '#2D3748', text: '#444444', navText: '#ffffff', accent: '#3B82F6' },
+    earth:         { bg: '#FAF8F5', dark: '#2C1810', section: '#5C4033', text: '#3E3028', navText: '#FAF8F5', accent: '#8B6914' },
+    green:         { bg: '#F5FAF5', dark: '#1B3A1B', section: '#2D5A2D', text: '#2D3B2D', navText: '#F5FAF5', accent: '#22C55E' },
+    dark:          { bg: '#F7F7F7', dark: '#111111', section: '#333333', text: '#333333', navText: '#ffffff', accent: '#E11D48' },
+  };
+
+  // ===== TRADES (41) =====
+  const TRADES = [
+    { name: 'Appliance Repair', tagline: 'Get it running again', services: ['Washer/Dryer', 'Refrigerator', 'Dishwasher', 'Oven Repair'] },
+    { name: 'Carpet Cleaning', tagline: 'Deep clean, fresh results', services: ['Steam Cleaning', 'Stain Removal', 'Pet Odor Treatment', 'Commercial'] },
+    { name: 'Carpentry', tagline: 'Craftsmanship you can see', services: ['Framing', 'Trim Work', 'Custom Cabinets', 'Deck Building'] },
+    { name: 'Christmas Light Install', tagline: 'Light up the holidays', services: ['Residential Install', 'Commercial Display', 'Takedown Service', 'Custom Design'] },
+    { name: 'Cleaning', tagline: 'Spotless spaces guaranteed', services: ['Deep Clean', 'Move In/Out', 'Office Cleaning', 'Regular Service'] },
+    { name: 'Concrete', tagline: 'Strong foundations, clean finishes', services: ['Driveways', 'Patios', 'Foundation Repair', 'Stamped Concrete'] },
+    { name: 'Curb Cutting', tagline: 'Precision concrete cutting', services: ['Curb Cuts', 'ADA Compliance', 'Driveway Access', 'Sidewalk Repair'] },
+    { name: 'Deck Building', tagline: 'Outdoor living elevated', services: ['Custom Decks', 'Composite Decking', 'Pergolas', 'Deck Repair'] },
+    { name: 'Delivery', tagline: 'Fast, reliable delivery', services: ['Same Day', 'Scheduled Delivery', 'White Glove', 'Commercial Routes'] },
+    { name: 'Electrical', tagline: 'Safe, certified electrical work', services: ['Panel Upgrades', 'Rewiring', 'Lighting', 'Code Compliance'] },
+    { name: 'Fencing', tagline: 'Security and curb appeal', services: ['Wood Fencing', 'Metal Fencing', 'Gate Install', 'Fence Repair'] },
+    { name: 'Flooring', tagline: 'Beautiful floors, built to last', services: ['Hardwood', 'Tile', 'LVP Install', 'Floor Refinishing'] },
+    { name: 'Garage Door', tagline: 'Smooth operation guaranteed', services: ['Spring Repair', 'Opener Install', 'New Doors', 'Maintenance'] },
+    { name: 'Garage Shelf', tagline: 'Organized garage, organized life', services: ['Custom Shelving', 'Overhead Storage', 'Workbenches', 'Garage Systems'] },
+    { name: 'Gutter Cleaning', tagline: 'Keep water flowing right', services: ['Gutter Clean', 'Guard Install', 'Downspout Repair', 'Seasonal Service'] },
+    { name: 'Hair Salon', tagline: 'Style that speaks for you', services: ['Cuts & Color', 'Styling', 'Treatments', 'Bridal Packages'] },
+    { name: 'HVAC', tagline: 'Comfort in every season', services: ['AC Repair', 'Furnace Install', 'Duct Cleaning', 'Maintenance Plans'] },
+    { name: 'Insulation', tagline: 'Comfort and efficiency', services: ['Spray Foam', 'Blown-In', 'Batt Install', 'Energy Audits'] },
+    { name: 'Junk Removal', tagline: 'Clear space, clear mind', services: ['Residential Haul', 'Construction Debris', 'Estate Cleanout', 'Appliance Removal'] },
+    { name: 'Landscaping', tagline: 'Outdoor spaces that impress', services: ['Lawn Care', 'Hardscaping', 'Tree Service', 'Irrigation'] },
+    { name: 'Masonry', tagline: 'Built to last generations', services: ['Brick Work', 'Stone Walls', 'Retaining Walls', 'Chimney Repair'] },
+    { name: 'Niche Rentals', tagline: 'Specialty equipment on demand', services: ['Tool Rental', 'Equipment Lease', 'Event Rental', 'Delivery'] },
+    { name: 'Painting', tagline: 'Color that transforms spaces', services: ['Interior Painting', 'Exterior Painting', 'Cabinet Refinishing', 'Drywall Repair'] },
+    { name: 'Personal Training', tagline: 'Your goals, our expertise', services: ['One-on-One Training', 'Group Sessions', 'Nutrition Plans', 'Online Coaching'] },
+    { name: 'Pet Grooming', tagline: 'Pampered pets, happy owners', services: ['Full Groom', 'Bath & Brush', 'Nail Trim', 'De-shedding'] },
+    { name: 'Pet Sitting', tagline: 'Your pet\'s home away from home', services: ['In-Home Sitting', 'Dog Walking', 'Overnight Care', 'Drop-In Visits'] },
+    { name: 'Plumbing', tagline: 'Reliable plumbing you can trust', services: ['Pipe Repair', 'Drain Cleaning', 'Water Heater Install', 'Leak Detection'] },
+    { name: 'Pool Cleaning', tagline: 'Crystal clear, every time', services: ['Weekly Cleaning', 'Equipment Repair', 'Acid Wash', 'Filter Service'] },
+    { name: 'Pressure Washing', tagline: 'Restore your property\'s shine', services: ['House Wash', 'Driveway Clean', 'Deck Restore', 'Commercial'] },
+    { name: 'Real Estate', tagline: 'Your property partner', services: ['Buying', 'Selling', 'Property Management', 'Market Analysis'] },
+    { name: 'Remodeling', tagline: 'Transform your living space', services: ['Kitchen Remodel', 'Bathroom Remodel', 'Basement Finish', 'Additions'] },
+    { name: 'Roofing', tagline: 'Protection from the top down', services: ['Roof Repair', 'Full Replacement', 'Storm Damage', 'Inspections'] },
+    { name: 'Solar', tagline: 'Power your savings', services: ['Panel Install', 'System Design', 'Battery Storage', 'Maintenance'] },
+    { name: 'Steel Distribution', tagline: 'Quality steel, on time', services: ['Structural Steel', 'Sheet Metal', 'Custom Cuts', 'Delivery'] },
+    { name: 'Storage', tagline: 'Safe space for your stuff', services: ['Self Storage', 'Climate Control', 'Vehicle Storage', 'Business Storage'] },
+    { name: 'Stump Removal', tagline: 'Gone without a trace', services: ['Stump Grinding', 'Root Removal', 'Site Grading', 'Debris Cleanup'] },
+    { name: 'Sunroom', tagline: 'Bring the outdoors in', services: ['Sunroom Build', 'Screen Enclosure', 'Patio Cover', 'Glass Walls'] },
+    { name: 'Tennis Coach', tagline: 'Improve your game', services: ['Private Lessons', 'Group Clinics', 'Junior Programs', 'Match Strategy'] },
+    { name: 'Tree Trimming', tagline: 'Expert arborists on call', services: ['Tree Removal', 'Trimming', 'Stump Grinding', 'Emergency Service'] },
+    { name: 'Triathlete Coaching', tagline: 'Train smarter, race faster', services: ['Swim Coaching', 'Bike Fitting', 'Run Training', 'Race Strategy'] },
+    { name: 'Window Washing', tagline: 'See the world clearly', services: ['Residential', 'Commercial', 'Screen Cleaning', 'Hard Water Removal'] },
+  ];
+
+  // ===== TRADE SLUG HELPER =====
+  function tradeSlug(name) {
+    return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  }
+
+  // ===== LOCALSTORAGE HELPERS =====
+  const STORAGE_KEY = 'brp_designer';
+
+  function saveState() {
+    const state = {
+      layout: currentLayout,
+      preset: currentPreset,
+      trade: currentTrade ? currentTrade.name : null,
+      colors: { ...currentColors },
+      biz: {
+        name: document.getElementById('bizName')?.value || '',
+        slogan: document.getElementById('bizSlogan')?.value || '',
+        location: document.getElementById('bizLocation')?.value || '',
+        phone: document.getElementById('bizPhone')?.value || '',
+      },
+    };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e) { return null; }
+  }
+
+  // ===== STATE =====
+  const saved = loadState();
+  let currentLayout = saved?.layout || '/';
+  let currentPreset = saved?.preset || 'contractor';
+  let currentTrade = saved?.trade ? TRADES.find(t => t.name === saved.trade) : null;
+  let currentColors = saved?.colors || { ...PRESETS.contractor };
+
+  // ===== DOM REFS =====
+  const iframe = document.getElementById('previewFrame');
+  const layoutGrid = document.getElementById('layoutGrid');
+  const presetGrid = document.getElementById('presetGrid');
+  const tradeGrid = document.getElementById('tradeGrid');
+  const generateBtn = document.getElementById('generateBtn');
+  const configOutput = document.getElementById('configOutput');
+  const toggleWizard = document.getElementById('toggleWizard');
+  const wizardPanel = document.getElementById('wizardPanel');
+
+  const colorBg = document.getElementById('colorBg');
+  const colorDark = document.getElementById('colorDark');
+  const colorText = document.getElementById('colorText');
+  const colorNavText = document.getElementById('colorNavText');
+  const colorAccent = document.getElementById('colorAccent');
+  // contrastHint removed — auto-contrast still works internally
+
+  // ===== HELPERS =====
+  function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return `${r}, ${g}, ${b}`;
+  }
+
+  function darken(hex, pct) {
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+    r = Math.max(0, Math.round(r * (1 - pct / 100)));
+    g = Math.max(0, Math.round(g * (1 - pct / 100)));
+    b = Math.max(0, Math.round(b * (1 - pct / 100)));
+    return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+  }
+
+  function lighten(hex, pct) {
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+    r = Math.min(255, Math.round(r + (255 - r) * pct / 100));
+    g = Math.min(255, Math.round(g + (255 - g) * pct / 100));
+    b = Math.min(255, Math.round(b + (255 - b) * pct / 100));
+    return `#${r.toString(16).padStart(2,'0')}${g.toString(16).padStart(2,'0')}${b.toString(16).padStart(2,'0')}`;
+  }
+
+  // ===== APPLY COLORS TO IFRAME =====
+  let applyDebounce = null;
+
+  function applyColorsToIframe() {
+    clearTimeout(applyDebounce);
+    applyDebounce = setTimeout(() => {
+      try {
+        const doc = iframe.contentWindow.document.documentElement;
+        doc.style.setProperty('--bg-main', currentColors.bg);
+        doc.style.setProperty('--dark', currentColors.dark);
+        // Section headings auto-derived from brand color
+        doc.style.setProperty('--section-head', currentColors.section);
+        doc.style.setProperty('--text', currentColors.text);
+        doc.style.setProperty('--accent', currentColors.accent);
+
+        // Auto-derived
+        doc.style.setProperty('--bg-alt', darken(currentColors.bg, 5));
+        doc.style.setProperty('--accent-hover', darken(currentColors.accent, 10));
+        doc.style.setProperty('--text-light', lighten(currentColors.text, 30));
+        doc.style.setProperty('--border', darken(currentColors.bg, 15));
+        doc.style.setProperty('--accent-rgb', hexToRgb(currentColors.accent));
+
+        // Nav/footer text uses dedicated Header Color picker
+        doc.style.setProperty('--nav-text', currentColors.navText);
+      } catch (e) {
+        // Cross-origin issues in production
+      }
+      saveState();
+    }, 30);
+  }
+
+  // ===== UPDATE NAV LOGO IN IFRAME =====
+  function updateNavLogo() {
+    try {
+      const doc = iframe.contentWindow.document;
+      const navLogo = doc.querySelector('.nav-logo');
+      const bizName = document.getElementById('bizName').value;
+      if (navLogo) {
+        navLogo.textContent = bizName || 'BuildRightPros';
+      }
+    } catch (e) {}
+  }
+
+  // ===== APPLY TRADE CONTENT =====
+  function applyTradeToIframe(trade) {
+    try {
+      const doc = iframe.contentWindow.document;
+
+      // Update headline (business name or trade name)
+      const bizName = document.getElementById('bizName').value;
+      const displayName = bizName || trade.name;
+
+      // Find the h1 in the CURRENT layout's hero (not Layout 1 specifically)
+      const h1 = doc.querySelector('.hero-content h1.slogan, .hero-overlay h1');
+      if (h1) {
+        h1.textContent = displayName.toUpperCase();
+      }
+
+      // Update nav logo to match
+      updateNavLogo();
+
+      // Update subtitle (custom slogan or trade tagline)
+      const bizSlogan = document.getElementById('bizSlogan').value;
+      const displaySlogan = bizSlogan || trade.tagline;
+      const heroP = doc.querySelector('.hero-content p, .hero-overlay p');
+      if (heroP) heroP.textContent = displaySlogan;
+
+      // Update service headings if present
+      const serviceCards = doc.querySelectorAll('.service-card h3, .service-item h3');
+      if (serviceCards.length >= 4) {
+        trade.services.forEach((s, i) => {
+          if (serviceCards[i]) serviceCards[i].textContent = s;
+        });
+      }
+
+      // ===== SWAP IMAGES BY TRADE =====
+      const slug = tradeSlug(trade.name);
+      const basePath = `/images/trades/${slug}/`;
+
+      // Hero image (Layout 1: .gallery-card img, Layout 2: .hero-full img)
+      const heroImg = doc.querySelector('.hero-full img');
+      if (heroImg) {
+        heroImg.src = basePath + '1.jpg';
+      }
+
+      // Gallery cards (Layout 1) — distribute images across cards
+      const galleryImgs = doc.querySelectorAll('.gallery-card img');
+      galleryImgs.forEach((img, i) => {
+        img.src = basePath + (i + 1) + '.jpg';
+      });
+
+      // Section images — swap first few .image-box img and .work-card img
+      const sectionImgs = doc.querySelectorAll('.image-box img, .work-card img');
+      sectionImgs.forEach((img, i) => {
+        const imgNum = (i % 2) + 1; // alternate between 1.jpg and 2.jpg
+        img.src = basePath + imgNum + '.jpg';
+      });
+
+    } catch (e) {
+      // Cross-origin
+    }
+  }
+
+  // ===== LIVE UPDATE BIZ NAME + SLOGAN (no trade required) =====
+  function updateBizText() {
+    try {
+      const doc = iframe.contentWindow.document;
+      const bizName = document.getElementById('bizName').value;
+      const bizSlogan = document.getElementById('bizSlogan').value;
+
+      // Update nav logo
+      const navLogo = doc.querySelector('.nav-logo');
+      if (navLogo) navLogo.textContent = bizName || 'BuildRightPros';
+
+      // Update hero headline
+      const h1 = doc.querySelector('.hero-content h1.slogan, .hero-overlay h1');
+      if (h1) h1.textContent = (bizName || h1.dataset.original || h1.textContent).toUpperCase();
+
+      // Update hero subtitle
+      const heroP = doc.querySelector('.hero-content p, .hero-overlay p');
+      if (heroP && bizSlogan) heroP.textContent = bizSlogan;
+
+      // If trade is selected, also update services
+      if (currentTrade) {
+        const serviceCards = doc.querySelectorAll('.service-card h3, .service-item h3');
+        if (serviceCards.length >= 4) {
+          currentTrade.services.forEach((s, i) => {
+            if (serviceCards[i]) serviceCards[i].textContent = s;
+          });
+        }
+      }
+    } catch (e) {}
+  }
+
+  document.getElementById('bizName').addEventListener('input', () => { updateBizText(); saveState(); });
+  document.getElementById('bizSlogan').addEventListener('input', () => { updateBizText(); saveState(); });
+  document.getElementById('bizLocation').addEventListener('input', saveState);
+  document.getElementById('bizPhone').addEventListener('input', saveState);
+
+  // ===== SYNC COLOR INPUTS =====
+  function syncColorInputs() {
+    colorBg.value = currentColors.bg;
+    colorDark.value = currentColors.dark;
+    colorText.value = currentColors.text;
+    colorNavText.value = currentColors.navText;
+    colorAccent.value = currentColors.accent;
+  }
+
+  // ===== TRADE FLYOUT =====
+  const tradeTrigger = document.getElementById('tradeTrigger');
+  const tradeTriggerLabel = document.getElementById('tradeTriggerLabel');
+  const tradeFlyout = document.getElementById('tradeFlyout');
+  const flyoutClose = document.getElementById('flyoutClose');
+
+  tradeTrigger.addEventListener('click', () => tradeFlyout.classList.toggle('open'));
+  flyoutClose.addEventListener('click', () => tradeFlyout.classList.remove('open'));
+
+  // ===== POPULATE TRADES =====
+  TRADES.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'trade-btn';
+    btn.textContent = t.name;
+    btn.addEventListener('click', () => {
+      tradeGrid.querySelectorAll('.trade-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentTrade = t;
+      tradeTriggerLabel.textContent = t.name;
+      tradeTrigger.classList.add('has-selection');
+      tradeFlyout.classList.remove('open');
+      applyTradeToIframe(t);
+      saveState();
+    });
+    tradeGrid.appendChild(btn);
+  });
+
+  // ===== LAYOUT PICKER =====
+  layoutGrid.querySelectorAll('.layout-card:not(.disabled)').forEach(card => {
+    card.addEventListener('click', () => {
+      layoutGrid.querySelectorAll('.layout-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      currentLayout = card.dataset.layout;
+      iframe.src = currentLayout;
+      saveState();
+    });
+  });
+
+  // Re-apply colors after iframe loads new layout
+  iframe.addEventListener('load', () => {
+    applyColorsToIframe();
+    if (currentTrade) {
+      setTimeout(() => applyTradeToIframe(currentTrade), 200);
+    }
+  });
+
+  // ===== PRESET PICKER =====
+  presetGrid.querySelectorAll('.preset-card').forEach(card => {
+    card.addEventListener('click', () => {
+      presetGrid.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      currentPreset = card.dataset.preset;
+      currentColors = { ...PRESETS[currentPreset] };
+      syncColorInputs();
+      applyColorsToIframe();
+    });
+  });
+
+  // ===== COLOR INPUTS =====
+  function handleColorInput(input, key) {
+    input.addEventListener('input', () => {
+      currentColors[key] = input.value;
+      // Clear preset active state (custom)
+      presetGrid.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+      applyColorsToIframe();
+    });
+  }
+
+  handleColorInput(colorBg, 'bg');
+  // Brand color also sets section headings
+  colorDark.addEventListener('input', () => {
+    currentColors.dark = colorDark.value;
+    currentColors.section = colorDark.value;
+    presetGrid.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+    applyColorsToIframe();
+  });
+  // Font color also updates text-light
+  colorText.addEventListener('input', () => {
+    currentColors.text = colorText.value;
+    presetGrid.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+    applyColorsToIframe();
+  });
+  // Header color controls nav/footer text
+  colorNavText.addEventListener('input', () => {
+    currentColors.navText = colorNavText.value;
+    presetGrid.querySelectorAll('.preset-card').forEach(c => c.classList.remove('active'));
+    applyColorsToIframe();
+  });
+  handleColorInput(colorAccent, 'accent');
+
+  // ===== GENERATE CONFIG =====
+  generateBtn.addEventListener('click', () => {
+    const config = {
+      layout: currentLayout === '/' ? 'layout-1' : 'layout-2',
+      colors: {
+        preset: currentPreset || 'custom',
+        bg_main: currentColors.bg,
+        dark: currentColors.dark,
+        section_head: currentColors.section,
+        text: currentColors.text,
+        nav_text: currentColors.navText,
+        accent: currentColors.accent,
+      },
+      trade: currentTrade ? {
+        name: currentTrade.name,
+        tagline: currentTrade.tagline,
+        services: currentTrade.services,
+      } : null,
+      business: {
+        name: document.getElementById('bizName').value || '',
+        slogan: document.getElementById('bizSlogan').value || '',
+        location: document.getElementById('bizLocation').value || '',
+        phone: document.getElementById('bizPhone').value || '',
+      },
+    };
+    configOutput.value = JSON.stringify(config, null, 2);
+    configOutput.select();
+  });
+
+  // ===== MOBILE TOGGLE =====
+  toggleWizard.addEventListener('click', () => {
+    wizardPanel.classList.toggle('hidden');
+    toggleWizard.textContent = wizardPanel.classList.contains('hidden') ? 'Wizard' : 'Preview';
+  });
+
+  // ===== RESTORE SAVED STATE =====
+  if (saved) {
+    // Restore business fields
+    if (saved.biz) {
+      document.getElementById('bizName').value = saved.biz.name || '';
+      document.getElementById('bizSlogan').value = saved.biz.slogan || '';
+      document.getElementById('bizLocation').value = saved.biz.location || '';
+      document.getElementById('bizPhone').value = saved.biz.phone || '';
+    }
+
+    // Restore color inputs
+    syncColorInputs();
+
+    // Restore preset highlight
+    presetGrid.querySelectorAll('.preset-card').forEach(c => {
+      c.classList.toggle('active', c.dataset.preset === currentPreset);
+    });
+
+    // Restore layout highlight + iframe src
+    layoutGrid.querySelectorAll('.layout-card').forEach(c => {
+      c.classList.toggle('active', c.dataset.layout === currentLayout);
+    });
+    if (currentLayout !== '/') iframe.src = currentLayout;
+
+    // Restore trade selection
+    if (currentTrade) {
+      tradeTriggerLabel.textContent = currentTrade.name;
+      tradeTrigger.classList.add('has-selection');
+      // Highlight the matching trade button once the flyout is populated
+      tradeGrid.querySelectorAll('.trade-btn').forEach(btn => {
+        if (btn.textContent === currentTrade.name) btn.classList.add('active');
+      });
+    }
+  }
+</script>
+
+</body>
+</html>

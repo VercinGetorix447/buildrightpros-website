@@ -1,0 +1,542 @@
+---
+import Base from '../layouts/Base.astro';
+import IconNav from '../components/core/IconNav.astro';
+---
+<Base title="Client Template | Layout 2">
+
+  <!-- HERO: Large Single Image -->
+  <section class="hero-full">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&h=500&fit=crop" alt="Professional contractor work" loading="eager" />
+    <div class="hero-overlay">
+      <h1>YOUR BUSINESS NAME</h1>
+      <p>Quality craftsmanship you can trust</p>
+    </div>
+  </section>
+
+  <!-- ICON NAV: 5 Symmetrical Links -->
+  <IconNav />
+
+  <!-- SERVICES -->
+  <section id="services" class="l2-section">
+    <div class="l2-inner">
+      <h2>Our Services</h2>
+      <div class="services-row">
+        <div class="service-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Residential</h3>
+          <p>Complete home services from repairs to full renovations.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Commercial</h3>
+          <p>Professional-grade work for businesses and properties.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6-7.6 7.6-1.6-1.6a1 1 0 00-1.4 0l-2.3 2.3a1 1 0 000 1.4l3.6 3.6a1 1 0 001.4 0l2.3-2.3a1 1 0 000-1.4L9.1 17.3l7.6-7.6 1.6 1.6a1 1 0 001.4 0l2.3-2.3a1 1 0 000-1.4L18.4 4a1 1 0 00-1.4 0L14.7 6.3z"/></svg>
+          </div>
+          <h3>Emergency</h3>
+          <p>24/7 availability when you need us most.</p>
+        </div>
+        <div class="service-item">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Maintenance</h3>
+          <p>Regular upkeep to protect your investment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="l2-section alt">
+    <div class="l2-inner">
+      <h2>Meet The Team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Team member" loading="lazy" /></div>
+          <h3>John Smith</h3>
+          <p class="team-role">Owner / Lead</p>
+          <p>20+ years experience in the trade.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face" alt="Team member" loading="lazy" /></div>
+          <h3>Mike Johnson</h3>
+          <p class="team-role">Senior Technician</p>
+          <p>Certified and insured specialist.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=300&h=300&fit=crop&crop=face" alt="Team member" loading="lazy" /></div>
+          <h3>Sarah Williams</h3>
+          <p class="team-role">Office Manager</p>
+          <p>Your first point of contact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="l2-section">
+    <div class="l2-inner">
+      <h2>What Clients Say</h2>
+      <div class="testimonial-grid">
+        <blockquote class="testimonial-card">
+          <p>"Professional, on-time, and the quality exceeded our expectations. Highly recommend."</p>
+          <cite>— Robert D., Homeowner</cite>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </blockquote>
+        <blockquote class="testimonial-card">
+          <p>"They showed up when they said they would and finished ahead of schedule. Will use again."</p>
+          <cite>— Maria L., Business Owner</cite>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </blockquote>
+        <blockquote class="testimonial-card">
+          <p>"Fair pricing, honest work. Refreshing to find a contractor you can actually trust."</p>
+          <cite>— James T., Property Manager</cite>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR WORK / GALLERY -->
+  <section id="work" class="l2-section alt">
+    <div class="l2-inner">
+      <h2>Our Work</h2>
+      <div class="work-grid">
+        <div class="work-card">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500&h=350&fit=crop" alt="Project 1" loading="lazy" />
+          <div class="work-label"><h3>Kitchen Remodel</h3><span>Dallas, TX</span></div>
+        </div>
+        <div class="work-card">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=500&h=350&fit=crop" alt="Project 2" loading="lazy" />
+          <div class="work-label"><h3>Bathroom Renovation</h3><span>Fort Worth, TX</span></div>
+        </div>
+        <div class="work-card">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&h=350&fit=crop" alt="Project 3" loading="lazy" />
+          <div class="work-label"><h3>Commercial Build</h3><span>Arlington, TX</span></div>
+        </div>
+        <div class="work-card">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=350&fit=crop" alt="Project 4" loading="lazy" />
+          <div class="work-label"><h3>Office Renovation</h3><span>Plano, TX</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="l2-section l2-contact">
+    <div class="l2-inner">
+      <div class="contact-split">
+        <div class="contact-info-l2">
+          <h2>Get In Touch</h2>
+          <p>Ready for your next project? Contact us for a free estimate.</p>
+          <div class="contact-details-l2">
+            <div class="detail-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <span>(555) 123-4567</span>
+            </div>
+            <div class="detail-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>info@yourbusiness.com</span>
+            </div>
+            <div class="detail-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span>Mon-Sat 7am-6pm</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form-l2">
+          <input type="text" placeholder="Your Name" required />
+          <input type="tel" placeholder="Phone Number" />
+          <input type="email" placeholder="Email Address" required />
+          <textarea placeholder="Tell us about your project..." rows="4"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* ===== LAYOUT 2 — MAILBAKERY STYLE ===== */
+
+  /* CSS Variables for theme swapping */
+  :root {
+    --accent: #FF6B35;
+    --accent-hover: #e55a2b;
+    --dark: #1a1a1a;
+    --text: #444;
+    --text-light: #666;
+    --bg-main: #FFFFFF;
+    --bg-alt: #F9F7F4;
+    --border: #E8E4DF;
+  }
+
+  /* HERO */
+  .hero-full {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    margin-top: 64px; /* clear sticky nav */
+  }
+
+  .hero-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .hero-overlay h1 {
+    font-family: 'Titan One', cursive;
+    font-size: 2.8rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-overlay p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* SECTIONS */
+  .l2-section {
+    padding: 4rem 2rem;
+  }
+
+  .l2-section.alt {
+    background: var(--bg-alt);
+  }
+
+  .l2-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .l2-section h2 {
+    font-family: 'Titan One', cursive;
+    font-size: 2rem;
+    color: var(--dark);
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+
+  /* SERVICES ROW */
+  .services-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .service-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1rem;
+    color: var(--accent);
+  }
+
+  .service-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .service-item h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-item p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+  }
+
+  /* TEAM */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .team-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+
+  .team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--border);
+  }
+
+  .team-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .team-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .team-role {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+
+  .team-card p:last-child {
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+
+  /* TESTIMONIALS */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background: var(--bg-main);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 0;
+  }
+
+  .testimonial-card p {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card cite {
+    font-size: 0.85rem;
+    color: var(--dark);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .stars {
+    color: #F59E0B;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+  }
+
+  /* OUR WORK */
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .work-card:hover {
+    transform: scale(1.02);
+  }
+
+  .work-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .work-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.75));
+    padding: 2rem 1.25rem 1.25rem;
+  }
+
+  .work-label h3 {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .work-label span {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.85rem;
+  }
+
+  /* CONTACT */
+  .l2-contact {
+    background: var(--dark);
+  }
+
+  .l2-contact h2 {
+    color: #fff;
+  }
+
+  .contact-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info-l2 h2 {
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info-l2 p {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .contact-details-l2 {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .detail-row svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .detail-row span {
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .contact-form-l2 {
+    background: var(--bg-main);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .contact-form-l2 input,
+  .contact-form-l2 textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+
+  .contact-form-l2 input:focus,
+  .contact-form-l2 textarea:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+  }
+
+  .contact-form-l2 textarea { resize: none; }
+
+  .contact-form-l2 button {
+    background: var(--accent);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .contact-form-l2 button:hover {
+    background: var(--accent-hover);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-row { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .hero-full { height: 280px; margin-top: 64px; }
+    .hero-overlay h1 { font-size: 1.8rem; }
+    .services-row { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .team-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+    .testimonial-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .contact-split { grid-template-columns: 1fr; }
+    .contact-info-l2 h2 { text-align: center; }
+  }
+</style>

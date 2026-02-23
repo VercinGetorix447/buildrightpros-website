@@ -1,0 +1,174 @@
+---
+interface Testimonial {
+  name: string;
+  location: string;
+  text: string;
+  rating: number;
+}
+
+const testimonials: Testimonial[] = [
+  { name: "Mike R.", location: "Dallas, TX", text: "Best contractor experience I've ever had. On time, on budget, perfect work.", rating: 5 },
+  { name: "Sarah L.", location: "Fort Worth, TX", text: "They transformed our backyard completely. Neighbors are jealous!", rating: 5 },
+  { name: "James T.", location: "Arlington, TX", text: "Professional crew, clean worksite, exceeded expectations.", rating: 5 },
+  { name: "Linda M.", location: "Plano, TX", text: "Finally found a contractor I can trust. Will use again.", rating: 5 },
+  { name: "Robert K.", location: "Irving, TX", text: "Quick response, fair pricing, quality craftsmanship.", rating: 5 },
+  { name: "Jennifer H.", location: "Frisco, TX", text: "Our kitchen remodel is stunning. Highly recommend!", rating: 5 },
+  { name: "David W.", location: "McKinney, TX", text: "Fixed issues other contractors couldn't. True professionals.", rating: 5 },
+  { name: "Karen B.", location: "Denton, TX", text: "Excellent communication throughout the entire project.", rating: 5 },
+];
+---
+
+<section class="testimonial-section" id="testimonials">
+  <h2 class="section-title">GET 5 STAR REVIEWS</h2>
+
+  <div class="carousel-container">
+    <div class="carousel-track" id="testimonialTrack">
+      {testimonials.concat(testimonials).map((t, i) => (
+        <div class="testimonial-card" data-index={i}>
+          <div class="stars">{'★'.repeat(t.rating)}</div>
+          <p class="testimonial-text">"{t.text}"</p>
+          <div class="testimonial-author">
+            <strong>{t.name}</strong>
+            <span>{t.location}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-alt) 100%);
+    overflow: hidden;
+  }
+
+  .section-title {
+    text-align: center;
+    font-family: 'Titan One', cursive;
+    font-size: 2.5rem;
+    color: var(--dark);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+  }
+
+  .carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  .carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .testimonial-card {
+    flex: 0 0 calc((100% - 6rem) / 5);
+    min-width: 280px;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  }
+
+  .testimonial-card.active {
+    transform: scale(1.15) translateZ(50px);
+    opacity: 1;
+    border: 3px solid var(--accent);
+    box-shadow:
+      0 0 40px rgba(var(--accent-rgb), 0.4),
+      0 20px 40px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+  }
+
+  .stars {
+    color: var(--accent);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-text {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .testimonial-author strong {
+    color: var(--dark);
+    font-size: 1.1rem;
+  }
+
+  .testimonial-author span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1200px) {
+    .testimonial-card {
+      flex: 0 0 calc((100% - 3rem) / 3);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-card {
+      flex: 0 0 calc(100% - 2rem);
+    }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('testimonialTrack');
+  const cards = document.querySelectorAll('.testimonial-card');
+  const totalOriginal = cards.length / 2;
+  let currentIndex = 2;
+
+  function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth + 24;
+    const offset = currentIndex * cardWidth;
+    const containerCenter = track.parentElement.offsetWidth / 2;
+    const cardCenter = cardWidth / 2;
+
+    track.style.transform = `translateX(${containerCenter - offset - cardCenter}px)`;
+
+    cards.forEach((card, i) => {
+      card.classList.remove('active');
+      if (i === currentIndex) {
+        card.classList.add('active');
+      }
+    });
+  }
+
+  function advance() {
+    currentIndex++;
+    if (currentIndex >= totalOriginal + 2) {
+      currentIndex = 2;
+      track.style.transition = 'none';
+      updateCarousel();
+      setTimeout(() => {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      }, 50);
+    } else {
+      updateCarousel();
+    }
+  }
+
+  updateCarousel();
+  setInterval(advance, 3000);
+</script>
