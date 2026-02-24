@@ -1,17 +1,25 @@
 ---
 const services = [
-  { label: 'Reputation Management',     desc: 'Google reviews, branding & CRM tracking',        href: '/services/reputation-management' },
-  { label: 'AI Receptionist & Bots',    desc: 'Voice agents, website bots & live booking',      href: '/ai-reception' },
-  { label: 'Lead Generation',           desc: 'Qualified lead management & outreach',           href: '/services/lead-generation' },
-  { label: 'Websites & Landing Pages',  desc: 'Full website builds & converting landing pages', href: '/services/websites' },
-  { label: 'Website Chat Widget',       desc: 'FAQ-trained bot with lead capture & SMS alerts', href: '/services/chat-widget' },
-  { label: 'Social Media',              desc: 'Easy integration & engagement management',       href: '/services/social-media' },
-  { label: 'SEO & Keyword Reports',     desc: 'AI search advantage with keyword tracking',      href: '/services/seo' },
-  { label: 'Expense OCR Automation',    desc: 'Upload receipts, auto-extract data instantly',   href: '/services/expense-ocr' },
-  { label: 'Sales & Ops Training',      desc: 'LMS courses and team training programs',         href: '/services/training' },
-  { label: 'Funnel Management',         desc: 'CRM & funnel boards to track every client',      href: '/services/crm' },
-  { label: 'Sales & Ops Coaching',      desc: '1-on-1 coaching to scale your business',         href: '/sales-ops-coaching' },
-  { label: 'Custom Solutions',          desc: 'Need help? Let\'s find the right solution',      href: '/#contact' },
+  { label: 'AI Reception & Bookings',        desc: 'Voice agents, live booking & call handling',       href: '/ai-reception' },
+  { label: 'Reviews & Reputation Management', desc: 'Google reviews, reputation & brand management',   href: '/services/reputation-management' },
+  { label: 'Lead Generation',                desc: 'Qualified lead management & outreach',            href: '/services/lead-generation' },
+  { label: 'Websites & Landing Pages',       desc: 'Full website builds & converting landing pages',  href: '/services/websites' },
+  { label: 'Email & SMS Marketing',          desc: 'Automated campaigns & customer engagement',       href: '/services/email-sms-marketing' },
+  { label: 'Social Media Management',        desc: 'Content creation & engagement management',        href: '/services/social-media' },
+  { label: 'SEO & Keyword Reports',          desc: 'AI search advantage with keyword tracking',       href: '/services/seo' },
+  { label: 'CRM & Funnels',                  desc: 'Client tracking & sales funnel management',       href: '/services/crm' },
+  { label: 'Expense Capture',                desc: 'Upload receipts, auto-extract data instantly',    href: '/services/expense-capture' },
+  { label: 'Custom Solutions',               desc: 'Need help? Let\'s find the right solution',       href: '/#contact' },
+];
+
+const coaching = [
+  { label: 'Sales Coaching',           desc: 'Improve close rates & sales process',      href: '/coaching/sales' },
+  { label: 'Operations Coaching',      desc: 'Streamline workflows & efficiency',        href: '/coaching/operations' },
+  { label: 'Financial Coaching',       desc: 'Job costing, pricing & profitability',     href: '/coaching/financial' },
+  { label: 'Legal Coaching',           desc: 'Contracts, compliance & risk management',  href: '/coaching/legal' },
+  { label: 'Social Presence Coaching', desc: 'Social media & online reputation',         href: '/coaching/social-presence' },
+  { label: 'Network Coaching',         desc: 'Referrals, partnerships & community',      href: '/coaching/network' },
+  { label: 'Website Coaching',         desc: 'Website optimization & lead conversion',   href: '/coaching/website' }
 ];
 ---
 
@@ -42,10 +50,29 @@ const services = [
       </div>
     </div>
 
+    <!-- Coaching Dropdown -->
+    <div class="nav-dropdown" id="coaching-dropdown">
+      <button class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" id="coaching-btn">
+        Coaching
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </button>
+      <div class="dropdown-panel" role="menu" id="coaching-panel">
+        <div class="dropdown-grid">
+          {coaching.map(c => (
+            <a href={c.href} class="dropdown-item" role="menuitem">
+              <span class="dropdown-item-label">{c.label}</span>
+              <span class="dropdown-item-desc">{c.desc}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <!-- Main Navigation Links -->
     <a href="/#how-it-works" class="nav-link">What We Do</a>
     <a href="/ai-reception" class="nav-link">AI Reception</a>
-    <a href="/sales-ops-coaching" class="nav-link">Sales/Ops Coaching</a>
     <a href="/#customers" class="nav-link">Reviews</a>
     <a href="/#pricing" class="nav-link">Pricing</a>
     <a href="/blog" class="nav-link">Blog</a>
@@ -80,6 +107,8 @@ const services = [
   const backdrop    = document.getElementById('nav-backdrop') as HTMLElement;
   const servicesBtn = document.getElementById('services-btn') as HTMLButtonElement;
   const servicesPanel = document.getElementById('services-panel') as HTMLElement;
+  const coachingBtn = document.getElementById('coaching-btn') as HTMLButtonElement;
+  const coachingPanel = document.getElementById('coaching-panel') as HTMLElement;
 
   // ── helpers ───────────────────────────────────────────────────────────────
   function openMenu() {
@@ -94,21 +123,36 @@ const services = [
     backdrop.classList.remove('visible');
     hamburger.classList.remove('active');
     hamburger.setAttribute('aria-expanded', 'false');
-    closeDropdown();
+    closeServicesDropdown();
+    closeCoachingDropdown();
   }
 
-  function openDropdown() {
+  function openServicesDropdown() {
     servicesPanel.classList.add('open');
     servicesBtn.setAttribute('aria-expanded', 'true');
   }
 
-  function closeDropdown() {
+  function closeServicesDropdown() {
     servicesPanel.classList.remove('open');
     servicesBtn.setAttribute('aria-expanded', 'false');
   }
 
-  function toggleDropdown() {
-    servicesPanel.classList.contains('open') ? closeDropdown() : openDropdown();
+  function toggleServicesDropdown() {
+    servicesPanel.classList.contains('open') ? closeServicesDropdown() : openServicesDropdown();
+  }
+
+  function openCoachingDropdown() {
+    coachingPanel.classList.add('open');
+    coachingBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeCoachingDropdown() {
+    coachingPanel.classList.remove('open');
+    coachingBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggleCoachingDropdown() {
+    coachingPanel.classList.contains('open') ? closeCoachingDropdown() : openCoachingDropdown();
   }
 
   // ── hamburger ─────────────────────────────────────────────────────────────
@@ -119,22 +163,84 @@ const services = [
   backdrop.addEventListener('click', closeMenu);
 
   // ── services dropdown ─────────────────────────────────────────────────────
-  servicesBtn.addEventListener('click', toggleDropdown);
+  servicesBtn.addEventListener('click', toggleServicesDropdown);
 
-  // Hover behaviour (desktop): open on mouseenter, close on mouseleave
-  const dropdownWrapper = document.getElementById('services-dropdown') as HTMLElement;
+  // Hover behaviour (desktop): open on mouseenter, close on mouseleave with delay
+  const servicesDropdownWrapper = document.getElementById('services-dropdown') as HTMLElement;
+  let servicesCloseTimeout: number | null = null;
 
-  dropdownWrapper.addEventListener('mouseenter', () => {
-    if (window.innerWidth >= 768) openDropdown();
+  servicesDropdownWrapper.addEventListener('mouseenter', () => {
+    if (window.innerWidth >= 768) {
+      if (servicesCloseTimeout) clearTimeout(servicesCloseTimeout);
+      openServicesDropdown();
+    }
   });
-  dropdownWrapper.addEventListener('mouseleave', () => {
-    if (window.innerWidth >= 768) closeDropdown();
+
+  servicesDropdownWrapper.addEventListener('mouseleave', () => {
+    if (window.innerWidth >= 768) {
+      servicesCloseTimeout = window.setTimeout(() => closeServicesDropdown(), 500);
+    }
+  });
+
+  // Also handle mouse enter/leave on the panel itself
+  servicesPanel.addEventListener('mouseenter', () => {
+    if (window.innerWidth >= 768) {
+      if (servicesCloseTimeout) clearTimeout(servicesCloseTimeout);
+      openServicesDropdown();
+    }
+  });
+
+  servicesPanel.addEventListener('mouseleave', () => {
+    if (window.innerWidth >= 768) {
+      servicesCloseTimeout = window.setTimeout(() => closeServicesDropdown(), 500);
+    }
   });
 
   // Close dropdown when clicking outside
   document.addEventListener('click', (e: MouseEvent) => {
-    if (!dropdownWrapper.contains(e.target as Node)) {
-      closeDropdown();
+    if (!servicesDropdownWrapper.contains(e.target as Node) && !servicesPanel.contains(e.target as Node)) {
+      closeServicesDropdown();
+    }
+  });
+
+  // ── coaching dropdown ─────────────────────────────────────────────────────
+  coachingBtn.addEventListener('click', toggleCoachingDropdown);
+
+  // Hover behaviour (desktop): open on mouseenter, close on mouseleave with delay
+  const coachingDropdownWrapper = document.getElementById('coaching-dropdown') as HTMLElement;
+  let coachingCloseTimeout: number | null = null;
+
+  coachingDropdownWrapper.addEventListener('mouseenter', () => {
+    if (window.innerWidth >= 768) {
+      if (coachingCloseTimeout) clearTimeout(coachingCloseTimeout);
+      openCoachingDropdown();
+    }
+  });
+
+  coachingDropdownWrapper.addEventListener('mouseleave', () => {
+    if (window.innerWidth >= 768) {
+      coachingCloseTimeout = window.setTimeout(() => closeCoachingDropdown(), 500);
+    }
+  });
+
+  // Also handle mouse enter/leave on the panel itself
+  coachingPanel.addEventListener('mouseenter', () => {
+    if (window.innerWidth >= 768) {
+      if (coachingCloseTimeout) clearTimeout(coachingCloseTimeout);
+      openCoachingDropdown();
+    }
+  });
+
+  coachingPanel.addEventListener('mouseleave', () => {
+    if (window.innerWidth >= 768) {
+      coachingCloseTimeout = window.setTimeout(() => closeCoachingDropdown(), 500);
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e: MouseEvent) => {
+    if (!coachingDropdownWrapper.contains(e.target as Node) && !coachingPanel.contains(e.target as Node)) {
+      closeCoachingDropdown();
     }
   });
 
@@ -164,9 +270,9 @@ const services = [
     justify-content: space-between;
     padding: 0 2rem;
     height: 64px;
-    background: var(--dark);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
@@ -174,7 +280,7 @@ const services = [
   .nav-logo {
     font-family: 'Titan One', cursive;
     font-size: 1.4rem;
-    color: var(--nav-text, #ffffff);
+    color: #1a56db;
     text-decoration: none;
     letter-spacing: -0.02em;
     flex-shrink: 0;
@@ -188,18 +294,20 @@ const services = [
   }
 
   .nav-link {
-    color: var(--nav-text, #ffffff);
+    color: #374151;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
     white-space: nowrap;
+    display: inline-block;
   }
 
   .nav-link:hover {
-    color: var(--accent);
+    color: #1a56db;
+    transform: scale(1.2);
   }
 
   /* ── Services dropdown trigger ──────────────────────────────────────── */
@@ -215,18 +323,19 @@ const services = [
     border: none;
     padding: 0;
     cursor: pointer;
-    color: var(--nav-text, #ffffff);
+    color: #374151;
     font-size: 0.9rem;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.04em;
     font-family: inherit;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
     white-space: nowrap;
   }
 
   .nav-dropdown-trigger:hover {
-    color: var(--accent);
+    color: #1a56db;
+    transform: scale(1.2);
   }
 
   .chevron {
@@ -244,7 +353,7 @@ const services = [
   .dropdown-panel {
     display: none;
     position: absolute;
-    top: calc(100% + 12px);
+    top: 100%;
     left: 50%;
     transform: translateX(-50%);
     min-width: 780px;
@@ -253,7 +362,20 @@ const services = [
     border-radius: 12px;
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     padding: 1rem;
+    padding-top: 1rem;
+    margin-top: 0;
     z-index: 300;
+  }
+
+  /* No gap - direct attachment for reliable hover */
+  .dropdown-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: transparent;
   }
 
   .dropdown-panel.open {
@@ -311,18 +433,18 @@ const services = [
   .btn-demo {
     display: inline-block;
     padding: 0.55rem 1.25rem;
-    background: var(--primary, var(--accent));
+    background: #1e40af;
     color: #ffffff;
     font-size: 0.875rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: 50px;
     white-space: nowrap;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
   }
 
   .btn-demo:hover {
-    opacity: 0.88;
+    background: #1e3a8a;
     transform: translateY(-1px);
   }
 
@@ -351,7 +473,7 @@ const services = [
     display: block;
     width: 22px;
     height: 2px;
-    background: #ffffff;
+    background: #374151;
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
     transform-origin: center;
@@ -388,7 +510,7 @@ const services = [
       left: 0;
       right: 0;
       bottom: 0;
-      background: var(--dark);
+      background: #1a1a2e;
       flex-direction: column;
       align-items: flex-start;
       gap: 0;
@@ -454,17 +576,17 @@ const services = [
       display: inline-block;
       margin: 1.25rem 1.5rem 0;
       padding: 0.75rem 1.5rem;
-      background: var(--primary, var(--accent));
+      background: #1e40af;
       color: #ffffff;
       font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
       border-radius: 50px;
       text-align: center;
-      transition: opacity 0.2s;
+      transition: background 0.2s;
     }
 
-    .nav-links .btn-demo-mobile:hover { opacity: 0.85; }
+    .nav-links .btn-demo-mobile:hover { background: #1e3a8a; }
   }
 
   /* ── Responsive: mid-range ──────────────────────────────────────────── */

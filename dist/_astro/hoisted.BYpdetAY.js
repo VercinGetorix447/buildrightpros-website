@@ -1,1 +1,0 @@
-import"./hoisted.DuL4SSVi.js";const a=document.querySelectorAll(".cat-btn"),s=document.querySelectorAll(".blog-card");a.forEach(t=>{t.addEventListener("click",()=>{a.forEach(e=>e.classList.remove("active")),t.classList.add("active");const c=t.dataset.category;s.forEach(e=>{c==="all"||e.dataset.category===c?e.classList.remove("hidden"):e.classList.add("hidden")})})});
