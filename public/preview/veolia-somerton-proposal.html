@@ -8,11 +8,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 :root{
-  --bg:#eeedec; --bg2:#e6e5e3; --bg3:#dcdad8;
-  --card:#ffffff; --border:#d8d6d3; --border2:#c0bdb9;
+  /* Palette aligned to the Build Right Pros preview house style. */
+  --bg:#edeae8; --bg2:#e4e0dd; --bg3:#d8d4d0;
+  --card:#f7f5f3; --border:#ccc9c6; --border2:#b3afab;
   --ink:#1e1e1e; --mid:#4a4543; --muted:#7a7370;
-  --band:#232120; --bandInk:#f2efec; --bandMuted:#a09892; --bandLine:#3d3936;
-  --accent:#a8412a; --accentWash:#f6ebe7;
+  --band:#2e2c2a; --bandInk:#f2efec; --bandMuted:#a09892; --bandLine:#3d3936;
+  --accent:#c85a0a; --accentWash:#fff8f4;
   --good:#1a7a3a; --goodWash:#eef7f1;
   --warn:#8a6212; --warnWash:#f9f3e4;
   --risk:#9b2c2c; --riskWash:#fbeeee;
@@ -104,6 +105,15 @@ th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border)}
 th{background:var(--bg3);font-weight:600;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--mid)}
 tr:last-child td{border-bottom:0}
 td.n,th.n{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+/* Visual slot. Marks where a photograph, render or site plan belongs so the page
+   is not read as an unbroken run of tables. Neutral by design. */
+.ph{border:1px dashed var(--border2);border-radius:var(--r);background:var(--bg2);display:flex;
+    flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:30px 22px;min-height:200px;gap:7px;margin:16px 0}
+.ph .pht{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--muted)}
+.ph .phh{font-family:Archivo,sans-serif;font-weight:600;font-size:1.02rem;color:var(--mid)}
+.ph .phn{font-size:.86rem;color:var(--muted);max-width:48ch;line-height:1.55}
 .note{border-left:3px solid var(--border2);padding:11px 15px;background:var(--bg2);border-radius:0 var(--r) var(--r) 0;font-size:.9rem}
 .note.warn,.note.risk,.note.acc{border-left-color:var(--border2);background:var(--bg2)}
 .stack{display:flex;flex-direction:column;gap:16px}
@@ -184,6 +194,8 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;c
 
 <section class="panel on" id="p1">
   <div class="stack">
+    <div class="ph"><span class="pht">Image slot</span><span class="phh">The yard as it stands today</span><span class="phn">Wide shot of the dock and staging rows, or an overhead of the parcel. Sets the scene before any figure.</span></div>
+
     <div><h2>The case is capacity, not labour</h2>
       <p class="lede">Somerton turned away five trailers in a single week &mdash; requests it could not service. Pomona offers two more per week, Fernley one, with further Veolia origins behind them.</p></div>
 
@@ -430,6 +442,8 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;c
       <p class="hint" style="margin-bottom:10px">Estimated minutes. Forklift speed and lift-cycle are assumptions pending measurement. The box operation has no equivalent chart yet &mdash; none of its steps have been timed.</p>
       <canvas id="cCycle" height="180"></canvas>
     </div>
+
+    <div class="ph"><span class="pht">Image slot</span><span class="phh">Drum nest at eight high</span><span class="phn">Photograph of a completed nest and of the top-drum seat. This is the motion the hazard register refers to.</span></div>
 
     <div class="sec"><h2>Drum nesting &mdash; current state</h2>
       <div class="twrap" style="margin-top:12px"><table>
@@ -691,6 +705,8 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;c
       </ul></div>
     </div>
 
+    <div class="ph"><span class="pht">Image slot</span><span class="phh">Separation station, as it would sit</span><span class="phn">Vendor photograph or a sketch of the tilt table at the intended location.</span></div>
+
     <div class="sec"><h2>Pallet separation station</h2>
       <div class="grid g2" style="margin-top:12px">
         <div class="card"><h3>Today</h3><p>Boxes are nailed to pallets and separated <strong>on the ground</strong>. The worker bends, twists, moves the pallet and folds the cardboard. Over-nailed units are described as very difficult.</p></div>
@@ -716,6 +732,8 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;c
 
 <section class="panel" id="p3">
   <div class="stack">
+    <div class="ph"><span class="pht">Image slot</span><span class="phh">Land packages on the parcel</span><span class="phn">Site plan or satellite view with packages A, B and C outlined, and the existing pad marked.</span></div>
+
     <div><h2>Land &amp; site</h2>
       <p class="lede">Three packages, each approvable alone. One number governs all of them.</p></div>
 
@@ -784,6 +802,8 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;c
 
 <section class="panel" id="p4">
   <div class="stack">
+    <div class="ph"><span class="pht">Image slot</span><span class="phh">Canopy elevation over the work cell</span><span class="phn">Elevation or render showing the open-sided steel canopy, the PV deck and the equipment beneath it.</span></div>
+
     <div><h2>Solar canopy &amp; equipment protection</h2>
       <p class="lede">The structure the equipment needs for shade sits in a high direct-normal-irradiance region. One capital item, two possible returns.</p></div>
 
