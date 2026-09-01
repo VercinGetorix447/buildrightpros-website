@@ -90,13 +90,13 @@ p{margin:.55rem 0}
 .grid{display:grid;gap:16px}
 .g2{grid-template-columns:repeat(auto-fit,minmax(315px,1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-.rec{border-color:var(--good);background:var(--goodWash);border-left:4px solid var(--good)}
+/* No option is highlighted as preferred. */
+.rec{border-color:var(--border);background:transparent}
 .chip{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   padding:3px 9px;border-radius:99px;border:1px solid var(--border2);color:var(--mid);background:var(--bg3)}
-.chip.good{background:var(--goodWash);border-color:var(--good);color:var(--good)}
-.chip.warn{background:var(--warnWash);border-color:var(--warn);color:var(--warn)}
-.chip.risk{background:var(--riskWash);border-color:var(--risk);color:var(--risk)}
-.chip.acc{background:var(--accentWash);border-color:var(--accent);color:var(--accent)}
+/* Chips are labels, not verdicts. One neutral treatment: colour must not tell the
+   reader which option is preferred. */
+.chip.good,.chip.warn,.chip.risk,.chip.acc{background:transparent;border-color:var(--border2);color:var(--muted)}
 .cost{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:1.12rem;font-weight:600}
 .twrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r);background:var(--card)}
 table{border-collapse:collapse;width:100%;font-size:.87rem;min-width:540px}
@@ -105,9 +105,7 @@ th{background:var(--bg3);font-weight:600;font-size:.72rem;letter-spacing:.07em;t
 tr:last-child td{border-bottom:0}
 td.n,th.n{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
 .note{border-left:3px solid var(--border2);padding:11px 15px;background:var(--bg2);border-radius:0 var(--r) var(--r) 0;font-size:.9rem}
-.note.warn{border-left-color:var(--warn);background:var(--warnWash)}
-.note.risk{border-left-color:var(--risk)}
-.note.acc{border-left-color:var(--accent);background:var(--accentWash)}
+.note.warn,.note.risk,.note.acc{border-left-color:var(--border2);background:var(--bg2)}
 .stack{display:flex;flex-direction:column;gap:16px}
 .sec{margin-top:34px}
 .lede{font-size:1.02rem;color:var(--mid);max-width:70ch}
@@ -141,8 +139,7 @@ input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3
 .kpi .v{font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;margin-top:3px;line-height:1.2}
 .kpi .f{font-size:.74rem;color:var(--muted)}
 .kpi.hero2 .v{color:var(--accent)}
-.kpi.ok .v{color:var(--good)}
-.kpi.bad .v{color:var(--risk)}
+.kpi.ok .v,.kpi.bad .v{color:inherit}
 .finstrip{margin-top:18px;background:var(--bg2);border:1px solid var(--border);
   border-top:3px solid var(--accent);border-radius:var(--r);padding:15px 19px 17px}
 .finstrip .fh{font-family:Archivo,sans-serif;font-weight:600;font-size:.95rem;margin-bottom:12px}
