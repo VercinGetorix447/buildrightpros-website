@@ -980,12 +980,12 @@ footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;c
       <p class="lede">Every inbound trailer already carries a complete declaration of what is on it. Today that declaration is read <em>after</em> the trailer is on the dock. Read before, it decides which trailer to pull, which bay to hold, and how many operators to assign.</p></div>
 
     <div class="note acc"><h4>The data is already ours</h4>
-      <p>Two real inbound packets were examined &mdash; trailers <span class="num">548381</span> and <span class="num">537464</span>, roughly <strong>50 manifests each</strong>. Every manifest in both packets is issued on our own registrant number and prepared by our retail services group in Peachtree Corners.</p>
+      <p>Four real inbound packets have been examined &mdash; trailers <span class="num">548381</span>, <span class="num">537464</span>, <span class="num">537901</span> and <span class="num">523151</span>. Every manifest in all four is issued on our own registrant number and prepared by our retail services group in Peachtree Corners.</p>
       <p>Home Depot, Target, Amazon and Walgreens are the legal generators &mdash; the waste is theirs. <strong>The typed record is ours.</strong> No data request to a retail customer is required to build this, which removes the slowest and least certain dependency from the plan.</p></div>
 
     <div class="chartbox">
-      <h4>What two real trailers carried</h4>
-      <p class="hint" style="margin-bottom:10px">Container-type entries recovered from the manifest packets. Both trailers are overwhelmingly drums &mdash; the slowest content type in the workflow.</p>
+      <h4>What four real trailers carried</h4>
+      <p class="hint" style="margin-bottom:10px">Container-type entries recovered from four manifest packets. <strong>The mix varies widely trailer to trailer</strong> &mdash; one arrived at 100% drums, another at 91% cartons. <span class="chip">Four trailers</span> Recovered by OCR rather than counted on the dock, and four is a small sample; the pattern is worth testing against a larger one before it is planned around.</p>
       <canvas id="cMix" height="150"></canvas>
       <div class="legend"><span><i style="background:var(--accent)"></i>Drums, fibre or plastic</span><span><i style="background:var(--mid)"></i>Boxes</span><span><i style="background:var(--warn)"></i>Drums, metal</span></div>
     </div>
@@ -1276,11 +1276,13 @@ function drawCycle(){var c=$('cCycle');if(!c||!c.offsetParent)return;var H=180,b
 }
 /* Container-type entries recovered from two real manifest packets.
    [label, drums(DF), boxes(CF), metal drums(DM)] - measured, not modelled. */
-var MIX=[['Trailer 548381',55,8,0],['Trailer 537464',55,10,1]];
+/* Container-type entries recovered by OCR from four Orbit manifest packets.
+   [label, drums DF, cartons CF, metal drums DM]. Recovery, not a physical count. */
+var MIX=[['Trailer 548381',64,0,0],['Trailer 537464',69,54,1],['Trailer 537901',33,39,0],['Trailer 523151',3,32,0]];
 function drawMix(){var c=$('cMix');if(!c||!c.offsetParent)return;var H=150,b=fit(c,H),x=b.x,w=b.w;
-  var L=Math.min(132,w*0.30),R=w-84,max=70,sc=function(v){return (v/max)*(R-L)};
+  var L=Math.min(132,w*0.30),R=w-84,max=80,sc=function(v){return (v/max)*(R-L)};
   x.strokeStyle=cv('--grid');x.lineWidth=1;
-  for(var t=0;t<=70;t+=10){var gx=L+sc(t);x.beginPath();x.moveTo(gx,24);x.lineTo(gx,H-32);x.stroke();
+  for(var t=0;t<=80;t+=20){var gx=L+sc(t);x.beginPath();x.moveTo(gx,24);x.lineTo(gx,H-32);x.stroke();
     txt(x,String(t),gx,H-16,cv('--muted'),10,'center')}
   txt(x,'container-type entries recovered',L+sc(35),H-3,cv('--muted'),9,'center');
   MIX.forEach(function(r,i){var y=38+i*40,tot=r[1]+r[2]+r[3];
