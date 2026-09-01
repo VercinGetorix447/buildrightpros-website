@@ -2473,6 +2473,32 @@ var MGROUP = {
 };
 var MCAP = MEASURES.map(function(m){ return m.cap; });
 
+/* ---- mixed vs single-type trailers ----
+   Every input starts empty. The page supplies no figure and no default, so the
+   comparison is entirely the reader's own arithmetic. Blank is treated as zero. */
+(function(){
+  var IDS = ["sg-cm","sg-cs","sg-hm","sg-hs","sg-em","sg-es","sg-tm","sg-ts"];
+  function num(id){ var e = el(id); if(!e) return 0; var v = parseFloat(e.value); return isFinite(v) && v >= 0 ? v : 0; }
+  function any(){ for(var i=0;i<IDS.length;i++){ var e = el(IDS[i]); if(e && e.value !== "") return true; } return false; }
+  function hrs(n){ return Math.round(n).toLocaleString() + " h"; }
+  function run(){
+    var filled = any();
+    var mixed = (num("sg-cm")/60)*(num("sg-tm")*52) + num("sg-hm")*num("sg-em")*12;
+    var seg   = (num("sg-cs")/60)*(num("sg-ts")*52) + num("sg-hs")*num("sg-es")*12;
+    var tM = Math.round(num("sg-tm")*52), tS = Math.round(num("sg-ts")*52);
+    var d = mixed - seg;
+    var set = function(id,txt){ var e = el(id); if(e) e.textContent = txt; };
+    set("sg-om", filled ? hrs(mixed) : "—");
+    set("sg-os", filled ? hrs(seg)   : "—");
+    set("sg-od", filled ? (d === 0 ? "0 h" : (d > 0 ? "-" : "+") + hrs(Math.abs(d)).replace(" h"," h")) : "—");
+    set("sg-odn", filled ? (d > 0 ? "fewer hours on one type per trailer" : (d < 0 ? "more hours on one type per trailer" : "no difference on these figures")) : "on the figures entered");
+    set("sg-ot", filled ? (tM.toLocaleString() + " / " + tS.toLocaleString()) : "—");
+    set("sg-otn", "mixed / one type, a year");
+  }
+  for(var i=0;i<IDS.length;i++){ var e = el(IDS[i]); if(e){ e.addEventListener("input", run); e.addEventListener("change", run); } }
+  run();
+})();
+
 function mCount(i){
   var m = MEASURES[i], c = MCAP[i];
   if(!(c > 0)) return m.d.length + " periods plotted";
