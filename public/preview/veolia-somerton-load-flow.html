@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,7 +12,7 @@
 <style>
 :root{
   color-scheme: light;
-  --plane:#F4F4F3;
+  --plane:#f5f3f0;
   --surface:#FFFFFF;
   --surface-2:#F7F7F6;
   --ink:#111315;
@@ -20,17 +20,17 @@
   --ink-3:#7B7F85;
   --rule:#DDDFE2;
   --rule-soft:#ECEEF0;
-  --accent:#1B4965;
-  --accent-ink:#1B4965;
+  --accent:#8a4a1a;
+  --accent-ink:#8a4a1a;
   --accent-wash:#F1F3F5;
 
-  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --s1:#c85a0a; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
   --good:#0ca30c; --warn:#fab219; --serious:#C77700; --critical:#d03b3b;
   --wait:#d03b3b;
   --grid:#E7E8EA; --axis:#C6C9CD;
 
-  --r1:#86b6ef; --r2:#6da7ec; --r3:#5598e7; --r4:#3987e5;
-  --r5:#2a78d6; --r6:#256abf; --r7:#1c5cab; --r8:#184f95; --r9:#104281;
+  --r1:#f0b088; --r2:#e8935a; --r3:#e8742a; --r4:#d06a1a;
+  --r5:#c85a0a; --r6:#a8481a; --r7:#8a3d14; --r8:#6a2f0f; --r9:#5a2810;
 
   --max:1120px;
   --step--1:0.8125rem;
@@ -51,16 +51,16 @@
     --ink-3:#8A8E95;
     --rule:#33343A;
     --rule-soft:#2A2B30;
-    --accent:#7FB3D5;
-    --accent-ink:#9AC6E3;
+    --accent:#e8935a;
+    --accent-ink:#f0b088;
     --accent-wash:#1C1F24;
 
-    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --s1:#d06a1a; --s2:#d95926; --s3:#199e70; --s4:#c98500;
     --wait:#e66767; --serious:#E09B3D;
     --grid:#2E2F34; --axis:#3B3D43;
 
-    --r1:#184f95; --r2:#1c5cab; --r3:#256abf; --r4:#2a78d6;
-    --r5:#3987e5; --r6:#5598e7; --r7:#6da7ec; --r8:#86b6ef; --r9:#9ec5f4;
+    --r1:#6a2f0f; --r2:#8a3d14; --r3:#a8481a; --r4:#c85a0a;
+    --r5:#d06a1a; --r6:#e8742a; --r7:#e8935a; --r8:#f0b088; --r9:#f0b088;
   }
 }
 :root[data-theme="dark"]{
@@ -77,12 +77,12 @@
   --accent-ink:#79C4CC;
   --accent-wash:#152628;
 
-  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --s1:#d06a1a; --s2:#d95926; --s3:#199e70; --s4:#c98500;
   --wait:#e66767;
   --grid:#2C2C2A; --axis:#383835;
 
-  --r1:#184f95; --r2:#1c5cab; --r3:#256abf; --r4:#2a78d6;
-  --r5:#3987e5; --r6:#5598e7; --r7:#6da7ec; --r8:#86b6ef; --r9:#9ec5f4;
+  --r1:#6a2f0f; --r2:#8a3d14; --r3:#a8481a; --r4:#c85a0a;
+  --r5:#d06a1a; --r6:#e8742a; --r7:#e8935a; --r8:#f0b088; --r9:#f0b088;
 }
 
 *{box-sizing:border-box;}
@@ -254,6 +254,11 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
   .noprint{display:none!important;}
   .scroll{overflow:visible;}
 }
+
+  /* Sticky reference menu — click glides DOWN to the section, lands below the nav */
+  nav.lfnav{position:sticky;top:0;z-index:200;display:flex;gap:0;overflow-x:auto;background:#232120;border-bottom:2px solid #c85a0a;padding:0 20px;}
+  nav.lfnav a{white-space:nowrap;padding:11px 14px;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#b8b2ac;text-decoration:none;border-bottom:3px solid transparent;}
+  nav.lfnav a:hover{color:#e8742a;border-bottom-color:#c85a0a;}
 </style>
 
 <div class="wrap">
@@ -270,9 +275,10 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
     <span>Rev <b>20260830</b></span>
   </div>
 </header>
+<nav class="lfnav"><a href="#current-state">Current state</a><a href="#proposed-future-state">Proposed future state</a><a href="#takt-and-the-throughput-ramp">Takt and the throughput ramp</a><a href="#phase-cycle-times-against-ta">Phase cycle times against takt</a><a href="#drum-path">Drum path</a><a href="#carton-path">Carton path</a><a href="#outbound-and-records">Outbound and records</a><a href="#measurement-points">Measurement points</a><a href="#which-timings-can-be-verifie">Which timings can be verified</a><a href="#facility-options-researched-">Facility options researched to date</a><a href="#the-preread">The pre-read</a><a href="#autopull-from-drive-readback">Auto-pull from Drive, read-back over a mobile messaging channel</a><a href="#manifest-to-form-field-by-fi">Manifest to form, field by field</a><a href="#count-reconciliation">Count reconciliation</a><a href="#capacity">Capacity</a><a href="#entry-time-variation">Entry time variation</a><a href="#crew-hours-by-load-type">Crew hours by load type</a><a href="#unit-type-manifest-type-weig">Unit type &times; manifest type &times; weight</a><a href="#the-entry-grid">The entry grid</a><a href="#trailer-disposition">Trailer disposition</a><a href="#where-things-live-what-they-">Where things live, what they are called, who owns them</a></nav>
 
 <!-- ============ 01 CURRENT ============ -->
-<section class="station">
+<section class="station" id="current-state">
   <div class="station-rail">01<span>Current</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -329,7 +335,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ 02 FUTURE ============ -->
-<section class="station">
+<section class="station" id="proposed-future-state">
   <div class="station-rail">02<span>Future</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -377,7 +383,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ TAKT & RAMP ============ -->
-<section class="station">
+<section class="station" id="takt-and-the-throughput-ramp">
   <div class="station-rail">00<span>Takt &amp; ramp</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -430,7 +436,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ PHASE SCREENING ============ -->
-<section class="station">
+<section class="station" id="phase-cycle-times-against-ta">
   <div class="station-rail">00<span>Phase screen</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -482,7 +488,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ DRUM PATH ============ -->
-<section class="station">
+<section class="station" id="drum-path">
   <div class="station-rail">00<span>Drum path</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -536,7 +542,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ CARTON PATH ============ -->
-<section class="station">
+<section class="station" id="carton-path">
   <div class="station-rail">00<span>Carton path</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -590,7 +596,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ OUTBOUND & RECORDS ============ -->
-<section class="station">
+<section class="station" id="outbound-and-records">
   <div class="station-rail">00<span>Outbound</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -639,7 +645,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ MEASUREMENT POINTS ============ -->
-<section class="station">
+<section class="station" id="measurement-points">
   <div class="station-rail">00<span>Measures</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -672,7 +678,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ TIME SOURCES ============ -->
-<section class="station">
+<section class="station" id="which-timings-can-be-verifie">
   <div class="station-rail">00<span>Time sources</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -740,7 +746,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ OPTIONS RESEARCHED ============ -->
-<section class="station">
+<section class="station" id="facility-options-researched-">
   <div class="station-rail">00<span>Options</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -787,7 +793,7 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ 03 THE PRE-READ ============ -->
-<section class="station">
+<section class="station" id="the-preread">
   <div class="station-rail">03<span>Pre-read</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -850,11 +856,11 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 </section>
 
 <!-- ============ 04 AUTO-PULL & READ-BACK ============ -->
-<section class="station">
+<section class="station" id="autopull-from-drive-readback">
   <div class="station-rail">04<span>Pipeline</span></div>
   <div class="stack-lg">
     <div class="station-head">
-      <h2>Auto-pull from Drive, read-back over Telegram</h2>
+      <h2>Auto-pull from Drive, read-back over a mobile messaging channel</h2>
       <p class="sub">Type a manifest number, get the document. Parse it into the pre-read row. The bot types the load back to the yard so both ends are reading the same words &mdash; and nobody is trying to hear a trailer number over a diesel engine.</p>
     </div>
 
@@ -919,7 +925,7 @@ Office: confirm send location, unit type and count.</div>
         <li>Do manifest files currently carry the manifest number in the filename, and is that consistent across sending sites?</li>
         <li>How often do generating sites change their manifest template?</li>
         <li>What proportion of inbound manifests express quantity in volume units rather than weight?</li>
-        <li>Is Telegram acceptable for yard communication, and are there existing site or IT constraints on it?</li>
+        <li>Is mobile messaging acceptable for yard communication, and are there existing site or IT constraints on it?</li>
         <li>Is a workflow-automation platform already running anywhere in the organisation, and who administers it?</li>
       </ul>
     </div>
@@ -995,7 +1001,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 05 PARSE MAP ============ -->
-<section class="station">
+<section class="station" id="manifest-to-form-field-by-fi">
   <div class="station-rail">05<span>Parse map</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1067,7 +1073,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 06 COUNT VARIANCE ============ -->
-<section class="station">
+<section class="station" id="count-reconciliation">
   <div class="station-rail">06<span>Variance</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1085,7 +1091,7 @@ Office: confirm send location, unit type and count.</div>
       <p class="small muted">Four fields. Manifest number, trailer, expected and actual are carried through from the pre-read and are not re-entered.</p>
       <div class="scroll"><table class="data" id="err-table"></table></div>
       <div class="callout">
-        <p class="small"><b>Trigger.</b> The variance message from Telegram writes the discrepancy to the error queue. The queue opens the form at the office station with the manifest attached, rather than requiring it to be opened manually or retrieved later.</p>
+        <p class="small"><b>Trigger.</b> The variance message from mobile messaging writes the discrepancy to the error queue. The queue opens the form at the office station with the manifest attached, rather than requiring it to be opened manually or retrieved later.</p>
       </div>
     </div>
 
@@ -1107,7 +1113,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 06 CAPACITY ============ -->
-<section class="station">
+<section class="station" id="capacity">
   <div class="station-rail">07<span>Capacity</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1187,7 +1193,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 07 CONTROL ============ -->
-<section class="station">
+<section class="station" id="entry-time-variation">
   <div class="station-rail">08<span>Control</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1221,7 +1227,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 08 YARD LABOR ============ -->
-<section class="station">
+<section class="station" id="crew-hours-by-load-type">
   <div class="station-rail">09<span>Yard labor</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1259,12 +1265,52 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 09 MIX ============ -->
-<section class="station">
+<section class="station" id="unit-type-manifest-type-weig">
   <div class="station-rail">10<span>Mix</span></div>
   <div class="stack-lg">
     <div class="station-head">
       <h2>Unit type &times; manifest type &times; weight</h2>
       <p class="sub">The permutations that determine labor and routing, and the fields the parse returns. <span class="assume">These categories are provisional and are not Veolia taxonomy.</span> Once corrected they become the <code>REF_</code> lists behind the dropdowns described in station 16.</p>
+    </div>
+
+    <div class="card" id="segcompare">
+      <h3>Question for review: mixed trailers, or one container type per trailer?</h3>
+      <p class="small">Inbound trailers presently carry whatever the sending site consolidated. An alternative is drums on one trailer and cartons on another. <b>Nothing below is pre-filled and no figure is supplied by this page.</b> The fields are empty because the numbers are not recorded anywhere yet &mdash; enter what you believe each side would be and the arithmetic follows. Leave a field blank and it is treated as zero.</p>
+
+      <div class="scroll"><table class="data">
+        <thead><tr><th>Per trailer, per event</th><th class="n">Mixed today</th><th class="n">One type per trailer</th></tr></thead>
+        <tbody>
+          <tr><td>Counting and reconciliation, minutes per trailer</td>
+            <td class="n"><input type="number" id="sg-cm" min="0" max="600" step="1" placeholder="measure" aria-label="Counting minutes per trailer, mixed"></td>
+            <td class="n"><input type="number" id="sg-cs" min="0" max="600" step="1" placeholder="measure" aria-label="Counting minutes per trailer, single type"></td></tr>
+          <tr><td>Hours to trace one misplaced item</td>
+            <td class="n"><input type="number" id="sg-hm" min="0" max="200" step="0.5" placeholder="measure" aria-label="Search hours per event, mixed"></td>
+            <td class="n"><input type="number" id="sg-hs" min="0" max="200" step="0.5" placeholder="measure" aria-label="Search hours per event, single type"></td></tr>
+          <tr><td>Traceback events per month</td>
+            <td class="n"><input type="number" id="sg-em" min="0" max="200" step="0.5" placeholder="measure" aria-label="Events per month, mixed"></td>
+            <td class="n"><input type="number" id="sg-es" min="0" max="200" step="0.5" placeholder="measure" aria-label="Events per month, single type"></td></tr>
+          <tr><td>Trailers received per week</td>
+            <td class="n"><input type="number" id="sg-tm" min="0" max="200" step="1" placeholder="measure" aria-label="Trailers per week, mixed"></td>
+            <td class="n"><input type="number" id="sg-ts" min="0" max="200" step="1" placeholder="measure" aria-label="Trailers per week, single type"></td></tr>
+        </tbody>
+      </table></div>
+
+      <div class="tiles" style="margin-top:14px">
+        <div class="tile"><span class="label">Mixed &mdash; hours a year</span><span class="v mono" id="sg-om">&mdash;</span><span class="u" id="sg-omn">counting plus tracing</span></div>
+        <div class="tile"><span class="label">One type &mdash; hours a year</span><span class="v mono" id="sg-os">&mdash;</span><span class="u" id="sg-osn">counting plus tracing</span></div>
+        <div class="tile"><span class="label">Difference</span><span class="v mono" id="sg-od">&mdash;</span><span class="u" id="sg-odn">on the figures entered</span></div>
+        <div class="tile"><span class="label">Trailer count</span><span class="v mono" id="sg-ot">&mdash;</span><span class="u" id="sg-otn">a year, either side</span></div>
+      </div>
+
+      <div class="callout" style="margin-top:14px">
+        <div class="label">Not in this arithmetic</div>
+        <ul class="small">
+          <li>Whether the sending sites are able to segregate, and what it would cost them in trailers or dock time.</li>
+          <li>Whether two part-full trailers would replace one full one, and who carries that cost.</li>
+          <li>Cycle time on the dock, which has not been timed by trailer type.</li>
+          <li>Any audit or compliance consequence of a traceback that cannot be completed.</li>
+        </ul>
+      </div>
     </div>
 
     <figure>
@@ -1297,7 +1343,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 10 THE SHEET ============ -->
-<section class="station">
+<section class="station" id="the-entry-grid">
   <div class="station-rail">11<span>The sheet</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1395,7 +1441,7 @@ Office: confirm send location, unit type and count.</div>
 </section>
 
 <!-- ============ 11 TRAILERS ============ -->
-<section class="station">
+<section class="station" id="trailer-disposition">
   <div class="station-rail">12<span>Trailers</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1434,7 +1480,7 @@ Gate: south, no escort needed</div>
 </section>
 
 <!-- ============ 12 STANDARD ============ -->
-<section class="station">
+<section class="station" id="where-things-live-what-they-">
   <div class="station-rail">13<span>Standard</span></div>
   <div class="stack-lg">
     <div class="station-head">
@@ -1659,12 +1705,12 @@ var STACKS = [
    wfa:"Supported, via a Drive node and stored credentials.", pick:"Both"},
   {job:"Write the pre-read row to the sheet", ascript:"Supported. The script runs inside the target file.",
    wfa:"Supported, via a Sheets node and stored credentials.", pick:"Both"},
-  {job:"Send the read-back to Telegram", ascript:"Supported via UrlFetchApp to the Bot API. Runs when triggered from within Google.",
+  {job:"Send the read-back to mobile messaging", ascript:"Supported via UrlFetchApp to the Bot API. Runs when triggered from within Google.",
    wfa:"Supported. Handles the outbound call, retries and message state.", pick:"Both"},
   {job:"Receive yard replies at any hour", ascript:"Requires a published web app endpoint, with its own access configuration.",
    wfa:"Supported natively via an inbound webhook.", pick:"Platform only"},
   {job:"Open the error log on a variance", ascript:"Supported. The script detecting the mismatch queues the entry.",
-   wfa:"Supported where the variance arrives via Telegram.", pick:"Both"},
+   wfa:"Supported where the variance arrives via mobile messaging.", pick:"Both"},
   {job:"Transfer to another site", ascript:"The code is contained in the spreadsheet and copies with it.",
    wfa:"Workflows are exported and re-imported; credentials are re-entered.", pick:"Both"}
 ];
@@ -1765,7 +1811,7 @@ var PHASE27 = [
   {n:27,p:"Trailers scheduled to other sites",       z:"D", o:"Office scheduler",c:10,d:0,     r:"med"}
 ];
 
-/* Telegram message set - summary. Full spec sits in the strategic document. */
+/* mobile messaging message set - summary. Full spec sits in the strategic document. */
 var BOTMSG = [
   {m:"Day schedule",        dir:"Bot to yard leads", trig:"Shift start", c:"Loads due, type mix, lane assignments, roll-offs required", auto:true},
   {m:"Load pre-read",       dir:"Bot to yard",       trig:"Trailer on the pad", c:"Origin, type, expected units, weight, lane, yard location, planned crew hours", auto:true},
@@ -2275,7 +2321,7 @@ el("reset-times").addEventListener("click", function(){
     {x:20,  y:96, w:150, h:64, t:"Drive intake",   t2:"00_Manifest_Intake", kind:"src"},
     {x:216, y:96, w:150, h:64, t:"Parse",          t2:"weight / count / type", kind:"proc"},
     {x:412, y:96, w:160, h:64, t:"Pre-read row",   t2:"PLUG_Config", kind:"key"},
-    {x:618, y:96, w:150, h:64, t:"Telegram bot",   t2:"read-back", kind:"proc"},
+    {x:618, y:96, w:150, h:64, t:"mobile messaging bot",   t2:"read-back", kind:"proc"},
     {x:814, y:26, w:150, h:64, t:"Yard",           t2:"confirms or corrects", kind:"actor"},
     {x:814, y:166,w:150, h:64, t:"Error log",      t2:"opens pre-filled", kind:"err"},
     {x:412, y:216,w:160, h:60, t:"InboundMaster",  t2:"historical log", kind:"src"}
@@ -2287,7 +2333,7 @@ el("reset-times").addEventListener("click", function(){
     {from:3,to:4, l:"types it out"}
   ];
 
-  var s = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Pipeline: Drive intake folder is searched by manifest number, parsed into a pre-read row, sent to the yard by a Telegram bot which types it back; the yard confirms or reports a variance, a variance opens the error log, and confirmed lines are written to the InboundMaster log." style="min-width:900px">';
+  var s = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Pipeline: Drive intake folder is searched by manifest number, parsed into a pre-read row, sent to the yard by a mobile messaging bot which types it back; the yard confirms or reports a variance, a variance opens the error log, and confirmed lines are written to the InboundMaster log." style="min-width:900px">';
   s += '<defs><marker id="pa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>';
 
   function box(b){
