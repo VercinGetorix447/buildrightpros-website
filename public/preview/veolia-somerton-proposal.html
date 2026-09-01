@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Somerton Expansion Concepts</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#eeedec; --bg2:#e6e5e3; --bg3:#dcdad8;
+  --card:#ffffff; --border:#d8d6d3; --border2:#c0bdb9;
+  --ink:#1e1e1e; --mid:#4a4543; --muted:#7a7370;
+  --band:#232120; --bandInk:#f2efec; --bandMuted:#a09892; --bandLine:#3d3936;
+  --accent:#a8412a; --accentWash:#f6ebe7;
+  --good:#1a7a3a; --goodWash:#eef7f1;
+  --warn:#8a6212; --warnWash:#f9f3e4;
+  --risk:#9b2c2c; --riskWash:#fbeeee;
+  --grid:#dedcd9;
+  --shadow:0 1px 2px rgba(30,30,30,.05),0 3px 12px rgba(30,30,30,.06);
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#131415; --bg2:#191b1c; --bg3:#222527;
+  --card:#1b1d1f; --border:#2f3336; --border2:#434749;
+  --ink:#eceef0; --mid:#bcc1c4; --muted:#8b9195;
+  --band:#0d0e0f; --bandInk:#eceef0; --bandMuted:#8b9195; --bandLine:#2a2e30;
+  --accent:#e2795a; --accentWash:#2a1a16;
+  --good:#57c98a; --goodWash:#14291e;
+  --warn:#d8ab52; --warnWash:#2b2416;
+  --risk:#e07d7d; --riskWash:#2d1a1a;
+  --grid:#2b2f31;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.35);
+}}
+:root[data-theme="dark"]{
+  --bg:#131415; --bg2:#191b1c; --bg3:#222527;
+  --card:#1b1d1f; --border:#2f3336; --border2:#434749;
+  --ink:#eceef0; --mid:#bcc1c4; --muted:#8b9195;
+  --band:#0d0e0f; --bandInk:#eceef0; --bandMuted:#8b9195; --bandLine:#2a2e30;
+  --accent:#e2795a; --accentWash:#2a1a16;
+  --good:#57c98a; --goodWash:#14291e;
+  --warn:#d8ab52; --warnWash:#2b2416;
+  --risk:#e07d7d; --riskWash:#2d1a1a;
+  --grid:#2b2f31;
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 4px 16px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+h1,h2,h3,h4{font-family:Archivo,"Helvetica Neue",Arial,sans-serif;text-wrap:balance;margin:0;line-height:1.16}
+/* Display faces: a true black weight, set with OPEN tracking. Negative tracking on a heavy
+   face closes the counters and reads as blur - especially on a fallback like Impact, which
+   is deliberately absent from this stack. */
+h1,h2{font-family:"Archivo Black",Archivo,"Arial Black","Helvetica Neue",Arial,sans-serif;font-weight:400}
+h1{font-size:clamp(2rem,4.3vw,3.05rem);letter-spacing:.004em;line-height:1.14}
+h2{font-size:clamp(1.3rem,2.3vw,1.68rem);letter-spacing:.006em;margin-bottom:.15rem;line-height:1.18}
+h3{font-size:1.06rem;font-weight:600}
+h4{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
+p{margin:.55rem 0}
+.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.hero{background:var(--band);color:var(--bandInk);border-bottom:3px solid var(--accent)}
+.hero .wrap{padding-top:44px;padding-bottom:0}
+.hero .eyebrow{color:var(--accent);letter-spacing:.16em}
+.hero h1{margin:.5rem 0 0;max-width:17ch}
+.hero .lede{color:var(--bandMuted);max-width:60ch;margin-top:.75rem;font-size:1.02rem}
+.rule{height:1px;background:var(--bandLine);margin-top:26px}
+.herostats{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr))}
+.hs{padding:18px 22px 22px;border-right:1px solid var(--bandLine)}
+.hs:first-child{padding-left:0}
+.hs:last-child{border-right:0}
+.hs .k{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--bandMuted)}
+.hs .v{font-family:"IBM Plex Mono",monospace;font-size:1.5rem;font-weight:600;font-variant-numeric:tabular-nums;margin-top:2px}
+.hs .f{font-size:.75rem;color:var(--bandMuted)}
+.hs.acc .v{color:var(--accent)}
+.tabs{border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:20}
+.tabs-inner{display:flex;gap:2px;max-width:1140px;margin:0 auto;padding:0 22px;overflow-x:auto}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;font:inherit;
+  font-weight:600;font-size:.88rem;color:var(--muted);padding:13px 15px;cursor:pointer;
+  white-space:nowrap;display:flex;gap:8px;align-items:center}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
+.tab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.tab .n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;opacity:.6}
+.panel{display:none;padding:32px 0 72px}
+.panel.on{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:19px 21px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(315px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.rec{border-color:var(--good);background:var(--goodWash);border-left:4px solid var(--good)}
+.chip{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:99px;border:1px solid var(--border2);color:var(--mid);background:var(--bg3)}
+.chip.good{background:var(--goodWash);border-color:var(--good);color:var(--good)}
+.chip.warn{background:var(--warnWash);border-color:var(--warn);color:var(--warn)}
+.chip.risk{background:var(--riskWash);border-color:var(--risk);color:var(--risk)}
+.chip.acc{background:var(--accentWash);border-color:var(--accent);color:var(--accent)}
+.cost{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:1.12rem;font-weight:600}
+.twrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.87rem;min-width:540px}
+th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border)}
+th{background:var(--bg3);font-weight:600;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;color:var(--mid)}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.note{border-left:3px solid var(--border2);padding:11px 15px;background:var(--bg2);border-radius:0 var(--r) var(--r) 0;font-size:.9rem}
+.note.warn{border-left-color:var(--warn);background:var(--warnWash)}
+.note.risk{border-left-color:var(--risk)}
+.note.acc{border-left-color:var(--accent);background:var(--accentWash)}
+.stack{display:flex;flex-direction:column;gap:16px}
+.sec{margin-top:34px}
+.lede{font-size:1.02rem;color:var(--mid);max-width:70ch}
+ul{margin:.5rem 0;padding-left:1.15rem}
+li{margin:.28rem 0}
+.chartbox{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:17px 19px;box-shadow:var(--shadow)}
+.chartbox canvas{width:100%;display:block}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:11px;font-size:.76rem;color:var(--mid)}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.imgslot{border:1px dashed var(--border2);border-radius:var(--r);background:var(--bg2);
+  padding:26px 20px;text-align:center;color:var(--muted);font-size:.82rem}
+.imgslot .t{font-weight:600;color:var(--mid);display:block;margin-bottom:3px}
+.imgslot code{font-family:"IBM Plex Mono",monospace;font-size:.72rem;background:var(--bg3);padding:1px 5px;border-radius:4px}
+.calc{display:grid;grid-template-columns:minmax(288px,360px) 1fr;gap:20px;align-items:start}
+@media(max-width:880px){.calc{grid-template-columns:1fr}}
+.ctl{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:17px 19px;box-shadow:var(--shadow)}
+.tog{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.tog:last-of-type{border-bottom:0}
+.tog label{display:flex;gap:9px;align-items:center;cursor:pointer;font-size:.89rem;font-weight:500}
+.tog .pr{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+input[type=checkbox]{width:17px;height:17px;accent-color:var(--accent);cursor:pointer;flex:none}
+.sl{margin:15px 0 4px}
+.sl .lab{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.85rem;font-weight:500}
+.sl .val{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;margin-top:5px}
+input[type=range]:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.hint{font-size:.74rem;color:var(--muted);margin-top:1px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(144px,1fr));gap:12px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--shadow)}
+.kpi .k{font-size:.68rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-family:"IBM Plex Mono",monospace;font-size:1.4rem;font-weight:600;font-variant-numeric:tabular-nums;margin-top:3px;line-height:1.2}
+.kpi .f{font-size:.74rem;color:var(--muted)}
+.kpi.hero2 .v{color:var(--accent)}
+.kpi.ok .v{color:var(--good)}
+.kpi.bad .v{color:var(--risk)}
+.finstrip{margin-top:18px;background:var(--bg2);border:1px solid var(--border);
+  border-top:3px solid var(--accent);border-radius:var(--r);padding:15px 19px 17px}
+.finstrip .fh{font-family:Archivo,sans-serif;font-weight:600;font-size:.95rem;margin-bottom:12px}
+.finstrip .fnote{font-family:"IBM Plex Sans",sans-serif;font-weight:400;font-size:.8rem;color:var(--muted)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:12px}
+.fgrid>div{display:flex;flex-direction:column;gap:1px;border-left:2px solid var(--border);padding-left:11px}
+.fk{font-size:.66rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.fv{font-family:"IBM Plex Mono",monospace;font-size:1.12rem;font-weight:600;font-variant-numeric:tabular-nums}
+.fv.ok{color:var(--good)}
+.fv.bad{color:var(--risk)}
+footer{border-top:1px solid var(--border);background:var(--bg2);padding:22px 0;color:var(--muted);font-size:.82rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Veolia / Clean Earth &middot; Somerton, Arizona</div>
+    <h1>Somerton Update &amp; Expansion Concepts</h1>
+    <p class="lede">Container automation, site ground, and a solar canopy &mdash; costed as five decisions that can be approved together or one at a time.</p>
+    <div class="rule"></div>
+    <div class="herostats">
+      <div class="hs acc"><div class="k">Solar in service by</div><div class="v">Dec 31, 2027</div><div class="f">Only remaining 30% ITC path</div></div>
+      <div class="hs"><div class="k">Refused in one week</div><div class="v">5 trailers</div><div class="f">~$50,000 margin</div></div>
+      <div class="hs"><div class="k">Baseline today</div><div class="v">7 loads</div><div class="f">scheduled at standard</div></div>
+      <div class="hs"><div class="k">Carrying cost, idle</div><div class="v">$12,500/mo</div><div class="f">10 acres, undeveloped</div></div>
+      <div class="hs"><div class="k">Decision range</div><div class="v">$8k &ndash; $2.3M</div><div class="f">Across five options</div></div>
+    </div>
+  </div>
+</section>
+
+<nav class="tabs"><div class="tabs-inner" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-p="p1"><span class="n">01</span>Overview</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p6"><span class="n">02</span>Safety &amp; Cycle Time</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p2"><span class="n">03</span>Equipment</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p3"><span class="n">04</span>Land &amp; Site</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p4"><span class="n">05</span>Solar Canopy</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p5"><span class="n">06</span>Financial Model</button>
+  <button class="tab" role="tab" aria-selected="false" data-p="p7"><span class="n">07</span>Load Planning</button>
+</div></nav>
+
+<main class="wrap">
+
+<section class="panel on" id="p1">
+  <div class="stack">
+    <div><h2>The case is capacity, not labour</h2>
+      <p class="lede">Somerton turned away five trailers in a single week &mdash; requests it could not service. Pomona offers two more per week, Fernley one, with further Veolia origins behind them.</p></div>
+
+    <div class="chartbox">
+      <h4>The dumper against phase 4 alone</h4>
+      <p class="hint" style="margin-bottom:10px">Minutes. The 45-minute bar is <strong>one phase of six</strong>, not the trailer &mdash; a trailer runs about 4.5 hours. The comparison below is phase 4 only, and it is the narrowest reading of the case.</p>
+      <canvas id="cThru" height="150"></canvas>
+      <div class="legend"><span><i style="background:var(--muted)"></i>Current manual</span><span><i style="background:var(--accent)"></i>Proposed dumper</span></div>
+    </div>
+
+    <div class="note acc">
+      <h4>A trailer is about four and a half hours, not forty-five minutes</h4>
+      <p>Each <em>phase</em> of the workflow runs near the 45-minute mark, and there are roughly six of them for a trailer of <strong>52 pallets</strong>:</p>
+      <div class="twrap" style="margin:10px 0"><table>
+        <thead><tr><th class="n">#</th><th>Phase</th><th class="n">Typical</th><th>Addressed by</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>Unload 52 pallets and stack</td><td class="n">~45 min</td><td><span class="chip risk">Bottleneck &mdash; 1 forklift per trailer</span></td></tr>
+          <tr><td class="n">2</td><td>Scan and unwrap</td><td class="n">~45 min</td><td>&mdash;</td></tr>
+          <tr><td class="n">3</td><td>Stage each bin</td><td class="n">~45 min</td><td><span class="chip acc">Conveyor</span></td></tr>
+          <tr><td class="n">4</td><td>Pick and dump bins into the roll-off</td><td class="n">~45 min</td><td><span class="chip acc">Dumper</span></td></tr>
+          <tr><td class="n">5</td><td>Reload pallets, or set aside for third-party sale</td><td class="n">~45 min</td><td><span class="chip acc">Pallet station</span></td></tr>
+          <tr><td class="n">6</td><td>Break down and separate cardboard and pallets</td><td class="n">~45 min</td><td><span class="chip acc">Pallet station</span></td></tr>
+          <tr><td class="n">&nbsp;</td><td><strong>Lead time per trailer</strong></td><td class="n"><strong>~4.5 hr</strong></td><td><strong>4 of 6 phases</strong></td></tr>
+        </tbody></table></div>
+      <p>An earlier draft of this analysis compared the dumper's full 33&ndash;50 minute cycle against <em>one</em> 45-minute phase and concluded the machine might be slower. <strong>That comparison was wrong</strong> &mdash; it set a whole-machine cycle against a sixth of the work. The proposed equipment touches four of the six phases.</p>
+    </div>
+
+    <div class="note risk">
+      <h4>The constraint is trailer unload &mdash; and it is the one phase that cannot be automated</h4>
+      <p>The 45-minute figure is a <strong>takt: a line-balancing rhythm</strong>, not a measured cycle. The phases were balanced to each other's pace. So <span class="num">4.5 hours</span> is <strong>lead time</strong> &mdash; how long one trailer takes to traverse the line &mdash; not throughput. In a balanced line, phases work different trailers at the same time, and output is one trailer per takt.</p>
+      <p>Every phase downstream of unload can be overhauled, rebalanced or automated. <strong>Unload cannot.</strong> Only one forklift fits inside a 53 ft trailer at a time. That is a physical fact of the box, not a staffing choice.</p>
+      <p><strong>The consequence, stated plainly: automating phases 3 through 6 does not raise throughput while unload holds at 45 minutes.</strong> A line runs at the speed of its bottleneck. What downstream automation delivers is labour reduction, hazard removal, and the ability to rebalance to a shorter takt &mdash; but that gain is only realised once unload moves.</p>
+    </div>
+
+    <div class="note acc">
+      <h4>The dual-ramp fix &mdash; the limit is drop lanes, not forklifts</h4>
+      <p>An earlier reading of this called unload immovable: one forklift fits inside a 53 ft trailer, so the phase cannot improve. <strong>That was wrong.</strong> The limit is not how many forklifts fit inside &mdash; it is <strong>how many drop lanes they share</strong>.</p>
+      <p>A second ramp on the <strong>opposite side</strong> of the Dockzilla gives each operator its own lane. Two forklifts alternate at the door, one entering while the other places, and neither waits. That is a pipeline, not parallel access.</p>
+      <p>Trailer spotting absorbs into existing labour: the driver making nine landfill runs per shift has time between them to pull trailers in, and the 53 ft pavement sections stay open to consolidate the load while both ramps work.</p>
+      <p class="hint">Estimated effect: a forklift cycle is roughly 30% inside the trailer and 70% travel-and-place. Overlapping the travel half should take the phase from 45 to <strong>25&ndash;30 minutes</strong> &mdash; short of a clean 2x because of handoff friction at the door. ESTIMATE, requires measurement.</p>
+    </div>
+
+    <div class="chartbox">
+      <h4>The path to 10&ndash;12 trailers a day</h4>
+      <p class="hint" style="margin-bottom:10px">Line output equals the slowest phase. Both halves are required.</p>
+      <div class="twrap"><table>
+        <thead><tr><th>Configuration</th><th class="n">Takt</th><th class="n">8-hr day</th><th class="n">10-hr day</th></tr></thead>
+        <tbody>
+          <tr><td>Today</td><td class="n">45 min</td><td class="n">6.6</td><td class="n">7.5</td></tr>
+          <tr><td>Dual ramp <strong>alone</strong> &mdash; next phase binds</td><td class="n">45 min</td><td class="n">6.6</td><td class="n">7.5</td></tr>
+          <tr><td>Downstream automation <strong>alone</strong> &mdash; unload binds</td><td class="n">45 min</td><td class="n">6.6</td><td class="n">7.5</td></tr>
+          <tr class="rec"><td><strong>Both together</strong></td><td class="n">~30 min</td><td class="n"><strong>10.0</strong></td><td class="n"><strong>11.2</strong></td></tr>
+          <tr class="rec"><td><strong>Both, plus working the window to 3:30</strong></td><td class="n">~30 min</td><td class="n">&mdash;</td><td class="n"><strong>~12</strong></td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="note risk">
+      <h4>Neither half pays without the other</h4>
+      <p>Drop unload to 30 minutes and the next 45-minute phase becomes the bottleneck. Equally, downstream automation buys nothing while unload holds at 45. <strong>Funding one and deferring the other produces no throughput gain at all</strong> &mdash; only labour and safety returns from whichever half is bought.</p>
+      <p>This is the central argument for approving the bundle rather than a line item.</p>
+    </div>
+
+    <div class="sec"><h2>Disposal and haul capacity</h2>
+      <p class="lede">Hauling already supports 10&ndash;12 trailers. The ask is processing throughput, not trucks.</p>
+
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Landfill window</th><th class="n">Hours</th><th class="n">Loads at 30 min/truck</th></tr></thead>
+        <tbody>
+          <tr><td>Weekday, 7:00am &ndash; 3:30pm</td><td class="n">8.5</td><td class="n"><strong>17</strong></td></tr>
+          <tr><td>With the verbal 4:30pm extension</td><td class="n">9.5</td><td class="n">19</td></tr>
+          <tr><td>Saturday, 8:00am &ndash; 1:00pm</td><td class="n">5.0</td><td class="n">10</td></tr>
+        </tbody></table></div>
+      <p class="hint">The 4:30 extension is a verbal courtesy rather than company policy.</p>
+
+      <div class="grid g2" style="margin-top:16px">
+        <div class="card"><h3>The truck is waiting on boxes</h3>
+          <p>Current run rate is <strong>9&ndash;10 loads a day &mdash; about 55% of one truck's capacity</strong> inside the official window. It idles roughly 40% of the time waiting for roll-offs to fill.</p>
+          <p class="hint">Disposal is limited by the fill rate, not by hauling.</p>
+        </div>
+        <div class="card"><h3>Capacity already in hand</h3>
+          <div class="twrap"><table>
+            <thead><tr><th class="n">Trailers/day</th><th class="n">Roll-offs</th><th>One truck?</th></tr></thead>
+            <tbody>
+              <tr><td class="n">7 today</td><td class="n">~9</td><td>53% used</td></tr>
+              <tr><td class="n">10</td><td class="n">~13</td><td><span class="chip good">76%</span></td></tr>
+              <tr><td class="n">12</td><td class="n">~16</td><td><span class="chip good">94%</span></td></tr>
+            </tbody></table></div>
+        </div>
+      </div>
+
+      <div class="note acc" style="margin-top:14px"><h4>The contractor is the hedge</h4>
+        <p>At roughly <span class="num">$130/hour</span> netting about 10 loads a day, a contracted haul runs near <span class="num">$104 per load</span> &mdash; a 13&ndash;30% add against a $350&ndash;780 tipping fee.</p>
+        <p>The strategic point beats the arithmetic: <strong>it is rented capacity, paid only on days the volume justifies it.</strong> That answers the objection that automation builds capacity demand may not fill &mdash; everything above the owned truck is variable cost, not capital.</p>
+      </div>
+
+      <div class="note warn" style="margin-top:14px"><h4>The cheapest capacity on the table</h4>
+        <p>Processing stops at 2:30pm while the landfill runs to 3:30. That is <strong>one to two hours and 2&ndash;4 loads a day</strong> already paid for and not taken.</p>
+      </div>
+
+      <div class="sec"><h2>Disposal cost and the density-routing opportunity</h2>
+        <p class="lede">Loads currently leave between <strong>13,000 and 28,000 lb</strong>. That spread is where the money is &mdash; not in the rate.</p>
+
+        <div class="twrap" style="margin-top:12px"><table>
+          <thead><tr><th class="n">Weight</th><th class="n">Cost</th><th class="n">Per ton</th></tr></thead>
+          <tbody>
+            <tr><td class="n">10,000 lb</td><td class="n">$350</td><td class="n">$70.00</td></tr>
+            <tr><td class="n">15,000 lb</td><td class="n">$475</td><td class="n">$63.33</td></tr>
+            <tr><td class="n">20,000 lb</td><td class="n">$600</td><td class="n">$60.00</td></tr>
+            <tr class="rec"><td class="n"><strong>26,000 lb</strong></td><td class="n"><strong>$750</strong></td><td class="n"><strong>$57.69</strong></td></tr>
+          </tbody></table></div>
+        <p class="hint"><span class="chip warn">Provisional</span> $350 flat to 10,000 lb, then roughly $0.025/lb. Derived from two client data points and <strong>being replaced with actual receipts</strong>. Cost per pound falls steadily above 10,000 lb.</p>
+
+        <div class="note acc" style="margin-top:14px"><h4>Every roll-off has two ceilings, and one is being wasted</h4>
+          <p>A box is limited by <strong>volume</strong> and by <strong>weight</strong>. Containers are currently dumped into whichever box is open, so most boxes cube out while still light, or weigh out with volume to spare. Either way one ceiling is thrown away.</p>
+          <p>Loads in the observed range carry the same per-trip base fee regardless of how much weight they hold, so the fee per pound varies with fill.</p>
+          <p>A routing rule would address this without equipment. Classify each container by content type and density &mdash; drums, sacks, pallet mixtures &mdash; then send dense material to a box that is cubing out, and light fibrous material to one with weight headroom. Both ceilings fill together.</p>
+        </div>
+
+        <div class="grid g2" style="margin-top:14px">
+          <div class="card"><h3>What it is worth</h3>
+            <div class="twrap"><table>
+              <thead><tr><th class="n">Average fill</th><th class="n">Loads/yr</th><th class="n">Annual cost</th></tr></thead>
+              <tbody>
+                <tr><td class="n">17,000 lb</td><td class="n">~2,375</td><td class="n">$1,246,875</td></tr>
+                <tr><td class="n">26,000 lb</td><td class="n">~1,553</td><td class="n">$1,164,750</td></tr>
+              </tbody></table></div>
+            <p class="hint">On a <strong>17,000 lb</strong> average fill and 9.5 loads a day, consolidating to heavier loads removes <strong>822 landfill trips a year</strong> and about <strong>411 truck-hours</strong>. <strong>The value of those trips depends entirely on how the landfill bills</strong> &mdash; see the note below before quoting a figure.</p>
+          </div>
+          <div class="card rec"><h3>Why this one comes first</h3>
+            <p>No capital. No permit. No vendor. No lead time.</p>
+            <p>It needs one thing: <strong>knowing what each container weighs before deciding where it goes</strong> &mdash; the same manifest data that the trailer-scheduling case depends on.</p>
+            <p class="hint">The freed truck-hours also feed straight back into the capacity argument, which makes this the rare item that improves both the cost side and the throughput side at once.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:14px"><p><strong>Stated plainly: demand is the ceiling, not supply.</strong> Roughly 7 trailers a day today, with 2&ndash;5 more per <em>week</em> available. Capacity for 10&ndash;12 a day runs ahead of current demand. The case rests on capacity having to exist <em>before</em> volume can be accepted &mdash; five trailers were refused in one week precisely because it did not. That is a real argument, and it is not the same as claiming twelve trailers a day are waiting.</p></div>
+    </div>
+
+    <div class="sec"><h2>Five decisions</h2>
+      <div class="grid g2" style="margin-top:14px">
+        <div class="card rec"><span class="chip good">Recommended</span><h3 style="margin-top:9px">Hydraulic container dumper</h3><div class="cost">$383k &ndash; $844k</div><p class="hint">Zero gate failures. No robot controller, so the thermal risk disappears.</p></div>
+        <div class="card"><span class="chip acc">Highest confidence</span><h3 style="margin-top:9px">Pallet separation station</h3><div class="cost">$8k &ndash; $40k</div><p class="hint">Waist-height tilt table and nail punch. The only client-confirmed benefit.</p></div>
+        <div class="card"><span class="chip">Enabling</span><h3 style="margin-top:9px">Land package</h3><div class="cost">$338k &ndash; $1,441k</div><p class="hint">Package A stays under the 1-acre permit trigger. Package B does not.</p></div>
+        <div class="card"><span class="chip warn">Dual benefit</span><h3 style="margin-top:9px">Solar canopy</h3><div class="cost">Est. $250k &ndash; $350k</div><p class="hint">Shade plus generation, with a federal tax credit. Figures unverified.</p></div>
+      </div>
+    </div>
+
+    <div class="sec"><h2>Regulatory and risk register</h2>
+      <p class="lede">Each item carries what changed, what we do if it goes the other way, and what it costs to leave unknown. Sourced from a 1,218-line regulatory review completed 2026-08-25.</p>
+
+      <div class="twrap" style="margin-top:14px"><table>
+        <thead><tr><th>Item</th><th>Update</th><th>Contingency</th><th>Cost of not knowing</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Solar ITC path</strong></td>
+            <td>Begin-construction route closed <strong>4 Jul 2026</strong>. Only remaining path is <strong>placed in service by 31 Dec 2027</strong> &mdash; built and energised, not approved</td>
+            <td>Model capex with <em>and</em> without the 30% credit. If interconnection cannot clear by ~Q3 2027, re-rank solar as unsubsidised</td>
+            <td><span class="chip risk">High</span> $25k&ndash;38k on Option 2, and it decides whether solar proceeds</td>
+          </tr>
+          <tr>
+            <td><strong>Facility RCRA status</strong></td>
+            <td>EPA RCRAInfo shows <strong>VSQG</strong>, not a permitted TSDF. <span class="chip warn">Single source</span></td>
+            <td>If confirmed, no permit exists to modify &mdash; the Class 1/2 workstream is moot and the shade narrative needs rewriting on occupancy and heat grounds</td>
+            <td><span class="chip risk">High</span> it is the premise under the entire shade argument</td>
+          </tr>
+          <tr>
+            <td><strong>Throughput ceiling</strong></td>
+            <td><span class="chip good">Resolved</span> <strong>No use-permit throughput condition exists</strong>, confirmed by the operator. Throughput scenarios in this deck are sized in cubic yards per day; the basis of the site's existing CY/day certification &mdash; what it measures, and whether it is a daily figure or an annual average &mdash; is the one input still needed to size them precisely</td>
+            <td>None required. Capacity gained through automation and dock capacity converts to throughput without a regulatory ceiling</td>
+            <td><span class="chip good">Closed</span> this was the largest single risk to the business case</td>
+          </tr>
+          <tr>
+            <td><strong>Construction stormwater</strong></td>
+            <td><strong>Triggered</strong> by the new acreage. The facility <strong>already holds a SWPPP</strong>, so the drainage mapping, outfalls, BMPs and consultant relationship exist &mdash; construction coverage is incremental, not novel</td>
+            <td>Add CGP to all three land packages. The phased buildout is one common plan of development. <strong>The existing SWPPP must also be revised</strong> for the new impervious area and altered flow paths</td>
+            <td><span class="chip warn">Medium</span> lower than first assessed, but SWPPP revision and post-construction retention are still unbudgeted</td>
+          </tr>
+          <tr>
+            <td><strong>Serving utility tariff</strong></td>
+            <td>Unconfirmed whether the commercial tariff carries a demand charge in $/kW</td>
+            <td>Storage value rests substantially on peak shaving. No demand charge materially weakens the battery case</td>
+            <td><span class="chip warn">Medium</span> changes solar-plus-storage payback</td>
+          </tr>
+          <tr>
+            <td><strong>Zoning, height, setbacks</strong></td>
+            <td>Open. Jurisdiction now confirmed as <strong>unincorporated Yuma County</strong>, not the City</td>
+            <td>Could constrain canopy height. Required before structural design</td>
+            <td><span class="chip warn">Medium</span> late discovery forces redesign</td>
+          </tr>
+          <tr>
+            <td><strong>Dump line as constraint</strong></td>
+            <td>Unload is the bottleneck &mdash; one forklift per trailer</td>
+            <td>Two weeks of bay-occupancy tallying settles it before capital commits</td>
+            <td><span class="chip good">~$0 to resolve</span></td>
+          </tr>
+          <tr>
+            <td><strong>Margin per trailer</strong></td>
+            <td>$10,000 assumed, never built up from costs</td>
+            <td>Sliders on the financial model show the outcome across $3k&ndash;15k</td>
+            <td><span class="chip good">~$0 to resolve</span></td>
+          </tr>
+        </tbody></table></div>
+
+      <div class="note warn" style="margin-top:14px"><h4>Two positions withdrawn from earlier work</h4>
+        <p>Prior documents recorded that enclosing a waste area triggers <strong>RCRA Subpart CC</strong>, and that an <strong>ADEQ No Exposure certification</strong> was available as a lever. Neither holds: Subpart CC attaches to the container and its vapour concentration rather than to any structure above it, and No Exposure is facility-wide and requires a storm-resistant shelter that an open-sided canopy cannot provide. The two positions also contradicted each other.</p>
+        <p><strong>Open-sided remains the right design</strong> &mdash; on occupancy and fire classification, point-source air, heat, and wind uplift. The conclusion survives; the reasoning behind it did not.</p>
+      </div>
+    </div>
+
+    <div class="note acc"><h4>The cheapest lever in the study</h4>
+      <p>Boxes arrive <strong>nailed</strong> to pallets &mdash; nominally 5 or 6, sometimes more than 10. The over-nailed units are what make ground-level separation slow and hazardous.</p>
+      <p>The packaging is prepared by the generators &mdash; <strong>Amazon, Target, Home Depot</strong> &mdash; so it cannot be mandated. What <em>can</em> be done costs almost nothing: publish an <strong>SOP and route it through regional sales managers</strong>, who forward it to their accounts as a request. A documented ask with a stated reason, travelling through a relationship that already exists.</p>
+      <p class="hint">Ask: banding or strapping where possible; where nails are used, a hard cap of six and none through the base rail. Even partial adoption removes the worst units.</p>
+    </div>
+
+    <div class="finstrip" data-cap="dump,sep,landA" data-ben="1">
+      <div class="fh">Financials &mdash; recommended bundle <span class="fnote">dumper + separation station + land package A</span></div>
+      <div class="fgrid">
+        <div><span class="fk">Capex</span><span class="fv" data-f="cap">&mdash;</span></div>
+        <div><span class="fk">NPV 5-yr</span><span class="fv" data-f="npv5">&mdash;</span></div>
+        <div><span class="fk">IRR 5-yr</span><span class="fv" data-f="irr5">&mdash;</span></div>
+        <div><span class="fk">NPV 10-yr</span><span class="fv" data-f="npv10">&mdash;</span></div>
+        <div><span class="fk">IRR 10-yr</span><span class="fv" data-f="irr10">&mdash;</span></div>
+      </div>
+      <p class="hint">Full benefit stream attributed, less the $150k/yr lease increment. Assumptions set on the Financial Model tab.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p6">
+  <div class="stack">
+    <div><h2>Safety &amp; cycle time</h2>
+      <p class="lede">Two daily operations carry recurring, predictable injury exposure &mdash; not freak events. Both also hide the largest block of wasted cycle time on site.</p></div>
+
+    <div class="note risk"><h4>Two operations, two different bottlenecks</h4>
+      <p><strong>Drums are shuttle-bound.</strong> Emptying one pallet of drums costs roughly <strong>16 forklift round trips</strong> &mdash; two drums at a time, 40-60 yards each way, propane-assisted lift and dump at the far end. The laborer <strong>stands idle waiting</strong> through most of it. The constraint is not dump speed; it is a shuttle repeated sixteen times per pallet. A conveyor does not need to out-dump a forklift &mdash; it needs to <strong>delete the shuttle</strong>.</p>
+      <p><strong>Boxes are labor-bound.</strong> One pallet moves per forklift trip, so the shuttle is a smaller share. The burn is manual: prep and liner unwrap, de-nailing, folding every box by hand, stacking, and wrapping. That is what the pallet station attacks.</p>
+      <p class="hint">Both arguments stand independently of the trailer-throughput question on the Overview tab.</p>
+    </div>
+
+    <div class="chartbox">
+      <h4>Where the time goes &mdash; drums, one pallet of 32</h4>
+      <p class="hint" style="margin-bottom:10px">Estimated minutes. Forklift speed and lift-cycle are assumptions pending measurement. The box operation has no equivalent chart yet &mdash; none of its steps have been timed.</p>
+      <canvas id="cCycle" height="180"></canvas>
+    </div>
+
+    <div class="sec"><h2>Drum nesting &mdash; current state</h2>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Step</th><th class="n">Count</th><th class="n">Each</th><th class="n">Subtotal</th></tr></thead>
+        <tbody>
+          <tr><td>Forklift round trips, 2 drums at a time</td><td class="n">16</td><td class="n">~75-90 s</td><td class="n">~21 min</td></tr>
+          <tr><td>Failed tosses recovered (25% of 32)</td><td class="n">8</td><td class="n">30-40 s</td><td class="n">~4-5 min</td></tr>
+          <tr><td>Banding at drum #2 and #6</td><td class="n">2</td><td class="n">120 s</td><td class="n">4 min</td></tr>
+          <tr><td>Pallet positioning, ad hoc</td><td class="n">&mdash;</td><td class="n">variable</td><td class="n">unquantified</td></tr>
+          <tr><td><strong>Per pallet of 32 drums</strong></td><td class="n">&mdash;</td><td class="n">&mdash;</td><td class="n"><strong>~30-45 min</strong></td></tr>
+        </tbody></table></div>
+      <p class="hint">Stack geometry: 4 stacks x 8 drums = 32 per pallet, roughly 8 ft tall, banded so the stacks cannot tip. The 25% failure is on seating the top drum of each nest.</p>
+    </div>
+
+    <div class="sec"><h2>Pallets of boxes &mdash; current state</h2>
+      <p class="lede">A longer chain with more hand work in it. One pallet per forklift trip, so the shuttle matters less &mdash; the labor content is the cost.</p>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th class="n">#</th><th>Step</th><th>Performed by</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td>Trailer to staging area</td><td>Forklift</td><td>&mdash;</td></tr>
+          <tr><td class="n">2</td><td>Open the cardboard and unwrap the liner so it will release cleanly &mdash; box and liner stay on the pallet</td><td>Laborer</td><td><span class="chip warn">Waste contact</span></td></tr>
+          <tr><td class="n">3</td><td>Pick up one pallet, box still nailed on, drive 40-60 yd to roll-off</td><td>Forklift</td><td>One pallet per trip</td></tr>
+          <tr><td class="n">4</td><td>Lift, dump and shake &mdash; <strong>the liner and its contents fall out</strong> into the roll-off</td><td>Forklift</td><td>Propane assist</td></tr>
+          <tr><td class="n">5</td><td>Lower, turn, return to warehouse &mdash; <strong>cardboard is still nailed to the pallet</strong></td><td>Forklift</td><td>Returns as one assembly</td></tr>
+          <tr><td class="n">6</td><td>De-nail: separate the cardboard from the pallet</td><td>Laborer</td><td><span class="chip risk">Ground level</span></td></tr>
+          <tr><td class="n">7</td><td>Fold every box by hand</td><td>Laborer</td><td>&mdash;</td></tr>
+          <tr><td class="n">8</td><td>Stack 20-30 folded, throw the last ones on top</td><td>Laborer</td><td><span class="chip risk">Overhead throw</span></td></tr>
+          <tr><td class="n">9</td><td>Wrap the stack in plastic</td><td>Laborer</td><td><span class="chip risk">Loses money</span></td></tr>
+        </tbody></table></div>
+    </div>
+
+    <div class="note risk"><h4>Step 9 costs money three times</h4>
+      <p>The plastic wrap is paid for as <strong>material</strong>, paid for again as <strong>labor to apply</strong>, and paid for a third time as a <strong>chargeback from the receiving facility</strong> for the labor to unwrap and dispose of it.</p>
+      <p>It adds value to no one in the chain. This is the cheapest item on this entire site to fix &mdash; it needs an agreed alternative and a conversation, not capital. Worth quantifying the annual chargeback before the next review; it is likely the fastest dollar on the page.</p>
+    </div>
+
+    <div class="sec"><h2>Proposed workflow</h2>
+      <p class="lede">Two redesigns. Between them they remove a full round trip, an entire warehouse operation, sixteen forklift shuttles per pallet, and four of the seven hazards below.</p>
+
+      <div class="grid g2" style="margin-top:14px">
+        <div class="card"><h3>Boxes &mdash; de-nail at the dump point</h3>
+          <p class="hint" style="margin-bottom:8px">Why it works: the cardboard only needs structural integrity <strong>until the liner is out</strong>. It is not strong on its top or sides, and it shifts as the liner falls. The moment the liner drops into the roll-off, the box has no remaining job.</p>
+          <ul>
+            <li>Prep, dump and shake as today &mdash; liner falls into the 40-yard roll-off</li>
+            <li><strong>De-nail right there</strong>, at the bin</li>
+            <li>Cardboard and pallets set straight into <strong>ground-level stacks</strong> on the spot</li>
+            <li>Collect in bulk, on a schedule, in few large moves</li>
+          </ul>
+          <p class="hint"><strong>Eliminates:</strong> the 40-60 yd return trip carrying cardboard that never needed to travel, and the warehouse de-nailing operation entirely.</p>
+        </div>
+
+        <div class="card"><h3>Drums &mdash; close the loop at bin height</h3>
+          <p class="hint" style="margin-bottom:8px">The roll-off stands about 10 ft. Put the conveyor at that height and the drum never needs a forklift.</p>
+          <ul>
+            <li>Conveyor runs at <strong>bin height (~10 ft)</strong></li>
+            <li>Drums are <strong>tripped to tip</strong> into the roll-off in line</li>
+            <li>Tipped back upright onto a return conveyor</li>
+            <li>Conveyed to a <strong>funnel</strong> that self-nests them into the 8-stack</li>
+            <li>Nested stacks conveyed back near the <strong>dock ramp</strong></li>
+            <li>Forklift moves finished pallets into the trailer</li>
+          </ul>
+          <p class="hint"><strong>Current flow for comparison:</strong> 4 drums to staging at a time on the pallet, then <strong>2 at a time</strong> from staging to the roll-off, then carried back to manual nesting. The 2-at-a-time legs are where throughput collapses, and they are what the conveyor removes.</p>
+          <p class="hint"><strong>Eliminates:</strong> 16 forklift round trips per pallet, the overhead toss, the 25% rework, and the laborer standing in the forklift path.</p>
+        </div>
+      </div>
+
+      <div class="note warn" style="margin-top:16px"><h4>The one operation still unsolved</h4>
+        <p>Everything else in the drum loop is addressed. Not yet designed: <strong>banding the nested stacks and placing them on pallets</strong> &mdash; today two bands per pallet at drum #2 and #6, 120 seconds each, pulled by hand around four stacks at height.</p>
+        <p><strong>Banding cannot be eliminated.</strong> The stacks ride a 53 ft trailer to another site and are unloaded there. Road vibration works on them the whole way, and an unrestrained nest becomes an unloading hazard at the far end. A pallet collar does not travel with the load. At minimum one wrap of heat-sealed strap or a light ribbon is required.</p>
+        <div class="twrap" style="margin-top:10px"><table>
+          <thead><tr><th>Option</th><th>Approach</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Powered heat-seal strap tool</strong></td><td>Battery tool tensions and welds poly strap in seconds</td><td><span class="chip good">Do this now</span></td></tr>
+            <tr><td>Automatic strapping head</td><td>Inline strapper applies bands at set heights</td><td>Non-standard geometry &mdash; 4 stacks banded as one</td></tr>
+            <tr><td>Robotic palletizer</td><td>Places completed nests onto the pallet in 4 positions</td><td>Nested empties are light; cobot class</td></tr>
+            <tr><td>Manual island</td><td>One operator bands only &mdash; no lifting, no tossing</td><td>Keeps a person but removes the hazards</td></tr>
+          </tbody></table></div>
+      </div>
+
+      <div class="note" style="margin-top:14px"><h4>Where the funnel discharges &mdash; a real trade</h4>
+        <p>Both options share the front half: bin-height conveyor, trip bar, tip back upright, funnel self-nests into stacks of 8. They differ in what happens next.</p>
+        <div class="twrap" style="margin-top:10px"><table>
+          <thead><tr><th>&nbsp;</th><th>A &mdash; convey to palletizing</th><th>B &mdash; pallet and band at the funnel</th></tr></thead>
+          <tbody>
+            <tr><td>Cycle time</td><td>baseline</td><td>about the same</td></tr>
+            <tr><td>Empty-drum travel</td><td>conveys bulky nested stacks across site</td><td><strong>eliminated</strong></td></tr>
+            <tr><td>Space</td><td>palletizing sits elsewhere</td><td>needs palletizer and banding <strong>at the funnel</strong></td></tr>
+            <tr><td>Labour flexibility</td><td>needs someone at the far end</td><td><strong>forklift operator can absorb it</strong></td></tr>
+            <tr><td>If one side stops</td><td><strong>conveyor buffers</strong> &mdash; funnel keeps running</td><td>coupled &mdash; funnel backs up</td></tr>
+          </tbody></table></div>
+        <p>The real distinction is <strong>coupling</strong>. B is shorter, cheaper, and removes a travel leg. A is more resilient, because the conveyor buffers two operations that will not always run at the same rate. With staff rotating every third day and load composition varying trailer to trailer, that buffer has value &mdash; but B decouples in the <em>labour</em> dimension, which is the variability actually lived with.</p>
+        <p class="hint"><strong>Decidable with a tape measure.</strong> If a palletizer and banding station fit at the funnel without crowding the dump point, B is likely better. If it is tight, the conveyor buys the space back.</p>
+      </div>
+
+      <div class="note acc" style="margin-top:14px"><h4>Available now, for a few thousand dollars</h4>
+        <div class="twrap" style="margin-top:10px"><table>
+          <thead><tr><th>&nbsp;</th><th class="n">Today, hand clasp</th><th class="n">Powered strap tool</th></tr></thead>
+          <tbody>
+            <tr><td>Per band</td><td class="n">120 s</td><td class="n">~15-20 s</td></tr>
+            <tr><td>Two bands per pallet</td><td class="n">240 s</td><td class="n">~30-40 s</td></tr>
+            <tr><td>Saved per pallet</td><td class="n">&mdash;</td><td class="n"><strong>~3+ min</strong></td></tr>
+            <tr><td>Tool cost</td><td class="n">&mdash;</td><td class="n">~$2,000-4,000 EST</td></tr>
+          </tbody></table></div>
+        <p class="hint">Battery heat-seal strapping tool, standard class. No engineering, no permit, no lead time of consequence. It also removes the pull-around-at-height motion, which is one of the registered hazards. Tool timing is an ESTIMATE and should be trialled.</p>
+        <p><strong>Worth testing at the same time:</strong> you band at #2 and #6 because a hand-pulled clasp needs two. If one heat-sealed strap holds through transport, that is another 50% off. That is a load-securement question and has not been tested.</p>
+      </div>
+    </div>
+
+    <div class="sec"><h2>Hazard register</h2>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Hazard</th><th>Exposure</th><th>Reference</th></tr></thead>
+        <tbody>
+          <tr><td>Tossing drums overhead to an 8 ft stack</td><td>Struck-by from the 25% that fall back</td><td>29 CFR 1910.176</td></tr>
+          <tr><td>Catching a falling drum</td><td>Hand, finger, head &mdash; an uncontrolled load</td><td>General duty</td></tr>
+          <tr><td>Repetitive overhead throwing</td><td>Shoulder and rotator cuff, cumulative</td><td>Ergonomic</td></tr>
+          <tr><td>Banding around a 4-stack at height</td><td>Awkward reach; tip-over during banding</td><td>1910.176(b)</td></tr>
+          <tr><td>Laborer waiting in the forklift path</td><td>Struck-by &mdash; a leading forklift fatality mode</td><td>1910.178</td></tr>
+          <tr><td>Manually carrying pallets to the stack area</td><td>Back injury</td><td>Ergonomic</td></tr>
+          <tr><td>Bend-and-twist at ground level, de-nailing</td><td>Back injury, cumulative</td><td>Ergonomic</td></tr>
+          <tr><td>Throwing folded cardboard onto a 20-30 stack</td><td>Overhead throw &mdash; same exposure class as the drum toss</td><td>Ergonomic / 1910.176</td></tr>
+          <tr><td>Opening and unwrapping liners by hand</td><td>Direct contact with waste; airborne dust on release</td><td>1910.1053 / 1910.132</td></tr>
+          <tr><td>Wrapping a tall stack in plastic</td><td>Repetitive bend, reach and walk-around</td><td>Ergonomic</td></tr>
+        </tbody></table></div>
+      <div class="note warn" style="margin-top:14px"><p>Two of these are <strong>recurring and predictable</strong> rather than accidental: one in four tosses comes back down, and a laborer stands in a forklift travel path on every cycle. Those are the exposures a safety committee can act on with a capital request.</p></div>
+    </div>
+
+    <div class="sec"><h2>Pallet station &mdash; proposed design</h2>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h3>Today</h3><ul>
+          <li>Boxes nailed to pallets, separated <strong>on the ground</strong></li>
+          <li>Worker bends, twists, moves the pallet, folds cardboard</li>
+          <li>Over-nailed units (10+) are very difficult</li>
+          <li>Empty pallets moved ad hoc &mdash; forklift-dropped or hand-carried</li>
+        </ul></div>
+        <div class="card rec"><h3>Proposed &mdash; zero-lift, one operator</h3>
+          <p class="hint" style="margin-bottom:8px">The box and pallet arrive from the roll-off <strong>still nailed together, at ground level</strong>. That assembly is what this station receives.</p>
+          <ul>
+          <li>Robotic arm or custom lifter raises the pallet from floor to <strong>waist level</strong></li>
+          <li>Nails popped from the back &mdash; pry, punch, or air &mdash; on <strong>foot-pedal actuation</strong>, hands clear of the pinch point</li>
+          <li>Arm raises each pallet into the stack, positions <strong>1 through 10</strong></li>
+          <li>Level 10-high stack pushed out onto a <strong>ground conveyor</strong></li>
+          <li>Forklift touches finished stacks only, never individual pallets</li>
+        </ul></div>
+      </div>
+      <div class="note acc" style="margin-top:14px"><p><strong>Payload class confirms it is buildable.</strong> An empty pallet plus box is roughly <span class="num">130 lb</span> &mdash; precisely where a cobot or light custom lifter works, and the same class that is 2.7 to 3.6 times too small for the dump line. The dump line wants hydraulics; this station wants a robot. Two different machines, each justified on its own terms.</p></div>
+      <div class="imgslot" style="margin-top:14px"><span class="t">Pallet station sequence</span>
+        Mermaid or render &mdash; <code>floor pick &rarr; waist present &rarr; pedal denail &rarr; stack 1-10 &rarr; push to conveyor</code></div>
+    </div>
+
+    <div class="sec"><h2>Cycle time template &mdash; to be measured</h2>
+      <p class="lede">Staff rotate stations every third day, which averages out individual skill. That makes station-level timing a measurement of <strong>the process, not the person</strong> &mdash; which is what bottleneck analysis needs.</p>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Station</th><th class="n">Current</th><th class="n">Future</th><th class="n">Delta</th><th>Basis</th></tr></thead>
+        <tbody>
+          <tr><td>Trailer unload, dock to dock</td><td class="n">~45 min</td><td class="n">33-50 min</td><td class="n">-12 to +5</td><td><span class="chip warn">Overlaps</span></td></tr>
+          <tr><td><strong>Drums</strong> &mdash; shuttle, per pallet</td><td class="n">~21 min</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip acc">Largest target</span></td></tr>
+          <tr><td><strong>Drums</strong> &mdash; toss + rework</td><td class="n">~4-5 min</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip">Est.</span></td></tr>
+          <tr><td><strong>Drums</strong> &mdash; banding, 2 per pallet</td><td class="n">4 min</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip good">Client figure</span></td></tr>
+          <tr><td><strong>Boxes</strong> &mdash; prep, open and unwrap liner</td><td class="n">to measure</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip risk">No data</span></td></tr>
+          <tr><td><strong>Boxes</strong> &mdash; forklift round trip, 1 pallet</td><td class="n">to measure</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip risk">No data</span></td></tr>
+          <tr><td><strong>Boxes</strong> &mdash; de-nailing</td><td class="n">to measure</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip risk">No data</span></td></tr>
+          <tr><td><strong>Boxes</strong> &mdash; folding and stacking 20-30</td><td class="n">to measure</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip risk">No data</span></td></tr>
+          <tr><td><strong>Boxes</strong> &mdash; plastic wrapping</td><td class="n">to measure</td><td class="n">eliminate</td><td class="n">&mdash;</td><td><span class="chip warn">Negative value</span></td></tr>
+          <tr><td>Pallet stacking to 10</td><td class="n">to measure</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip risk">No data</span></td></tr>
+          <tr><td>Bay occupancy, arrival to release</td><td class="n">to measure</td><td class="n">to measure</td><td class="n">&mdash;</td><td><span class="chip risk">Decisive</span></td></tr>
+        </tbody></table></div>
+      <div class="note"><p><strong>Bay occupancy is the row that matters most.</strong> If a 45-minute unload sits inside a three-hour bay occupancy, automating the unload addresses a quarter of the real constraint. Two weeks of tallying arrival and release times fills this table and costs nothing.</p></div>
+    </div>
+
+    <div class="sec"><h2>Field data capture</h2>
+      <p class="lede">Scheduling trailers by load type and packing roll-offs to weight both depend on knowing what is coming. Today that information is not captured until the material is already on the ground.</p>
+
+      <div class="grid g2" style="margin-top:14px">
+        <div class="card"><h3>The capture loop</h3>
+          <ol>
+            <li>Operator parks, forks down, and speaks the trailer number and load mix</li>
+            <li>The message is parsed into structured fields &mdash; trailer, mix, drum and pallet counts</li>
+            <li><strong>The parsed values come back for a one-tap confirmation</strong></li>
+            <li>A row is appended to a sheet shared with the receiving facility</li>
+            <li>The later reload message matches on trailer number and updates that row</li>
+          </ol>
+          <p class="hint"><strong>Step 3 is not optional.</strong> Unconfirmed parsing of field messages produces data nobody trusts, and untrusted data is ignored within a month. The confirmation is what makes the sheet authoritative enough for another site to plan against.</p>
+        </div>
+        <div class="card"><h3>Device options</h3>
+          <div class="twrap"><table>
+            <thead><tr><th>&nbsp;</th><th>Approach</th><th class="n">Steps</th></tr></thead>
+            <tbody>
+              <tr><td><span class="chip">Good</span></td><td>Hinge-mounted tablet on the forklift, swung out when parked</td><td class="n">5&ndash;7</td></tr>
+              <tr><td><span class="chip acc">Better</span></td><td>Rugged vehicle-mount tablet, always on, powered from the truck</td><td class="n">3&ndash;4</td></tr>
+              <tr><td><span class="chip good">Best</span></td><td><strong>Voice-directed headset</strong> &mdash; confirmation returns in-ear</td><td class="n"><strong>1</strong></td></tr>
+            </tbody></table></div>
+          <p class="hint">Step count decides whether this survives contact with a busy shift. Under time pressure operators skip long sequences, and partial capture is worse than none.</p>
+        </div>
+      </div>
+
+      <div class="note warn" style="margin-top:14px"><h4>Three constraints to settle before specifying</h4>
+        <ul>
+          <li><strong>Device use while operating.</strong> Under 29 CFR 1910.178 the truck must be stopped with forks down before any device use. Write it into the SOP as a rule, not a habit.</li>
+          <li><strong>Environment.</strong> Constant mast vibration plus a Somerton summer on a sunlit mount exceeds consumer tablet operating temperature. Rugged vehicle-mount hardware is the correct class.</li>
+          <li><strong>Electrical area classification.</strong> If any part of the yard is classified, a standard tablet is an ignition source and the device must be intrinsically safe. <span class="chip risk">Verify first</span></li>
+        </ul>
+      </div>
+
+      <div class="note acc" style="margin-top:14px"><h4>Manifests are the larger prize</h4>
+        <p>Roughly <strong>72 manifests per load</strong>, ranging 55&ndash;95, arrive with contents and weights unknown until the material is handled. Parsing them <em>before</em> arrival unlocks two things this proposal already depends on: <strong>scheduling trailers by load composition</strong>, and <strong>packing roll-offs to weight</strong> rather than to volume.</p>
+        <p class="hint">Effort depends entirely on format. A structured feed from the generator is trivial; digital documents are moderate; paper requires someone to photograph 55&ndash;95 pages per load, which is its own labour problem. Establish the format before estimating anything.</p>
+      </div>
+    </div>
+
+    <div class="finstrip" data-cap="sep" data-ben="0">
+      <div class="fh">Financials &mdash; pallet station alone <span class="fnote">safety and cycle time, no revenue attributed</span></div>
+      <div class="fgrid">
+        <div><span class="fk">Capex</span><span class="fv" data-f="cap">&mdash;</span></div>
+        <div><span class="fk">NPV 5-yr</span><span class="fv" data-f="npv5">&mdash;</span></div>
+        <div><span class="fk">IRR 5-yr</span><span class="fv" data-f="irr5">&mdash;</span></div>
+        <div><span class="fk">NPV 10-yr</span><span class="fv" data-f="npv10">&mdash;</span></div>
+        <div><span class="fk">IRR 10-yr</span><span class="fv" data-f="irr10">&mdash;</span></div>
+      </div>
+      <p class="hint">No revenue attributed to this station, so NPV reads as capex. Its case is <strong>injury avoidance and recovered cycle time</strong>, neither yet quantified. One avoided back injury is commonly cited well into five figures &mdash; needs your actual claim history to state properly.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p2">
+  <div class="stack">
+    <div><h2>Equipment options</h2>
+      <p class="lede">Eight architectures screened against eight gates. Four survive, spanning a factor of eighteen so the cheap option sits visibly beside the capable one.</p></div>
+
+    <div class="chartbox">
+      <h4>Capex ranges, not point estimates</h4>
+      <p class="hint" style="margin-bottom:10px">Bar length is the quoted uncertainty. Dot marks the midpoint.</p>
+      <canvas id="cCapex" height="210"></canvas>
+    </div>
+
+    <div class="note warn"><h4>The finding that shaped the slate</h4>
+      <p>A filled 1,000&nbsp;lb box grosses <strong>1,130&nbsp;lb (513&nbsp;kg)</strong>. The heaviest standard industrial arm in this class is rated 210&nbsp;kg, leaving 142&ndash;187&nbsp;kg after tooling &mdash; short by <strong>2.7 to 3.6x</strong>. No standard arm and no cobot lifts the box. Robots remain viable for drums only; cobots only at the ~130&nbsp;lb separation station.</p>
+    </div>
+
+    <div class="twrap"><table>
+      <thead><tr><th>Concept</th><th class="n">Capex</th><th class="n">Per hour</th><th>Min. pad</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hydraulic dumper, inline</strong></td><td class="n">$383k&ndash;844k</td><td class="n">40&ndash;60</td><td>100 x 200</td><td><span class="chip good">Recommended</span></td></tr>
+        <tr><td>Hybrid split-lane</td><td class="n">$715k&ndash;1,432k</td><td class="n">80&ndash;120</td><td>200 x 400</td><td><span class="chip">Scale option</span></td></tr>
+        <tr><td>Tilt-section conveyor</td><td class="n">$374k&ndash;773k</td><td class="n">60&ndash;90</td><td>100 x 200</td><td><span class="chip warn">Fails mobility</span></td></tr>
+        <tr><td>Forklift tipper (manual)</td><td class="n">$79k&ndash;358k</td><td class="n">15&ndash;25</td><td>100 x 200</td><td><span class="chip risk">Cost anchor only</span></td></tr>
+      </tbody></table></div>
+
+    <div class="grid g2">
+      <div class="card"><h3>Eliminated, and why</h3><ul>
+        <li><strong>Six-axis robot cell</strong> &mdash; payload short by 2.7&ndash;3.6x</li>
+        <li><strong>Overhead gantry</strong> &mdash; five gate failures; needs concrete footings an asphalt pad cannot provide</li>
+        <li><strong>Tipper into hopper</strong> &mdash; fixed open-air silica source at a manned station</li>
+        <li><strong>AMR shuttle</strong> &mdash; none confirmed rated for outdoor Sonoran service</li>
+      </ul></div>
+      <div class="card"><h3>Costs missing from prior estimates</h3><ul>
+        <li>Spill containment &mdash; <span class="num">$34,300&ndash;81,400</span> per dump point</li>
+        <li>Concrete bearing pads &mdash; equipment will rut hot asphalt</li>
+        <li>Containment check: 1,200&nbsp;sq&nbsp;ft with a 6&nbsp;in curb passes a 20&nbsp;CY roll-off but <strong>fails a 30&nbsp;CY</strong></li>
+      </ul></div>
+    </div>
+
+    <div class="sec"><h2>Pallet separation station</h2>
+      <div class="grid g2" style="margin-top:12px">
+        <div class="card"><h3>Today</h3><p>Boxes are nailed to pallets and separated <strong>on the ground</strong>. The worker bends, twists, moves the pallet and folds the cardboard. Over-nailed units are described as very difficult.</p></div>
+        <div class="card rec"><h3>Proposed</h3><p>Work at <strong>waist height</strong> on rollers. A tilt table tips the assembly <em>away</em> from the operator; a nail punch on an overhead drop drives fasteners out from the back.</p><p class="hint">Governing load ~130&nbsp;lb &mdash; a far cheaper equipment class than the dump line.</p></div>
+      </div>
+      <div class="imgslot" style="margin-top:16px"><span class="t">Station flow diagram</span>
+        Mermaid or generated image &mdash; <code>infeed &rarr; tilt &rarr; punch &rarr; box out / pallet out</code></div>
+    </div>
+
+    <div class="finstrip" data-cap="dump,sep" data-ben="1">
+      <div class="fh">Financials &mdash; equipment only <span class="fnote">dumper + separation station, no land &middot; not comparable to other tabs</span></div>
+      <div class="fgrid">
+        <div><span class="fk">Capex</span><span class="fv" data-f="cap">&mdash;</span></div>
+        <div><span class="fk">NPV 5-yr</span><span class="fv" data-f="npv5">&mdash;</span></div>
+        <div><span class="fk">IRR 5-yr</span><span class="fv" data-f="irr5">&mdash;</span></div>
+        <div><span class="fk">NPV 10-yr</span><span class="fv" data-f="npv10">&mdash;</span></div>
+        <div><span class="fk">IRR 10-yr</span><span class="fv" data-f="irr10">&mdash;</span></div>
+      </div>
+      <p class="hint">Assumes the equipment can be sited on existing pavement, so no land lease increment is charged here. <strong>Each tab's strip is a separate scenario, not a ranking.</strong> Comparing NPV across tabs is not meaningful &mdash; every revenue scenario attributes the same benefit stream, so whichever carries less capex will always look better. Use the Financial Model tab to compare real combinations.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p3">
+  <div class="stack">
+    <div><h2>Land &amp; site</h2>
+      <p class="lede">Three packages, each approvable alone. One number governs all of them.</p></div>
+
+    <div class="chartbox">
+      <h4>Every package against the permit line</h4>
+      <p class="hint" style="margin-bottom:10px">Disturbed acres. The rule at 1.00 is the AZPDES Construction General Permit trigger.</p>
+      <canvas id="cLand" height="185"></canvas>
+    </div>
+
+    <div class="note warn"><h4>Your planning unit is exactly the threshold</h4>
+      <p>A 9&nbsp;x&nbsp;16 acre section is one acre by construction &mdash; <span class="num">43,560&nbsp;sq&nbsp;ft</span> at a 9:16 aspect gives <span class="num">156.53 x 278.28&nbsp;ft</span> (rounded to 156.5 x 278.2 those figures multiply to 43,538, 22 sq ft light &mdash; rounding, not a discrepancy). That is exactly the trigger, which applies at one acre <em>or greater</em>. A single section trips it before any access or laydown disturbance counts. Phasing likely will not help: EPA's <strong>common plan of development</strong> rule exists to stop exactly that.</p>
+    </div>
+
+    <div class="twrap"><table>
+      <thead><tr><th>Package</th><th>Dimensions</th><th class="n">Area</th><th class="n">All-in</th><th>Permit</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A</strong> &mdash; standard pad</td><td>100 x 200 ft</td><td class="n">20,000 sf</td><td class="n">$338k&ndash;644k</td><td><span class="chip good">0.46 ac clear</span></td></tr>
+        <tr><td><strong>B</strong> &mdash; expansion pad</td><td>200 x 400 ft</td><td class="n">80,000 sf</td><td class="n">$764k&ndash;1,441k</td><td><span class="chip risk">1.84 ac triggers</span></td></tr>
+        <tr><td><strong>C</strong> &mdash; access drive</td><td>12 ft wide</td><td class="n">TBD</td><td class="n">$114&ndash;198/ft</td><td><span class="chip warn">Aggregates with A</span></td></tr>
+        <tr><td><strong>Alt</strong> &mdash; long &amp; narrow</td><td>~100 x 320 ft</td><td class="n">32,000 sf</td><td class="n">not yet priced</td><td><span class="chip good">0.95 ac clear</span></td></tr>
+      </tbody></table></div>
+
+    <div class="grid g2">
+      <div class="card"><h3>The long-and-narrow option</h3><p>Length binds, not width &mdash; every foot of width costs three feet of length against the same cap. A pad near <strong>100 x 320 ft</strong> is 60% larger than Package A, stays under the trigger, and leaves slack for a future dock apron.</p></div>
+      <div class="card"><h3>Site problems now priced</h3><ul>
+        <li><strong>Trailer creep on sand</strong> &mdash; chocks <em>plough</em>; paving behind the apron is the prerequisite, not an alternative</li>
+        <li><strong>Dock restraints</strong> &mdash; <span class="num">$3,199&ndash;4,749</span> per door</li>
+        <li><strong>Section under-spec</strong> &mdash; 3&nbsp;in on 6&nbsp;in base is light-duty; truck traffic wants 4&ndash;6&nbsp;in on 8&ndash;12&nbsp;in</li>
+      </ul></div>
+    </div>
+
+    <div class="note warn"><h4>Unbudgeted &mdash; post-construction stormwater retention</h4>
+      <p>The facility already holds a SWPPP, which lowers the cost of adding construction coverage. But new pavement changes runoff, so <strong>the existing SWPPP must be revised</strong>, and Arizona jurisdictions typically require <strong>on-site retention of a design storm for new impervious area</strong>.</p>
+      <div class="twrap" style="margin-top:10px"><table>
+        <thead><tr><th>Package</th><th class="n">New impervious</th><th class="n">Rough retention volume</th></tr></thead>
+        <tbody>
+          <tr><td>A &mdash; 100 x 200</td><td class="n">20,000 sq ft</td><td class="n">~150&ndash;185 cu yd</td></tr>
+          <tr><td>B &mdash; 200 x 400</td><td class="n">80,000 sq ft</td><td class="n">~600&ndash;740 cu yd</td></tr>
+        </tbody></table></div>
+      <p class="hint">That is a basin, and it appears in none of the package costs above. Volumes assume a 100-year, 2-hour design storm &mdash; <strong>Yuma County's actual standard is UNVERIFIED.</strong> The lowered storm pit north of the current pad may already provide capacity worth counting.</p>
+    </div>
+
+    <div class="imgslot"><span class="t">Site plan &mdash; parcel layout</span>
+      Aerial with overlay: current paved area, storm pit north, NE work section, NW 5-acre rectangle, gate. <code>USDA NAIP imagery, public domain</code></div>
+
+    <div class="note"><p><strong>Lease.</strong> From <span class="num">$9,500/mo</span> for ~5 acres to <span class="num">$22,000/mo</span> for ~15. The marginal acre costs <span class="num">$1,250/mo</span> against <span class="num">$1,900</span> &mdash; <strong>34% cheaper</strong>. But the increment is <span class="num">$150,000/year</span> of permanent fixed cost, running whether or not anything is built.</p></div>
+
+    <div class="note warn"><h4>The 10-year horizon runs past the lease</h4>
+      <p>The current term began <strong>Sept 1, 2025</strong> and runs ten years to <strong>Aug 31, 2035</strong>. A project starting around Jan 2027 leaves roughly <span class="num">8.7 years</span> of lease. A 10-year analysis therefore extends about <strong>15 months beyond current lease visibility</strong>, and that tail assumes a renewal nobody has signed.</p>
+      <p class="hint">The 5-year view sits entirely inside the committed term. Read it as the conservative case and the 10-year as the upside.</p>
+    </div>
+
+    <div class="finstrip" data-cap="landA,dump" data-ben="1">
+      <div class="fh">Financials &mdash; land package A, paired <span class="fnote">shown with the dumper</span></div>
+      <div class="fgrid">
+        <div><span class="fk">Capex</span><span class="fv" data-f="cap">&mdash;</span></div>
+        <div><span class="fk">NPV 5-yr</span><span class="fv" data-f="npv5">&mdash;</span></div>
+        <div><span class="fk">IRR 5-yr</span><span class="fv" data-f="irr5">&mdash;</span></div>
+        <div><span class="fk">NPV 10-yr</span><span class="fv" data-f="npv10">&mdash;</span></div>
+        <div><span class="fk">IRR 10-yr</span><span class="fv" data-f="irr10">&mdash;</span></div>
+      </div>
+      <p class="hint"><strong>Land generates no revenue on its own.</strong> It is shown paired with the recommended dumper, because pad alone has no return to discount.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p4">
+  <div class="stack">
+    <div><h2>Solar canopy &amp; equipment protection</h2>
+      <p class="lede">The structure the equipment needs for shade sits on one of the best solar resources in the country. One capital item, two returns.</p></div>
+
+    <div class="note acc"><h4>Why this is the strongest structural idea on the table</h4>
+      <p>Somerton receives roughly <strong>90% of possible annual sunshine</strong>. Everything that makes the site hostile to a controller makes it excellent for generation. A canopy converts the largest unresolved risk &mdash; thermal margin &mdash; into a revenue-producing asset with a federal tax credit attached.</p></div>
+
+    <div class="chartbox">
+      <h4>Thermal headroom through the year</h4>
+      <p class="hint" style="margin-bottom:10px">Normal daily maximum against the reported 45&deg;C equipment limit.</p>
+      <canvas id="cTemp" height="185"></canvas>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Months at or above 40&deg;C</span><span><i style="background:var(--risk)"></i>45&deg;C equipment limit</span></div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card"><div class="eyebrow">The problem</div><h3>3&deg;C of headroom</h3><p class="hint">July reaches 42.0&deg;C against a reported 0&ndash;45&deg;C rating. Solar gain on an unshaded enclosure closes that gap on an ordinary day.</p></div>
+      <div class="card"><div class="eyebrow">The canopy</div><h3>Shade first</h3><p class="hint">Removes direct solar load from the enclosure and the operator station, reducing or eliminating active cooling.</p></div>
+      <div class="card"><div class="eyebrow">Second return</div><h3>Generation</h3><p class="hint">Offsets facility load. Federal Investment Tax Credit applies to commercial solar.</p></div>
+    </div>
+
+    <div class="sec"><h2>Sizing from the actual utility bill</h2>
+      <p class="lede">The site averages about <span class="num">$600/month</span>. At Arizona commercial rates near <span class="num">$0.12/kWh</span> that is roughly <strong>5,000 kWh/month, 60,000 kWh/year</strong> &mdash; an average continuous load close to <span class="num">6.8 kW</span>.</p>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Scenario</th><th class="n">Annual load</th><th class="n">Array</th><th class="n">Est. installed</th></tr></thead>
+        <tbody>
+          <tr><td>Offset current facility load only</td><td class="n">60,000 kWh</td><td class="n">~30 kW</td><td class="n">$105k &ndash; $135k</td></tr>
+          <tr><td>Plus conveyor and hoist load (~15 kW, 8 hr/day)</td><td class="n">~91,000 kWh</td><td class="n">~46 kW</td><td class="n">$160k &ndash; $200k</td></tr>
+        </tbody></table></div>
+      <p class="hint">Carport structures cost more per watt than roof mount, which is why this does not fall further. Yuma specific yield assumed near 1,900&ndash;2,000 kWh per kW per year. All ESTIMATE.</p>
+    </div>
+
+    <div class="note risk"><h4>Not yet researched &mdash; every figure here is a placeholder</h4>
+      <p>The cover and mobile-pedestal study has not run. The canopy has not been sized by an engineer, priced by a vendor, or checked against Yuma County wind loading. The table above is arithmetic from a utility bill, not a design. They have not been checked against a vendor quotation.</p>
+      <p class="hint">An earlier $250k&ndash;350k figure was sized for a facility several times this load and is superseded by the table above.</p></div>
+
+    <div class="grid g2">
+      <div class="card"><h3>What the study must settle</h3><ul>
+        <li>ASCE 7 design wind speed &mdash; haboob gust fronts govern the structure</li>
+        <li>Array size against facility load, and net metering terms</li>
+        <li>ITC eligibility, current rate, adders</li>
+        <li>Building permit and jurisdiction</li>
+        <li>Dust soiling losses and monsoon cleaning cycle</li>
+      </ul></div>
+      <div class="card"><h3>The mobility question</h3>
+        <p>The brief asks for a relocatable pedestal on lockable casters. Ballast for a 210&nbsp;kg-class arm computes to <span class="num">8,000&ndash;15,000&nbsp;lb</span>, and ANSI/A3 R15.06-2025 requires re-validating the safeguarded space after any move.</p>
+        <p class="hint">Likely honest answer: pre-surveyed anchor stations the equipment moves between and bolts down at &mdash; relocatable without operating on wheels.</p></div>
+    </div>
+
+    <div class="imgslot"><span class="t">Canopy elevation over the work cell</span>
+      Generated render &mdash; <code>steel canopy, PV deck, equipment beneath, desert yard</code></div>
+
+    <div class="finstrip" data-cap="solar" data-ben="0">
+      <div class="fh">Financials &mdash; solar canopy <span class="fnote">capex only, no return modelled</span></div>
+      <div class="fgrid">
+        <div><span class="fk">Capex</span><span class="fv" data-f="cap">&mdash;</span></div>
+        <div><span class="fk">NPV 5-yr</span><span class="fv" data-f="npv5">&mdash;</span></div>
+        <div><span class="fk">IRR 5-yr</span><span class="fv" data-f="irr5">&mdash;</span></div>
+        <div><span class="fk">NPV 10-yr</span><span class="fv" data-f="npv10">&mdash;</span></div>
+        <div><span class="fk">IRR 10-yr</span><span class="fv" data-f="irr10">&mdash;</span></div>
+      </div>
+      <p class="hint"><strong>No generation revenue, energy offset, or tax credit is modelled here</strong> &mdash; none has been researched. NPV therefore shows capex only and will read negative by construction. Once the study runs, the offset and ITC go in and this turns positive or it does not. Shown this way so the gap is visible rather than assumed away.</p>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="p5">
+  <div class="stack">
+    <div><h2>Financial model</h2>
+      <p class="lede">Switch projects on and off, then move the assumptions. Nothing is asserted &mdash; every number driving the outcome is a control you set.</p></div>
+
+    <div class="calc">
+      <div class="stack">
+        <div class="ctl"><h3>Projects</h3>
+          <div class="tog"><label><input type="checkbox" id="cDump" checked> Hydraulic dumper</label><span class="pr" id="prDump">&mdash;</span></div>
+          <div class="tog"><label><input type="checkbox" id="cSep" checked> Pallet separation station</label><span class="pr" id="prSep">&mdash;</span></div>
+          <div class="tog"><label><input type="checkbox" id="cLandA" checked> Land package A</label><span class="pr" id="prLandA">&mdash;</span></div>
+          <div class="tog"><label><input type="checkbox" id="cLandB"> Land package B (replaces A)</label><span class="pr" id="prLandB">&mdash;</span></div>
+          <div class="tog"><label><input type="checkbox" id="cSolar"> Solar canopy</label><span class="pr" id="prSolar">&mdash;</span></div>
+          <div class="tog"><label><input type="checkbox" id="cLease" checked> Count lease increment</label><span class="pr">$150k/yr</span></div>
+        </div>
+        <div class="ctl"><h3>Assumptions</h3>
+          <div class="sl"><div class="lab"><span>Margin per trailer</span><span class="val" id="vMargin">$10,000</span></div>
+            <input type="range" id="sMargin" min="3000" max="15000" step="500" value="10000">
+            <div class="hint">$15,000 revenue less driver hours, fuel, unload. Never built up from costs.</div></div>
+          <div class="sl"><div class="lab"><span>Added trailers per week</span><span class="val" id="vTrail">3.0</span></div>
+            <input type="range" id="sTrail" min="0" max="8" step="0.5" value="3">
+            <div class="hint">Pomona 2 + Fernley 1 confirmed. Five refused in one week.</div></div>
+          <div class="sl"><div class="lab"><span>Capex within range</span><span class="val" id="vCap">50%</span></div>
+            <input type="range" id="sCap" min="0" max="140" step="5" value="50">
+            <div class="hint">0% = low estimate, 100% = high. Above 100% models overrun.</div></div>
+          <div class="sl"><div class="lab"><span>Annual labour saving</span><span class="val" id="vLab">$0</span></div>
+            <input type="range" id="sLab" min="0" max="420000" step="5000" value="0">
+            <div class="hint">One temp position is <strong>$102,960/yr</strong> at the agency rate. Two positions $205,920. Three $308,880.</div></div>
+          <div class="sl"><div class="lab"><span>Discount rate</span><span class="val" id="vDisc">10%</span></div>
+            <input type="range" id="sDisc" min="4" max="25" step="1" value="10">
+            <div class="hint">Ask the finance team for the mandated rate. Group WACC typically runs 6&ndash;8%; subsidiary hurdle rates for discretionary capex commonly 10&ndash;12%.</div></div>
+          <div class="sl"><div class="lab"><span>Project life</span><span class="val" id="vLife">10 yrs</span></div>
+            <input type="range" id="sLife" min="3" max="20" step="1" value="10"></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="kpis">
+          <div class="kpi hero2"><div class="k">Total capex</div><div class="v" id="oCapex">&mdash;</div><div class="f" id="oCapexF">&nbsp;</div></div>
+          <div class="kpi"><div class="k">Net annual benefit</div><div class="v" id="oBen">&mdash;</div><div class="f" id="oBenF">&nbsp;</div></div>
+          <div class="kpi" id="kPay"><div class="k">Simple payback</div><div class="v" id="oPay">&mdash;</div><div class="f" id="oPayF">&nbsp;</div></div>
+          <div class="kpi" id="kNpv"><div class="k">NPV</div><div class="v" id="oNpv">&mdash;</div><div class="f" id="oNpvF">&nbsp;</div></div>
+          <div class="kpi" id="kIrr"><div class="k">IRR</div><div class="v" id="oIrr">&mdash;</div><div class="f" id="oIrrF">&nbsp;</div></div>
+          <div class="kpi"><div class="k">Break-even trailers/wk</div><div class="v" id="oBE">&mdash;</div><div class="f">to cover annualised cost</div></div>
+        </div>
+
+        <div class="chartbox">
+          <h4>Cumulative profit, year by year</h4>
+          <p class="hint" style="margin-bottom:10px">Red bars are capital not yet recovered. Green bars are accumulated profit. Dashed markers call out the 5-year and 10-year positions.</p>
+          <canvas id="cFlow" height="230"></canvas>
+          <div class="legend"><span><i style="background:var(--risk)"></i>Capital outstanding</span><span><i style="background:var(--good)"></i>Accumulated profit</span><span><i style="background:var(--accent)"></i>5-yr / 10-yr marker</span></div>
+        </div>
+
+        <div class="card"><h3>Labour basis &mdash; temp agency rate</h3>
+          <div class="twrap" style="margin-top:10px"><table>
+            <thead><tr><th>Category</th><th class="n">Hours/wk</th><th class="n">Rate</th><th class="n">Weekly</th></tr></thead>
+            <tbody>
+              <tr><td>Standard</td><td class="n">50</td><td class="n">$36</td><td class="n">$1,800</td></tr>
+              <tr><td>Additional</td><td class="n">10</td><td class="n">$18</td><td class="n">$180</td></tr>
+              <tr><td><strong>Per position</strong></td><td class="n"><strong>60</strong></td><td class="n">~$33 blended</td><td class="n"><strong>$1,980</strong></td></tr>
+            </tbody></table></div>
+          <div class="grid g3" style="margin-top:12px">
+            <div class="card"><div class="eyebrow">One position</div><div class="cost">$102,960</div><div class="hint">per year</div></div>
+            <div class="card"><div class="eyebrow">Two positions</div><div class="cost">$205,920</div><div class="hint">per year</div></div>
+            <div class="card"><div class="eyebrow">Three positions</div><div class="cost">$308,880</div><div class="hint">per year</div></div>
+          </div>
+          <div class="note good" style="margin-top:12px;border-left-color:var(--good);background:var(--goodWash)">
+            <p><strong>This is temp labour, so reduction costs nobody a job.</strong> Fewer requisitions, not layoffs &mdash; a scheduling decision rather than a termination. That removes the most common internal objection to an automation proposal and should be said plainly to leadership.</p>
+          </div>
+          <p class="hint" style="margin-top:10px">The agency rate already carries markup, insurance and workers comp, so it is the true cost to the company &mdash; no burden multiplier is applied on top. <strong>Check:</strong> the additional 10 hours are shown at $18, half the standard rate. If that should be $54 (1.5x), the weekly becomes $2,340 and the annual $121,680 per position.</p>
+        </div>
+
+        <div class="card"><h3>Sunk and committed costs &mdash; shown separately</h3>
+          <p class="hint"><strong>The lease increment IS currently included</strong> in the figures above, because the "Count lease increment" toggle ships on. Switch it off to see the go / no-go view, where money already committed is not recoverable either way and should not sway the decision. The other two rows are never included.</p>
+          <div class="twrap" style="margin-top:10px"><table>
+            <thead><tr><th>Item</th><th class="n">Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Lease increment, 10 new acres</td><td class="n">$150,000/yr</td><td><span class="chip risk">Committed</span></td></tr>
+              <tr><td>Research and proposal development</td><td class="n">In progress</td><td><span class="chip">Sunk</span></td></tr>
+              <tr><td>Existing paved work area (~5 ac)</td><td class="n">$114,000/yr</td><td><span class="chip">Pre-existing</span></td></tr>
+            </tbody></table></div>
+        </div>
+
+        <div class="note warn"><p><strong>Read the output as a range, not an answer.</strong> Move margin from $10,000 to $6,000 and watch payback change character. That sensitivity is the finding &mdash; not any single figure this page produces.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="panel" id="p7">
+  <div class="stack">
+
+    <div class="sec"><h2>The backlog is already measured &mdash; in the site&rsquo;s own weekly planner</h2>
+      <p class="lede">Four consecutive days recorded by the site in August, in the Ops Planner workbook.</p>
+      <div class="tw"><table><thead><tr><th>Date</th><th class="n">Trailers inbound</th><th class="n">Trailers processed</th><th class="n">Net</th><th class="n">Trailers standing full</th></tr></thead><tbody>
+        <tr><td>Mon 17 Aug</td><td class="n">7</td><td class="n">5</td><td class="n">&minus;2</td><td class="n">7</td></tr>
+        <tr><td>Tue 18 Aug</td><td class="n">8</td><td class="n">5</td><td class="n">&minus;3</td><td class="n">9</td></tr>
+        <tr><td>Wed 19 Aug</td><td class="n">7</td><td class="n">7</td><td class="n">0</td><td class="n">8</td></tr>
+        <tr><td>Thu 20 Aug</td><td class="n">7</td><td class="n">7</td><td class="n">0</td><td class="n">9</td></tr>
+        <tr class="rec"><td><strong>Four days</strong></td><td class="n"><strong>29</strong></td><td class="n"><strong>24</strong></td><td class="n"><strong>&minus;5</strong></td><td class="n"><strong>&mdash;</strong></td></tr>
+      </tbody></table></div>
+      <p class="hint">Alongside those rows the site recorded the reasons in its own words: <em>&ldquo;3 full arriving after hrs&rdquo;</em>, and <em>&ldquo;planning for O.T. Saturday.&rdquo;</em></p>
+
+      <div class="note risk"><h4>Four consecutive days as recorded in August</h4>
+        <p>Two of the four days show a net shortfall; two show inbound and processed in balance. Nothing in this table is modelled, priced or estimated. Across these four days, 29 trailers arrived and 24 were processed.</p>
+        <p><strong>The recording stopped on 21 August.</strong> The workbook is well built &mdash; safety, production, inventory aging, manning, training, all laid out across the calendar &mdash; and it was abandoned inside a week. Two columns in particular, <strong>drums</strong> and <strong>pallets</strong>, were designed in and never filled on any day. Those are precisely the counts that would let arrival times be scheduled rather than absorbed.</p>
+        <p>The measures described elsewhere in this deck are drawn from documents the site already receives, rather than from new record-keeping.</p></div>
+    </div>
+
+    <div><h2>Knowing the load before it arrives</h2>
+      <p class="lede">Every inbound trailer already carries a complete declaration of what is on it. Today that declaration is read <em>after</em> the trailer is on the dock. Read before, it decides which trailer to pull, which bay to hold, and how many operators to assign.</p></div>
+
+    <div class="note acc"><h4>The data is already ours</h4>
+      <p>Two real inbound packets were examined &mdash; trailers <span class="num">548381</span> and <span class="num">537464</span>, roughly <strong>50 manifests each</strong>. Every manifest in both packets is issued on our own registrant number and prepared by our retail services group in Peachtree Corners.</p>
+      <p>Home Depot, Target, Amazon and Walgreens are the legal generators &mdash; the waste is theirs. <strong>The typed record is ours.</strong> No data request to a retail customer is required to build this, which removes the slowest and least certain dependency from the plan.</p></div>
+
+    <div class="chartbox">
+      <h4>What two real trailers carried</h4>
+      <p class="hint" style="margin-bottom:10px">Container-type entries recovered from the manifest packets. Both trailers are overwhelmingly drums &mdash; the slowest content type in the workflow.</p>
+      <canvas id="cMix" height="150"></canvas>
+      <div class="legend"><span><i style="background:var(--accent)"></i>Drums, fibre or plastic</span><span><i style="background:var(--mid)"></i>Boxes</span><span><i style="background:var(--warn)"></i>Drums, metal</span></div>
+    </div>
+
+    <div class="grid g3">
+      <div class="card"><div class="eyebrow">A trailer holds</div><h3>~134 containers</h3><p class="hint">About 50 manifests averaging 2.7 containers each. Estimated total weight <span class="num">15,000&ndash;17,000&nbsp;lb</span>. Both figures are extrapolations, not counts.</p></div>
+      <div class="card"><div class="eyebrow">The mix</div><h3>~87% drums</h3><p class="hint">Stable across both trailers. Drums move four at a time inbound and two at a time to the roll-off &mdash; the slowest path on the site.</p></div>
+      <div class="card"><div class="eyebrow">The decision</div><h3>Two operators or one</h3><p class="hint">A drum-heavy trailer warrants two operators, two bays held on the East side, and a roll-off staged close to the dock. Known in advance, that assignment is made before the truck is in the yard.</p></div>
+    </div>
+
+    <div class="sec"><h2>The field that plans the day</h2>
+      <p class="lede">One row on the standard manifest carries everything needed: how many containers, of what kind, and how heavy.</p>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Description</th><th class="n">Containers</th><th>Type</th><th class="n">Quantity</th><th>Unit</th></tr></thead>
+        <tbody>
+          <tr><td>Non-RCRA Hazardous Waste, Liquid (consumer products)</td><td class="n">3</td><td>Drum</td><td class="n">598</td><td>lb</td></tr>
+        </tbody></table></div>
+      <p class="hint">An actual line from trailer 548381. Nothing beyond this row is needed to plan a load.</p>
+    </div>
+
+    <div class="sec"><h2>Two trailers, one shape</h2>
+      <p class="lede">The second packet was examined to test whether the first was typical. It was.</p>
+      <div class="twrap" style="margin-top:12px"><table>
+        <thead><tr><th>Measure</th><th class="n">Trailer 548381</th><th class="n">Trailer 537464</th></tr></thead>
+        <tbody>
+          <tr><td>Pages in packet</td><td class="n">54</td><td class="n">56</td></tr>
+          <tr><td>Manifests recovered</td><td class="n">43</td><td class="n">44</td></tr>
+          <tr><td>Drum entries</td><td class="n">55</td><td class="n">56</td></tr>
+          <tr><td>Box entries</td><td class="n">8</td><td class="n">10</td></tr>
+          <tr><td>Weight recovered</td><td class="n">12,262 lb</td><td class="n">13,786 lb</td></tr>
+        </tbody></table></div>
+      <p class="hint">Both packets originate from the same consolidation point. Stable format there does not prove every origin sends the same thing. <strong>Two samples, one origin.</strong></p>
+    </div>
+
+    <div class="note warn"><h4>Do not scan the paper &mdash; go to the source</h4>
+      <p>Reading these packets by scanner recovers the container <em>type</em> 96% of the time, the weight 80% of the time, and <strong>the container count only 52% of the time</strong>. The count is the field that plans the load, and it sits in the one box a scan renders worst.</p>
+      <p>That effort would also be wasted. Every field on these forms is machine-printed; only the signatures are handwritten. <strong>The documents are printed from a system that already holds the data cleanly.</strong> The task is a data-access request inside our own business, not a document-reading project.</p></div>
+
+    <div class="note risk"><h4>Two things this exposes that must be settled first</h4>
+      <p><strong>The 45-minute phase does not reconcile with the container count.</strong> At roughly 134 containers moved two at a time, the staging-to-roll-off leg is 67 round trips. Against 45 minutes that is 40 seconds per trip including a 50-yard drive, which is not achievable. Either more than one operator runs that leg, or the phase figure is wrong, or the container estimate is high. <strong>The cycle-time case rests on this figure and it must be measured, not assumed.</strong></p>
+      <p><strong>Trailer weight does not reconcile with roll-off count.</strong> An estimated 15,000&ndash;17,000&nbsp;lb per trailer against roughly 1.3 roll-offs per trailer does not square. The likely explanation is that manifest weight counts waste only, with liner and packaging adding the difference &mdash; but that is a hypothesis, not a finding.</p></div>
+
+    <div class="grid g2">
+      <div class="card"><h3>What must be established</h3><ul>
+        <li><strong>Does the packet arrive before the trailer?</strong> If it travels in the cab, no system fixes that &mdash; load and data arrive together, and pre-arrival planning is impossible from this source</li>
+        <li>Which internal system prints the manifests, and who can produce the same information for many trailers at once</li>
+        <li>Whether other origin points send the same packet structure</li>
+        <li>Whether these state-regulated non-RCRA wastes appear in the federal electronic manifest system, which would be a second route to the same data</li>
+      </ul></div>
+      <div class="card"><h3>What it unlocks</h3>
+        <p><strong>Dock allocation.</strong> Drum-heavy trailers pulled first, bays held, roll-off staged close, two operators assigned &mdash; freeing bays later in the day for concurrent unloading.</p>
+        <p><strong>Density routing.</strong> Knowing container mix and weight before the dump decision lets a roll-off reach its weight and volume ceiling together instead of one or the other.</p>
+        <p><strong>Arrival scheduling.</strong> Sequencing each trailer into the window that suits its composition.</p></div>
+    </div>
+
+    <div class="sec"><h2>Payback first &mdash; the conveyor at $60,000</h2>
+      <p class="lede">Net present value answers whether a project is worth doing over a decade. <strong>Payback answers whether it is worth doing now</strong>, and on a capital item this size that is the question a finance review asks first.</p>
+
+      <div class="twrap" style="margin-top:14px"><table>
+        <thead><tr><th>What the conveyor buys</th><th class="n">Per year</th><th class="n">Payback on $60,000</th><th class="n">NPV to lease end @ 10%</th></tr></thead>
+        <tbody>
+          <tr><td>Labour only &mdash; 10 hrs/week at $20/hr</td><td class="n">$10,400</td><td class="n">5.8 years</td><td class="n">&minus;$1,400</td></tr>
+          <tr><td>Same hours priced at overtime, $30/hr</td><td class="n">$15,600</td><td class="n">3.8 years</td><td class="n">$27,900</td></tr>
+          <tr><td><strong>Plus one additional load per week at $12,000</strong></td><td class="n"><strong>$634,400</strong></td><td class="n"><strong>~5 weeks</strong></td><td class="n"><strong>$3.5M</strong></td></tr>
+          <tr><td>Same, held to a conservative $10,000 per load</td><td class="n">$530,400</td><td class="n">~6 weeks</td><td class="n">$2.9M</td></tr>
+        </tbody></table></div>
+
+      <div class="note risk" style="margin-top:14px"><h4>Labour hours and throughput, shown separately</h4>
+        <p>Ten hours a week at base rate returns <span class="num">$10,400</span> a year against a <span class="num">$60,000</span> spend. That is a <strong>5.8-year payback and a marginally negative NPV</strong>. A finance review will find that in ninety seconds, and any deck that obscures it loses the reader for everything after.</p>
+        <p>The two benefit streams are shown separately above: hours returned, and the value of an additional load per week. Whether an additional load is available to take is a question for the site.</p></div>
+
+      <div class="note acc"><h4>The demand evidence, stated plainly</h4>
+        <p><strong>Five trailers were refused in a single week</strong> &mdash; requests the site could not service. Pomona offers two more per week, Fernley one, with further origins behind them. The additional load is not a forecast; it is capacity already being turned away.</p>
+        <p class="hint">The honest limit: capacity must exist before demand can be accepted, and that is a different claim from having twelve trailers a day waiting. Safety exposure removed at the eighth-drum lift is real and is not priced in any row above.</p></div>
+    </div>
+
+    <div class="sec"><h2>What it is worth</h2>
+      <p class="lede">Load planning creates no new saving. It makes an existing one <em>collectable</em> &mdash; the density-routing saving already described on the Overview tab is <strong>gated on knowing container mix and weight before the dump decision</strong>, which is exactly what this delivers. The figures below discount that same saving. They are not a second one.</p>
+
+      <div class="grid g3" style="margin-top:14px">
+        <div class="card"><div class="eyebrow">Recurring saving &mdash; range, pending one invoice</div><div class="cost">$0 &ndash; $92,000 / yr</div><p class="hint">Heavier average roll-off fill: about <strong>548 fewer landfill trips</strong> and <span class="num">274</span> truck-hours returned.</p></div>
+        <div class="card"><div class="eyebrow">Modelled case, NPV 5-year</div><div class="cost">$311,000</div><p class="hint">Discounted at <span class="num">10%</span>. <strong>Modelled, not claimed.</strong></p></div>
+        <div class="card"><div class="eyebrow">Modelled case, NPV to lease end</div><div class="cost">$463,000</div><p class="hint"><span class="num">8.7</span> years remaining from a Jan 2027 start.</p></div>
+      </div>
+
+      <div class="twrap" style="margin-top:16px"><table>
+        <thead><tr><th>If building this costs</th><th class="n">NPV to lease end @ 10%</th><th class="n">IRR</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>$25,000</td><td class="n">$284,000</td><td class="n">&gt;200%</td><td>Approve</td></tr>
+          <tr><td>$50,000</td><td class="n">$259,000</td><td class="n">~110%</td><td>Approve</td></tr>
+          <tr><td>$100,000</td><td class="n">$209,000</td><td class="n">~53%</td><td>Approve</td></tr>
+          <tr><td>$150,000</td><td class="n">$159,000</td><td class="n">~34%</td><td>Approve</td></tr>
+          <tr><td><strong>$463,000</strong></td><td class="n"><strong>$0</strong></td><td class="n"><strong>10%</strong></td><td><strong>Break-even</strong></td></tr>
+        </tbody></table></div>
+      <div class="note risk"><h4>What this figure depends on</h4>
+<p>The disposal saving rests on a price structure of <strong>$350 per pull plus about $0.025 a pound above 10,000 lb</strong>. Both numbers came from conversation; neither has been checked against a billing document. Stripped to its mechanism, the saving is <strong>822 avoided trips multiplied by a $100 residual</strong> between a fixed per-pull fee and the value of a free tonnage allowance.</p>
+<p><strong>If the landfill instead bills per ton on full weight with a minimum charge &mdash; the most common commercial structure &mdash; the saving is zero</strong>, because the same tonnage moves either way and a linear rate does not care how many trips carry it. That is why the headline is stated as a range.</p>
+<p>An itemised invoice would show the rate basis, any minimum charge, the annual tonnage and the pull count. The other sections of this deck do not rest on this figure.</p></div>
+
+<p class="hint"><strong>No build cost is claimed here, because none has been quoted.</strong> The table is inverted deliberately: rather than guess a price and compute a return, it states what the work could cost and still clear a 10% hurdle. <strong>Anything under roughly $463,000 returns above 10% before the lease expires, on the modelled case.</strong> No capital equipment is involved &mdash; the data already exists inside the business.</p>
+      <p class="hint"><strong>Horizon is 8.7 years, not 10.</strong> The lease runs Sept 2025 to Aug 2035; a January 2027 project start leaves 8.7 years of visibility, so the annuity factor is <span class="num">5.6360</span> rather than the 10-year 6.1446. Using the longer factor would overstate every figure above by roughly 9%.</p>
+    </div>
+
+    <div class="sec"><h2>Why a delay is never free here</h2>
+      <p class="lede">Drivers run a <strong>Monday&ndash;Saturday</strong> schedule at more than ten hours a day, and cross forty hours <strong>by Thursday</strong>. From that point the week contains no straight-time hours at all.</p>
+
+      <div class="note acc"><h4>The marginal rate is $42, not $28</h4>
+        <p>The usual objection to any delay-reduction claim is that the driver was on the clock regardless. <strong>Here that is not true.</strong> By Thursday he is on the clock at time and a half, so a trailer that is not ready, a load switched late, or a problem at the dock is not absorbed by an idle hour &mdash; it is <strong>purchased at the highest rate on the payroll</strong>.</p>
+        <p class="hint">Base <span class="num">$28.00/hr</span>. Overtime <span class="num">$42.00/hr</span>. Any model that values driver time saved at the base rate understates it by half.</p></div>
+
+      <div class="twrap" style="margin-top:14px"><table>
+        <thead><tr><th>Delay, per driver per day</th><th class="n">Hours / yr</th><th class="n">Cost / yr @ $42</th><th class="n">NPV to lease end @ 10%</th></tr></thead>
+        <tbody>
+          <tr><td>15 minutes</td><td class="n">78</td><td class="n">$3,276</td><td class="n">$18,500</td></tr>
+          <tr><td>30 minutes</td><td class="n">156</td><td class="n">$6,552</td><td class="n">$36,900</td></tr>
+          <tr><td>45 minutes</td><td class="n">234</td><td class="n">$9,828</td><td class="n">$55,400</td></tr>
+          <tr><td>60 minutes</td><td class="n">312</td><td class="n">$13,104</td><td class="n">$73,900</td></tr>
+        </tbody></table></div>
+      <p class="hint"><strong>Per driver</strong>, on a six-day week across 52 weeks. Multiply by the number of drivers exposed to dock and yard delay &mdash; <strong>that count is not yet established and is deliberately left blank rather than assumed.</strong></p>
+
+      <p style="margin-top:14px">This is the delay that arrival scheduling removes. Knowing a trailer's contents before it reaches the gate is what allows the right trailer to be spotted, the bay assigned, and the swap made without the driver waiting on a decision that could have been made the day before.</p>
+    </div>
+
+    <div class="sec"><h2>Why there is no schedule today</h2>
+      <p class="lede">The absence of a schedule is not an oversight. <strong>A schedule cannot be built without knowing what is on the trailers.</strong> With no view of contents there is no way to say which load unloads fastest, which carries something needed today, or how long a bay will be occupied &mdash; so trailers are worked in the order they arrive, and drivers park where they can.</p>
+
+      <div class="twrap" style="margin-top:14px"><table>
+        <thead><tr><th>Delay</th><th>What happens today</th><th>What removes it</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Arrival clustering</strong></td><td>Drivers arrive at similar times. The dock cannot absorb the peak, so the rest queue.</td><td>Arrival slots assigned by trailer number</td></tr>
+          <tr><td><strong>Wrong sequence</strong></td><td>A slow load occupies a bay early. Empties appear late, and drivers wait for a trailer to take home.</td><td>Shortest loads worked first</td></tr>
+          <tr><td><strong>Wrong priority</strong></td><td>An urgently needed item sits in a trailer nobody knew to open.</td><td>Contents known before arrival</td></tr>
+        </tbody></table></div>
+
+      <div class="note acc" style="margin-top:16px"><h4>The constrained resource is not the dock &mdash; it is the supply of empty trailers</h4>
+        <p>An intercompany driver's objective is to drop a loaded trailer, hook an empty, and return for the next run. <strong>An empty exists only once a trailer has finished unloading.</strong> Working the shortest loads first therefore produces empties soonest, and a driver who can hook immediately does not wait at all.</p>
+        <p>This is not a preference. Sequencing shortest-first is the rule that <strong>minimises average waiting time</strong> across a set of jobs. It has not been applied here for one reason: you cannot sort by shortest until you know which is shortest &mdash; and that is precisely what the manifest declares before the truck moves.</p>
+        <p class="hint">The honest limit: shortest-first minimises <em>average</em> wait, not total unload time, and left unchecked it defers long loads indefinitely. Any schedule built this way must carry a deadline rule so a difficult trailer cannot be pushed back forever.</p></div>
+
+      <div class="note risk" style="margin-top:14px"><h4>The stock-out case &mdash; the clearest example of the cost of not knowing</h4>
+        <p>Pomona supplies roll-off liners. If the site runs short, the trailer carrying replacements is already in the yard &mdash; but <strong>there is no way to know which one it is</strong>. Every hour spent without liners is an hour the dump line cannot run, and the remedy is sitting fifty yards away behind an unmarked door.</p>
+        <p class="hint">This is a stoppage, not a labour cost. Frequency and duration have not been measured, so no figure is claimed here &mdash; but it is the failure that makes the case most plainly, and it is worth measuring.</p></div>
+    </div>
+
+    <div class="note warn"><h4>Two conditions on the numbers above</h4>
+      <p><strong>The two labour levers are not the same hours and must not be merged.</strong> The 274 truck-hours freed by heavier roll-off fill belong to the landfill run and are <em>redeployed</em> to trailer spotting, not cashed. The delay hours in the table above belong to drivers waiting at the dock and <em>are</em> cashed. They add together <strong>only if they are different people</strong> &mdash; which has not been confirmed.</p>
+      <p><strong>The $60,000 is provisional.</strong> It rests on a landfill tariff reconstructed from partial figures. Verified receipts are being retrieved and will move it in one direction or the other.</p>
+      <p><strong>The 411 truck-hours can be taken as cash or redeployed &mdash; not both.</strong> The recommendation is to take the disposal saving as cash and redeploy the hours to trailer spotting, which is what the dual-ramp case depends on. A model that booked the labour saving <em>and</em> the throughput it paid for would be double-counting, and is stated here so that it is not.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">Draft for review. Figures carry unverified inputs identified in the underlying research and are flagged in place. Prepared by Build Right Pros.</div></footer>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+function cv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function fit(c,H){var r=c.getBoundingClientRect(),d=window.devicePixelRatio||1,w=Math.max(320,r.width);
+  c.width=w*d;c.height=H*d;c.style.height=H+'px';
+  var x=c.getContext('2d');x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,w,H);return{x:x,w:w}}
+function txt(x,s,px,py,col,size,align,weight){x.fillStyle=col;
+  x.font=(weight||500)+' '+(size||11)+'px "IBM Plex Mono", monospace';x.textAlign=align||'left';x.fillText(s,px,py)}
+function rr(x,px,py,w,h,r){if(x.roundRect){x.beginPath();x.roundRect(px,py,w,h,r);x.fill()}else{x.fillRect(px,py,w,h)}}
+
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t){t.addEventListener('click',function(){
+  tabs.forEach(function(x){x.setAttribute('aria-selected','false')});
+  t.setAttribute('aria-selected','true');
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+  $(t.dataset.p).classList.add('on'); drawAll(); window.scrollTo({top:0,behavior:'smooth'});
+})});
+
+function drawThru(){var c=$('cThru');if(!c.offsetParent)return;var H=150,b=fit(c,H),x=b.x,w=b.w;
+  var L=96,R=w-70,max=60,sc=function(v){return L+(v/max)*(R-L)};
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  for(var t=0;t<=60;t+=15){x.beginPath();x.moveTo(sc(t),24);x.lineTo(sc(t),H-26);x.stroke();
+    txt(x,t+'m',sc(t),H-10,cv('--muted'),10,'center')}
+  x.fillStyle=cv('--muted');rr(x,sc(43),36,Math.max(4,sc(47)-sc(43)),22,4);
+  txt(x,'Current',L-10,51,cv('--ink'),11,'right',600);
+  txt(x,'~45 min',sc(47)+8,51,cv('--muted'),10,'left');
+  x.fillStyle=cv('--accent');x.globalAlpha=.85;rr(x,sc(33),74,sc(50)-sc(33),22,4);x.globalAlpha=1;
+  txt(x,'Dumper',L-10,89,cv('--ink'),11,'right',600);
+  txt(x,'33-50 min',sc(50)+8,89,cv('--accent'),10,'left',600);
+  x.strokeStyle=cv('--risk');x.lineWidth=2;x.setLineDash([4,3]);
+  x.beginPath();x.moveTo(sc(45),28);x.lineTo(sc(45),H-26);x.stroke();x.setLineDash([]);
+  txt(x,'today',sc(45),20,cv('--risk'),10,'center',600);
+}
+var CAP=[['Hydraulic dumper',383,844,1],['Hybrid split-lane',715,1432,0],
+         ['Tilt-section conveyor',374,773,0],['Forklift tipper',79,358,0]];
+function drawCapex(){var c=$('cCapex');if(!c.offsetParent)return;var H=210,b=fit(c,H),x=b.x,w=b.w;
+  var L=152,R=w-62,max=1500,sc=function(v){return L+(v/max)*(R-L)};
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  for(var t=0;t<=1500;t+=500){x.beginPath();x.moveTo(sc(t),16);x.lineTo(sc(t),H-24);x.stroke();
+    txt(x,'$'+t+'k',sc(t),H-8,cv('--muted'),10,'center')}
+  CAP.forEach(function(r,i){var y=36+i*40;
+    txt(x,r[0],L-12,y+4,cv('--ink'),11,'right',r[3]?600:500);
+    x.fillStyle=r[3]?cv('--good'):cv('--accent');x.globalAlpha=r[3]?.9:.5;
+    rr(x,sc(r[1]),y-8,Math.max(4,sc(r[2])-sc(r[1])),16,4);x.globalAlpha=1;
+    var m=(r[1]+r[2])/2;x.fillStyle=r[3]?cv('--good'):cv('--accent');
+    x.beginPath();x.arc(sc(m),y,3.5,0,7);x.fill();
+    txt(x,'$'+Math.round(m)+'k',sc(r[2])+8,y+4,cv('--muted'),10,'left');
+  });
+}
+var LAND=[['Package A',0.46,0],['Alt 100x320',0.95,0],['A + 300yd drive',1.267,1],['Package B',1.84,1]];
+function drawLand(){var c=$('cLand');if(!c.offsetParent)return;var H=185,b=fit(c,H),x=b.x,w=b.w;
+  var L=148,R=w-74,max=2,sc=function(v){return L+(v/max)*(R-L)};
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  for(var t=0;t<=2;t+=0.5){x.beginPath();x.moveTo(sc(t),14);x.lineTo(sc(t),H-24);x.stroke();
+    txt(x,t.toFixed(1),sc(t),H-8,cv('--muted'),10,'center')}
+  LAND.forEach(function(r,i){var y=34+i*34;
+    txt(x,r[0],L-12,y+4,cv('--ink'),11,'right',600);
+    x.fillStyle=r[2]?cv('--risk'):cv('--good');x.globalAlpha=.8;
+    rr(x,L,y-8,Math.max(4,sc(r[1])-L),16,4);x.globalAlpha=1;
+    txt(x,r[1].toFixed(2)+' ac',sc(r[1])+8,y+4,r[2]?cv('--risk'):cv('--good'),10,'left',600);
+  });
+  x.strokeStyle=cv('--risk');x.lineWidth=2;x.setLineDash([5,3]);
+  x.beginPath();x.moveTo(sc(1),12);x.lineTo(sc(1),H-24);x.stroke();x.setLineDash([]);
+  txt(x,'1 acre trigger',sc(1)+6,20,cv('--risk'),10,'left',600);
+}
+var TMAX=[21,23,26,31,36,41,42,41,38,32,25,20];
+var MON=['J','F','M','A','M','J','J','A','S','O','N','D'];
+function drawTemp(){var c=$('cTemp');if(!c.offsetParent)return;var H=185,b=fit(c,H),x=b.x,w=b.w;
+  var L=44,R=w-14,T=16,B=H-26,lo=10,hi=50,sy=function(v){return B-((v-lo)/(hi-lo))*(B-T)};
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  for(var t=10;t<=50;t+=10){x.beginPath();x.moveTo(L,sy(t));x.lineTo(R,sy(t));x.stroke();
+    txt(x,t+'C',L-8,sy(t)+4,cv('--muted'),10,'right')}
+  var bw=(R-L)/12;
+  TMAX.forEach(function(v,i){var px=L+i*bw+bw*0.18,bd=bw*0.64;
+    x.fillStyle=v>=40?cv('--accent'):cv('--border2');x.globalAlpha=v>=40?.9:.55;
+    rr(x,px,sy(v),bd,B-sy(v),3);x.globalAlpha=1;
+    txt(x,MON[i],px+bd/2,H-8,cv('--muted'),10,'center')});
+  x.strokeStyle=cv('--risk');x.lineWidth=2;x.setLineDash([5,3]);
+  x.beginPath();x.moveTo(L,sy(45));x.lineTo(R,sy(45));x.stroke();x.setLineDash([]);
+  txt(x,'45C limit',R,sy(45)-7,cv('--risk'),10,'right',600);
+}
+var FLOW={capex:0,net:0,life:10};
+/* Year-by-year cumulative profit. Bars below zero are capital not yet recovered;
+   bars above zero are accumulated profit. */
+function drawFlow(){var c=$('cFlow');if(!c||!c.offsetParent)return;var H=230,b=fit(c,H),x=b.x,w=b.w;
+  var L=74,R=w-16,T=22,B=H-28,n=FLOW.life,cap=FLOW.capex,net=FLOW.net;
+  var vals=[];for(var i=1;i<=n;i++)vals.push(-cap+net*i);
+  var mx=Math.max.apply(null,vals.concat([0])),mn=Math.min.apply(null,vals.concat([-cap]));
+  if(mx===mn)mx=mn+1;
+  var pad=(mx-mn)*0.10;mx+=pad;mn-=pad;
+  var sy=function(v){return B-((v-mn)/(mx-mn))*(B-T)};
+  var bw=(R-L)/n, gap=Math.min(7,bw*0.22);
+  function lbl(v){var a=Math.abs(v);return (v<0?'-':'')+(a>=1e6?'$'+(a/1e6).toFixed(1)+'M':'$'+Math.round(a/1000)+'k')}
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  [mn,(mn+mx)/2,mx].forEach(function(v){x.beginPath();x.moveTo(L,sy(v));x.lineTo(R,sy(v));x.stroke();
+    txt(x,lbl(v),L-8,sy(v)+4,cv('--muted'),10,'right')});
+  var zy=sy(0);
+  x.strokeStyle=cv('--border2');x.lineWidth=1.5;
+  x.beginPath();x.moveTo(L,zy);x.lineTo(R,zy);x.stroke();
+  vals.forEach(function(v,i){
+    var px=L+i*bw+gap/2, bwid=bw-gap, top=v>=0?sy(v):zy, h=Math.max(1,Math.abs(sy(v)-zy));
+    x.fillStyle=v>=0?cv('--good'):cv('--risk');
+    x.globalAlpha=v>=0?0.85:0.45;
+    rr(x,px,top,bwid,h,3);x.globalAlpha=1;
+    var yr=i+1;
+    if(yr===5||yr===n){
+      x.strokeStyle=cv('--accent');x.lineWidth=1.5;x.setLineDash([3,3]);
+      x.beginPath();x.moveTo(px+bwid/2,T-6);x.lineTo(px+bwid/2,B);x.stroke();x.setLineDash([]);
+      txt(x,'yr '+yr+'  '+lbl(v),px+bwid/2,T-10,cv('--accent'),10,yr===n?'right':'center',600);
+    }
+    if(bw>26||yr%2===0||yr===n)txt(x,String(yr),px+bwid/2,H-9,cv('--muted'),10,'center');
+  });
+  if(net>0&&cap>0){var be=cap/net;
+    if(be<=n){var bx=L+(be-0)*bw;
+      x.fillStyle=cv('--good');x.beginPath();x.arc(bx,zy,4.5,0,7);x.fill();
+      txt(x,'break-even '+(be<1?(be*12).toFixed(1)+' mo':be.toFixed(1)+' yr'),
+        bx+8,zy-9,cv('--good'),10,'left',600)}}
+}
+var CYC=[['Forklift shuttle, 16 round trips',21,1],['Failed tosses recovered',4.5,0],
+         ['Banding, 2 per pallet',4,0],['Pallet positioning',3,0]];
+function drawCycle(){var c=$('cCycle');if(!c||!c.offsetParent)return;var H=180,b=fit(c,H),x=b.x,w=b.w;
+  var L=178,R=w-52,max=24,sc=function(v){return L+(v/max)*(R-L)};
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  for(var t=0;t<=24;t+=6){x.beginPath();x.moveTo(sc(t),14);x.lineTo(sc(t),H-24);x.stroke();
+    txt(x,t+'m',sc(t),H-8,cv('--muted'),10,'center')}
+  CYC.forEach(function(r,i){var y=34+i*33;
+    txt(x,r[0],L-12,y+4,cv('--ink'),11,'right',r[2]?600:500);
+    x.fillStyle=r[2]?cv('--risk'):cv('--accent');x.globalAlpha=r[2]?.9:.5;
+    rr(x,L,y-9,Math.max(4,sc(r[1])-L),18,4);x.globalAlpha=1;
+    txt(x,r[1]+' min',sc(r[1])+8,y+4,r[2]?cv('--risk'):cv('--muted'),10,'left',r[2]?600:500)});
+  txt(x,'the shuttle is the target',L,H-24-6,cv('--risk'),10,'left',600);
+}
+/* Container-type entries recovered from two real manifest packets.
+   [label, drums(DF), boxes(CF), metal drums(DM)] - measured, not modelled. */
+var MIX=[['Trailer 548381',55,8,0],['Trailer 537464',55,10,1]];
+function drawMix(){var c=$('cMix');if(!c||!c.offsetParent)return;var H=150,b=fit(c,H),x=b.x,w=b.w;
+  var L=Math.min(132,w*0.30),R=w-84,max=70,sc=function(v){return (v/max)*(R-L)};
+  x.strokeStyle=cv('--grid');x.lineWidth=1;
+  for(var t=0;t<=70;t+=10){var gx=L+sc(t);x.beginPath();x.moveTo(gx,24);x.lineTo(gx,H-32);x.stroke();
+    txt(x,String(t),gx,H-16,cv('--muted'),10,'center')}
+  txt(x,'container-type entries recovered',L+sc(35),H-3,cv('--muted'),9,'center');
+  MIX.forEach(function(r,i){var y=38+i*40,tot=r[1]+r[2]+r[3];
+    x.fillStyle=cv('--accent');rr(x,L,y,Math.max(2,sc(r[1])),24,3);
+    x.fillStyle=cv('--mid');rr(x,L+sc(r[1]),y,Math.max(2,sc(r[2])),24,3);
+    if(r[3]){x.fillStyle=cv('--warn');rr(x,L+sc(r[1]+r[2]),y,Math.max(2,sc(r[3])),24,3)}
+    txt(x,r[0],L-10,y+16,cv('--ink'),11,'right',600);
+    txt(x,Math.round((r[1]+r[3])/tot*100)+'% drums',L+sc(tot)+8,y+16,cv('--accent'),10,'left',600)})}
+function drawAll(){try{drawThru();drawCapex();drawLand();drawTemp();drawCycle();drawFlow();drawMix()}catch(e){}}
+
+var RG={dump:[383000,844000],sep:[8000,40000],landA:[338000,644000],landB:[764000,1441000],solar:[105000,200000]};
+function money(n){var a=Math.abs(n),s=n<0?'-':'';
+  if(a>=1e6)return s+'$'+(a/1e6).toFixed(2)+'M';
+  if(a>=1000)return s+'$'+Math.round(a/1000)+'k';return s+'$'+Math.round(a)}
+function pick(r,p){return r[0]+(r[1]-r[0])*p}
+function npv(r,cf,n){var s=0;for(var i=1;i<=n;i++)s+=cf/Math.pow(1+r,i);return s}
+var IRR_CEIL=5; /* 500% - above this we report ">500%", never a false precise value */
+function irr(cap,cf,n){if(cf<=0)return null;var lo=-0.9,hi=IRR_CEIL,m,v;
+  if(npv(hi,cf,n)-cap>0)return 'over';  /* sentinel: root lies above the bracket */
+  if(npv(lo,cf,n)-cap<0)return null;
+  for(var i=0;i<160;i++){m=(lo+hi)/2;v=npv(m,cf,n)-cap;if(v>0)lo=m;else hi=m}return (lo+hi)/2}
+function irrTxt(r){return r===null?'n/a':r==='over'?'>500%':(r*100).toFixed(1)+'%'}
+function irrBeats(r,disc){return r==='over'?true:(r!==null&&r>disc)}
+
+function run(){
+  var p=+$('sCap').value/100,margin=+$('sMargin').value,trail=+$('sTrail').value,
+      lab=+$('sLab').value,disc=+$('sDisc').value/100,life=+$('sLife').value;
+  $('vMargin').textContent='$'+margin.toLocaleString();
+  $('vTrail').textContent=trail.toFixed(1);
+  $('vCap').textContent=Math.round(p*100)+'%';
+  $('vLab').textContent='$'+lab.toLocaleString();
+  $('vDisc').textContent=(disc*100).toFixed(0)+'%';
+  $('vLife').textContent=life+' yrs';
+  $('prDump').textContent=money(pick(RG.dump,p));
+  $('prSep').textContent=money(pick(RG.sep,p));
+  $('prLandA').textContent=money(pick(RG.landA,p));
+  $('prLandB').textContent=money(pick(RG.landB,p));
+  $('prSolar').textContent=money(pick(RG.solar,p));
+  var capex=0;
+  if($('cDump').checked)capex+=pick(RG.dump,p);
+  if($('cSep').checked)capex+=pick(RG.sep,p);
+  if($('cLandB').checked){capex+=pick(RG.landB,p);$('cLandA').checked=false;$('cLandA').disabled=true}
+  else{$('cLandA').disabled=false;if($('cLandA').checked)capex+=pick(RG.landA,p)}
+  if($('cSolar').checked)capex+=pick(RG.solar,p);
+  var gross=margin*trail*52+lab,lease=$('cLease').checked?150000:0,net=gross-lease;
+  $('oCapex').textContent=money(capex);
+  $('oCapexF').textContent=Math.round(p*100)+'% of quoted range';
+  $('oBen').textContent=money(net)+'/yr';
+  $('oBenF').textContent=lease?money(gross)+' less $150k lease':'lease excluded';
+  $('kPay').className='kpi';$('kNpv').className='kpi';$('kIrr').className='kpi';
+  if(net<=0||capex<=0){
+    ['oPay','oNpv','oIrr'].forEach(function(i){$(i).textContent='n/a'});
+    $('oPayF').textContent=net<=0?'no net benefit':'nothing selected';
+    $('oNpvF').textContent=' ';$('oIrrF').textContent=' ';$('oBE').textContent='—';
+  }else{
+    var yrs=capex/net,mo=yrs*12;
+    $('oPay').textContent=yrs<1?mo.toFixed(1)+' mo':yrs.toFixed(1)+' yrs';
+    $('oPayF').textContent=mo<=24?'inside two years':'beyond two years';
+    $('kPay').className='kpi '+(yrs<=2?'ok':yrs<=5?'':'bad');
+    var v=npv(disc,net,life)-capex;
+    $('oNpv').textContent=money(v);
+    $('oNpvF').textContent='at '+(disc*100).toFixed(0)+'% over '+life+' yrs';
+    $('kNpv').className='kpi '+(v>0?'ok':'bad');
+    var r=irr(capex,net,life);
+    $('oIrr').textContent=irrTxt(r);
+    $('oIrrF').textContent=r===null?'no solution':(irrBeats(r,disc)?'above hurdle':'below hurdle');
+    $('kIrr').className='kpi '+(irrBeats(r,disc)?'ok':'bad');
+    /* capital recovery at the discount rate, not straight-line - a discount slider is set above */
+    var crf=disc>0?(disc*Math.pow(1+disc,life))/(Math.pow(1+disc,life)-1):1/Math.max(life,1);
+    $('oBE').textContent=((lease+capex*crf)/margin/52).toFixed(2);
+  }
+  FLOW={capex:capex,net:net,life:life};
+  drawFlow();
+  strips(p,gross,lease,disc);
+}
+
+/* per-tab NPV / IRR at 5 and 10 years */
+function strips(p,gross,lease,disc){
+  document.querySelectorAll('.finstrip').forEach(function(s){
+    var keys=(s.dataset.cap||'').split(',').filter(Boolean);
+    var cap=0;keys.forEach(function(k){if(RG[k])cap+=pick(RG[k],p)});
+    var share=parseFloat(s.dataset.ben||'0');
+    /* the land lease increment is only a cost to scenarios that TAKE the land.
+       A strip captioned "no land" must not carry it. Scale with the benefit share. */
+    var hasLand=keys.indexOf('landA')>=0||keys.indexOf('landB')>=0;
+    var net=share>0?(gross*share-(hasLand?lease*share:0)):0;
+    var set=function(sel,txtv,good){var el=s.querySelector('[data-f="'+sel+'"]');if(!el)return;
+      el.textContent=txtv;el.className='fv'+(good===true?' ok':good===false?' bad':'')};
+    set('cap',money(cap));
+    [5,10].forEach(function(n){
+      if(cap<=0){set('npv'+n,'n/a');set('irr'+n,'n/a');return}
+      if(net<=0){set('npv'+n,money(-cap),false);set('irr'+n,'n/a');return}
+      var v=npv(disc,net,n)-cap;
+      set('npv'+n,money(v),v>0);
+      var r=irr(cap,net,n);
+      set('irr'+n,irrTxt(r),irrBeats(r,disc));
+    });
+  });
+}
+document.querySelectorAll('#p5 input').forEach(function(el){
+  el.addEventListener('input',run);el.addEventListener('change',run)});
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(drawAll,120)});
+if(window.matchMedia){var mq=window.matchMedia('(prefers-color-scheme:dark)');
+  if(mq.addEventListener)mq.addEventListener('change',drawAll)}
+new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+run();drawAll();setTimeout(drawAll,150);
+})();
+</script>
