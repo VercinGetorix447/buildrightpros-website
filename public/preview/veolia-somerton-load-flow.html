@@ -214,7 +214,13 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
 .msg.err{align-self:flex-start;border-left:3px solid var(--critical);}
 
 /* measurement grid */
-#measure-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(276px,1fr));gap:14px;}
+#measure-grid,.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(276px,1fr));gap:14px;}
+.measure-slot{margin-top:18px}
+.measure-slot h3{margin:0 0 4px}
+.mctl{display:flex;align-items:center;gap:8px;margin-top:8px}
+.mctl input[type=range]{flex:1;min-width:80px}
+.mctl .mval{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--ink-2);min-width:46px;text-align:right}
+.mcount{font-size:.76rem;color:var(--ink-3);margin-top:5px}
 .mcard{background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px;}
 .mcard .mhead{display:flex;align-items:baseline;gap:9px;}
 .mcard .mnum{font-family:"IBM Plex Mono",monospace;font-size:0.6875rem;color:var(--ink-3);}
@@ -273,6 +279,10 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
       <h2>Current state</h2>
       <p class="sub">One trailer, from manifest receipt to landfill run, as described by Somerton. The boxes are the phases and the actor performing each. The step-line underneath is time: low steps are hands-on time, high steps are elapsed time with no handling. <b>Phase names and actors are stated; the minute values are estimates</b> and are editable &mdash; changing them recalculates the figures on this page.</p>
     </div>
+
+    <div class="measure-slot"><h3>Measurement points on the inbound leg</h3>
+      <p class="small muted">Each chart is anchored on a stated figure. Move the slider to set the line where you would set it; the count underneath updates. Plotted values are <span class="assume">placeholder data</span> until real capture replaces them.</p>
+      <div class="mgrid" id="mgrid-current"></div></div>
 
     <div class="tiles">
       <div class="tile"><span class="label">Lead time / load</span><span class="v mono" id="k-lead">&mdash;</span><span class="u">minutes, gate to dump</span></div>
@@ -480,6 +490,10 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
       <p class="sub">The sequence applied when the pallet carries drums, from the staging row to the empty trailer. Steps and quantities below are as stated by Somerton.</p>
     </div>
 
+    <div class="measure-slot"><h3>Measurement points on this path</h3>
+      <p class="small muted">Each chart is anchored on a stated figure. Move the slider to set the line where you would set it; the count underneath updates. Plotted values are <span class="assume">placeholder data</span> until real capture replaces them.</p>
+      <div class="mgrid" id="mgrid-drum"></div></div>
+
     <figure>
       <div class="scroll"><div id="drumflow"></div></div>
       <figcaption><b>Drum sequence.</b> Alternating actors: ground tech and FLOP. The return leg is the second half &mdash; empty drums are nested, banded and loaded back for Pomona.</figcaption>
@@ -529,6 +543,10 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
       <h2>Carton path</h2>
       <p class="sub">The sequence applied when the pallet carries 1K cartons, from the staging row through the warehouse to the empty trailer. Steps and quantities below are as stated by Somerton.</p>
     </div>
+
+    <div class="measure-slot"><h3>Measurement points on this path</h3>
+      <p class="small muted">Each chart is anchored on a stated figure. Move the slider to set the line where you would set it; the count underneath updates. Plotted values are <span class="assume">placeholder data</span> until real capture replaces them.</p>
+      <div class="mgrid" id="mgrid-carton"></div></div>
 
     <figure>
       <div class="scroll"><div id="cartonflow"></div></div>
@@ -580,6 +598,10 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
       <p class="sub">What happens after the roll-off is loaded: the landfill run, the paperwork return, and the records that close the trailer out.</p>
     </div>
 
+    <div class="measure-slot"><h3>Measurement points on the outbound leg</h3>
+      <p class="small muted">Each chart is anchored on a stated figure. Move the slider to set the line where you would set it; the count underneath updates. Plotted values are <span class="assume">placeholder data</span> until real capture replaces them.</p>
+      <div class="mgrid" id="mgrid-outbound"></div></div>
+
     <figure>
       <div class="scroll"><div id="outflow"></div></div>
       <figcaption><b>Outbound sequence.</b> Two records are produced: the landfill BOL carrying weights and pricing, and the whiteboard entry carrying the processed date and empty-trailer location.</figcaption>
@@ -622,12 +644,12 @@ code{font-family:"IBM Plex Mono",monospace;font-size:0.875em;background:var(--su
   <div class="stack-lg">
     <div class="station-head">
       <h2>Measurement points</h2>
-      <p class="sub">Every point in the process where a stated capacity or rate gives something countable. Each chart below is anchored on a figure from the process description; the plotted values are placeholders showing the form the chart takes.</p>
+      <p class="sub">Every point in the process where a stated capacity or rate gives something countable, gathered in one list. <b>The fifteen charts themselves sit in the station each one describes</b> &mdash; inbound leg, drum path, carton path and outbound &mdash; where the slider on each lets the line be moved.</p>
     </div>
 
     <div class="callout">
       <div class="label">How to read these</div>
-      <p class="small">The dashed line on each chart is the stated capacity, target or rate. The bars and points are <span class="assume">illustrative placeholder data</span> and carry no meaning until real capture replaces them. The register below each chart names the formula, the source of the number and who would record it.</p>
+      <p class="small">The dashed line on each chart starts at the stated capacity, target or rate and can be moved. The bars and points are <span class="assume">illustrative placeholder data</span> and carry no meaning until real capture replaces them. The register below names the formula, the source of the number and who would record it.</p>
     </div>
 
     <div id="measure-grid"></div>
@@ -2389,12 +2411,12 @@ function stepTable(targetId, steps){
 }
 
 /* ---- mini chart: bars vs cap, or run vs target ---- */
-function miniChart(m, idx){
+function miniChart(m, idx, capNow){
   var W = 300, H = 132, PL = 34, PR = 10, PT = 14, PB = 24;
   var iw = W-PL-PR, ih = H-PT-PB;
   var vals = m.d.map(function(p){ return p.v; });
   var peak = Math.max.apply(null, vals);
-  var max = Math.max(peak, m.cap || 0) * 1.18 || 1;
+  var max = Math.max(peak, (typeof capNow === "number" ? capNow : m.cap) || 0) * 1.18 || 1;
   var y = function(v){ return PT + ih - (v/max)*ih; };
   var dec = max < 5 ? 1 : 0;
 
@@ -2411,8 +2433,9 @@ function miniChart(m, idx){
     for(i=0;i<n;i++){
       p = m.d[i];
       cx = PL + (iw/n)*(i+0.5);
-      var over = m.cap > 0 && (m.cap === 0 ? false : (m.capL.indexOf("target") >= 0 ? p.v > m.cap : p.v < m.cap));
-      var col = m.cap === 0 ? "var(--s1)" : (over ? "var(--serious)" : "var(--s1)");
+      /* One bar colour. The dashed line carries the comparison; colour does not
+         tell the reader which periods are acceptable. */
+      var col = "var(--s1)";
       var by = y(p.v);
       s += '<rect x="'+(cx-bw/2).toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+Math.max(0,(PT+ih-by)).toFixed(1)+'" rx="2" fill="'+col+'"/>';
       s += '<text x="'+cx.toFixed(1)+'" y="'+(PT+ih+13)+'" text-anchor="middle" font-size="8.5" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace">'+esc(p.l)+'</text>';
@@ -2428,26 +2451,70 @@ function miniChart(m, idx){
     }
   }
 
-  if(m.cap > 0){
-    s += '<line x1="'+PL+'" y1="'+y(m.cap)+'" x2="'+(W-PR)+'" y2="'+y(m.cap)+'" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="5 3"/>';
+  var CAP = (typeof capNow === "number" ? capNow : m.cap);
+  if(CAP > 0){
+    s += '<line x1="'+PL+'" y1="'+y(CAP)+'" x2="'+(W-PR)+'" y2="'+y(CAP)+'" stroke="var(--ink)" stroke-width="1.3" stroke-dasharray="5 3"/>';
   }
   s += '<line x1="'+PL+'" y1="'+(PT+ih)+'" x2="'+(W-PR)+'" y2="'+(PT+ih)+'" stroke="var(--axis)" stroke-width="1"/>';
   s += '</svg>';
   return s;
 }
 
+/* ---- measurement cards ----
+   The fifteen charts sit in the station each one describes rather than in a single
+   block. GROUPS maps measure index -> mount id. Each card carries a slider that
+   moves its own reference line; the count underneath is a statement of fact about
+   the plotted values, not an assessment. */
+var MGROUP = {
+  "mgrid-current":  [0,1,2,3,4],
+  "mgrid-drum":     [5,6,7],
+  "mgrid-carton":   [8,9,10],
+  "mgrid-outbound": [11,12,13,14]
+};
+var MCAP = MEASURES.map(function(m){ return m.cap; });
+
+function mCount(i){
+  var m = MEASURES[i], c = MCAP[i];
+  if(!(c > 0)) return m.d.length + " periods plotted";
+  var atOr = 0;
+  for(var k=0;k<m.d.length;k++) if(m.d[k].v >= c) atOr++;
+  return atOr + " of " + m.d.length + " periods at or above the line";
+}
+function mRedraw(i){
+  var host = el("mchart-"+i); if(host) host.innerHTML = miniChart(MEASURES[i], i, MCAP[i]);
+  var cnt = el("mcount-"+i);  if(cnt)  cnt.textContent = mCount(i);
+  var val = el("mval-"+i);    if(val)  val.textContent = MCAP[i];
+}
+function mCard(i){
+  var m = MEASURES[i];
+  var base = m.cap || Math.max.apply(null, m.d.map(function(p){return p.v;}));
+  var hi = Math.max(1, Math.round(base * 1.6));
+  return '<div class="mcard">'
+    + '<div class="mhead"><span class="mnum">'+(i+1<10?"0":"")+(i+1)+'</span><h4>'+esc(m.t)+'</h4></div>'
+    + '<div class="manchor">'+(m.capL ? '<span class="pill">'+esc(m.capL)+'</span>' : '<span class="pill">no stated anchor</span>')
+    + ' <span class="label" style="letter-spacing:.08em">'+esc(m.unit)+'</span></div>'
+    + '<div id="mchart-'+i+'">'+miniChart(m, i, MCAP[i])+'</div>'
+    + '<div class="mctl"><label class="label" for="mrange-'+i+'">Line</label>'
+    + '<input type="range" id="mrange-'+i+'" min="0" max="'+hi+'" step="'+(hi>60?1:(hi>12?1:0.5))+'" value="'+MCAP[i]+'" aria-label="Reference line for '+esc(m.t)+'">'
+    + '<span class="mval" id="mval-'+i+'">'+MCAP[i]+'</span></div>'
+    + '<div class="mcount" id="mcount-'+i+'">'+mCount(i)+'</div>'
+    + '<p class="small muted mfoot">'+esc(m.f)+'</p></div>';
+}
 (function(){
-  var h = "";
-  for(var i=0;i<MEASURES.length;i++){
-    var m = MEASURES[i];
-    h += '<div class="mcard">'
-       + '<div class="mhead"><span class="mnum">'+(i+1<10?"0":"")+(i+1)+'</span><h4>'+esc(m.t)+'</h4></div>'
-       + '<div class="manchor">'+(m.capL ? '<span class="pill keep">'+esc(m.capL)+'</span>' : '<span class="pill">no stated cap</span>')
-       + ' <span class="label" style="letter-spacing:.08em">'+esc(m.unit)+'</span></div>'
-       + miniChart(m, i)
-       + '<p class="small muted mfoot">'+esc(m.f)+'</p></div>';
+  var gid, idxs, h, j;
+  for(gid in MGROUP){
+    if(!el(gid)) continue;
+    idxs = MGROUP[gid]; h = "";
+    for(j=0;j<idxs.length;j++) h += mCard(idxs[j]);
+    el(gid).innerHTML = h;
   }
-  el("measure-grid").innerHTML = h;
+  for(var i=0;i<MEASURES.length;i++){
+    (function(k){
+      var r = el("mrange-"+k);
+      if(r) r.addEventListener("input", function(ev){ MCAP[k] = Number(ev.target.value); mRedraw(k); });
+    })(i);
+  }
+  var mg = el("measure-grid"); if(mg) mg.innerHTML = "";
 
   var t = '<thead><tr><th>#</th><th>Measure</th><th>Formula</th><th>Stated anchor</th><th>Recorded by</th></tr></thead><tbody>';
   for(var j=0;j<MEASURES.length;j++){
